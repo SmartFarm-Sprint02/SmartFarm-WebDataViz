@@ -2,7 +2,8 @@ var database = require("../database/config");
 
 function buscarEstufasPorEmpresa(token) {
 
-    var instrucaoSql = `SELECT * FROM aquario a WHERE fk_empresa = ${token}`;
+    var instrucaoSql = `SELECT * FROM estufa WHERE fk_empresa = ${token}`;
+
   
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

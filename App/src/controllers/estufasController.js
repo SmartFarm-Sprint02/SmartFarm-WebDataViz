@@ -1,9 +1,9 @@
 var estufasModel = require("../models/estufasModel");
 
 function buscarEstufasPorEmpresa(req, res) {
-    var idUsuario = req.params.id;
+    var id = req.params.id;
   
-    estufasModel.buscarEstufasPorEmpresa(idUsuario).then((resultado) => {
+    estufasModel.buscarEstufasPorEmpresa(id).then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {
