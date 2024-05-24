@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+    <h1>Simulador Financeiro - SmartFarm</h1>
+    <p></p>
+</head>
+
+<body>
+
+    Informe a quantidade de pimentão (em Kg): <input id="input_qtd_pimentao"> <br>
+    Informe a quantidade de estufas: <input id="input_qtd_estufas"><br>
+    Informe o tamanho da estufa: <input id="input_tamanho_estufa"> <br>
+    Informe o tipo de pimentão: <input id="input_tipo_pimentao"> <br>
+
+    <button onclick="exibirFazerSimulação()">Fazer Simulação</button>
+    <div id="Resultado_Pimentões"></div>
+
+</body>
+
+</html>
+
+<script>
+    function exibirFazerSimulação() {
+        var qtdPimentao = Number(input_qtd_pimentao.value)
+        var tamanhoEstufa = (input_tamanho_estufa.value)
+        var tipoPimentao = (input_tipo_pimentao.value)
+        var qtdEstufas = Number(input_qtd_estufas.value)
+
+        if (tamanhoEstufa == "pequeno") {
+            var portePequeno = 40
+            qtdEstufas = qtdEstufas * portePequeno
+        }
+        if (tamanhoEstufa == "médio") {
+            var porteMedio = 80
+            qtdEstufas = qtdEstufas * porteMédio
+        }
+
+        if (tipoPimentao == "amarelo") {
+            var pimentaoAmarelo = 15
+            var ValorPimentoes = (pimentaoAmarelo * qtdPimentao)
+        }
+        if (tipoPimentao == "vermelho") {
+            var pimentaoVermelho = 12
+            var ValorPimentoes = (pimentaoVermelho * qtdPimentao)
+        }
+        if (tipoPimentao == "verde") {
+            var pimentaoVerde = 11
+            var ValorPimentoes = (pimentaoVerde * qtdPimentao)
+        }
+        var ValorProjeto = qtdEstufas * 100
+        var ValorGasto = ValorPimentoes + ValorProjeto
+        var ValorAcrescimo = ValorProjeto * 1.62
+
+        Resultado_Pimentões.innerHTML = `Sem a implemetação do nosso sistema de monitoramento, 
+     você está <b> <div style = "color: red;"> perdendo </div> </b> aproximadamente <b> R$${ValorGasto.toFixed(2)}! </b>
+     Já com a implementação do nosso sistema, além de melhorar a eficiência, 
+     a otimização possuir um controle mais preciso das suas estufas, você pode 
+     <b> <div style = "color: green;">aumentar o seu lucro anual</div> </b> em aproximadamente <b> R$${ValorAcrescimo.toFixed(2)}! </b>
+     `
+
+
+
+
+
+    }
+
+
+
+</script>

@@ -1,0 +1,86 @@
+.barratop {
+    width: 100%;
+    height: 80px;
+    padding-bottom: 5px;
+}
+
+.navbarra {
+    display: flex;
+    width: 400px;
+    color: rgb(255, 255, 255);
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    height: 80px;
+}
+
+.tituloMenu {
+
+    display: flex;
+    color: #000000;
+    font-size: x-large;
+}
+
+.fundo {
+    width: 100%;
+    height: 580px;
+    background-color: #025959;
+    padding-top: 40px;
+
+}
+
+.calculadora {
+    width: 29%;
+    height: 80%;
+    background-color: white;
+    align-items: center;
+    float: center;
+    margin-left: 6%;
+    border-radius: 5%;
+    box-shadow: 5px 5px 25px rgb(97, 97, 97);
+    font-size: small;
+    padding-top: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: justify;
+}
+
+
+.calculadora input {
+    width: 85%;
+    height: 30px;
+    border: none;
+    background-color: rgb(228, 228, 228);
+    margin: 5px 10px 0 5%;
+    padding: 5px;
+}
+
+.input_calculadora {
+    font-weight: bold;
+    margin-left: 20px;
+
+
+}
+
+.calculadora button {
+    width: 40%;
+    height: 40px;
+    margin: 20px;
+    background-color: #025f4e;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.final {
+    font-weight: bold;
+
+
+
+}

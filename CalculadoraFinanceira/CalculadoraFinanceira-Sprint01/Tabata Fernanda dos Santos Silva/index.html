@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- links para usar uma fonte do google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bassa+Vah:wght@400..700&display=swap"
+        rel="stylesheet">
+
+    <title>SmartFarm</title>
+</head>
+
+<body>
+    <!-- MENU DO SITE, AINDA NÃO FUNCIONAL -->
+    <div class="header">
+        <div class="container">
+            <img src="img/logo2smartfarm.png" alt="Logo da empresa SmartFarm">
+            <h1 class="tituloMenu">SmartFarm</h1>
+            <ul class="navbar">
+                <li>Início</li>
+                <li>Sobre</li>
+                <li style="color: #04a49e;">Financeiro</li>
+                <li>Contato</li>
+            </ul>
+        </div>
+    </div>
+    <!-- CALCULADORA -->
+    <div class="financeiro">
+        <div class="calculadora">
+            <input type="number" id="input_lucro_atual" placeholder="Digite o seu lucro mensal atual por estufa">
+            <br>
+            <input type="number" id="input_qtd_estufa" placeholder="Digite quantas estufas você tem">
+            <br>
+            <button onclick="calcularLucro()">Calcular</button>
+            
+            <div id="div_resultado_lucro" class="resultadoLucro">
+
+            </div>
+        </div>
+        <!-- TEXTO SOBRE A CALCULADORA -->
+        <div class="textoFinanceiro">
+            <h1>Simulador Financeiro</h1>
+            <p>Calcule seu lucro estimado com a nossa solução utilizando a nossa calculadora financeira!</p>
+            <br><br>
+            <img src="img/calculator.png" alt="">
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function calcularLucro() {
+        var lucroAtual = Number(input_lucro_atual.value)
+        var qtdEstufa = Number(input_qtd_estufa.value)
+        
+        // O LUCRO PODE SER ATÉ 3 VEZES MAIOR NO CULTIVO CONTROLADO
+        var lucroSolucao = (lucroAtual * qtdEstufa) * 3
+
+        div_resultado_lucro.innerHTML = `Utilizando o nosso sistema de monitoramento para estufas de pimentão em todas as suas estufas,
+                                        você pode ter um lucro total mensal de até <b>R$${lucroSolucao}</b>, devido ao
+                                        melhor desenvolvimento do pimentão em um ambiente amplamente controlado. 
+                                        <br><br>
+                                        <b>Entre em contato conosco para maiores informações.</b>`
+    }
+</script>

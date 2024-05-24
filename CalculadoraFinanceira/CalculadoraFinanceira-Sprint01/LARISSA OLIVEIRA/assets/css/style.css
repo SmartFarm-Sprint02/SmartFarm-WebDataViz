@@ -1,0 +1,111 @@
+body {
+    display: flex;
+    /*usa um layout de flexbox para organizar os elementos dentro do body */
+    align-items: center;
+    /* alinha os itens verticalmente ao centro */
+    justify-content: center;
+    /* Alinha os itens horizontalmente ao centro */
+    width: 100%;
+    /* Define a largura do corpo para ocupar toda a largura da janela */
+    height: 100vh;
+    /* Define a altura */
+    background-color: #18181b;
+    /* Cor fundo*/
+
+}
+
+h1 {
+    position: absolute;
+    /* Define a posição do título como absoluta */
+    top: 55px;
+    /* Distância do topo da página */
+    left: 50%;
+    /* Alinha o título ao centro horizontalmente */
+    transform: translateX(-50%);
+    /* Move o título de volta 50% de sua própria largura */
+    text-align: center;
+    /* Alinha o texto ao centro */
+    width: 100%;
+    /* Faz com que o título ocupe a largura total da página */
+    color: #f8fafc;
+
+}
+
+h1::after {
+    content: "";
+    /* Adiciona um conteúdo após o título */
+    display: block;
+    /* Faz o conteúdo gerado ser exibido como um bloco */
+    width: 5rem;
+    /* Define a largura do elemento gerado */
+    height: 0.3rem;
+    /* Define a altura*/
+    background-color: rgb(67, 129, 184);
+    /* cor do traço*/
+    margin: 0;
+    position: absolute;
+    border-radius: 10px;
+    left: 55%;
+    /**posição horizontal*/
+}
+
+.container {
+    width: 80%;
+    /*largura*/
+    margin: auto;
+    display: flex;
+}
+
+
+#ParteDaCalculadora {
+    display: flex;
+    flex-direction: column;
+    /* Define a direção dos elementos como coluna */
+    justify-content: flex-start;
+    /*alinha vertical os itens*/
+    gap: 2rem;
+    /* Define o espaçamento entre os itens */
+    padding: 3rem;
+    /* Adiciona preenchimento ao redor dos elementos*/
+    color: #f8fafc;
+    /*cor do texto da cal*/
+    background-color: #262626;
+    /*cor de fundo do cont*/
+    border-radius: 8px;
+    width: auto;
+    font-size: 15px;
+    /*tamanho da fonte*/
+
+}
+
+
+
+input {
+    border: none;
+    /* nao tem a borda no input*/
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    /* Define a linha como transparente */
+    background-color: transparent;
+    /* Define o fundo como transparente */
+    padding: 8px;
+    /* Ajuste o espaçamento interno conforme necessário */
+    font-size: 16px;
+    /* Ajuste o tamanho da fonte conforme necessário */
+    width: 100%;
+    /* Garante que o input ocupe toda a largura do container */
+    border-bottom: 3px solid rgb(67, 129, 184);
+    color: #fff;
+
+}
+
+#button_calcular {
+    background-color: rgb(67, 129, 184);
+    /* Define a cor de fundo do botão */
+    color: #fff;
+    /* Define a cor do texto do botão */
+    padding: 12px 100px;
+    /* Ajusta o preenchimento interno para tornar o botão mais largo */
+    border: none;
+    /* Remove a borda */
+
+}

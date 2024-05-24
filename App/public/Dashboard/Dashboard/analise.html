@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise | Smartfarm</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <section class="menu-lateral">
+        <div class="identificacao">
+            <h1>Fusca Pimentões</h1>
+            <h2>Cláudio Frizzarini</h2>
+        </div>
+
+        <div>
+            <a href="../Estufas/estufas.html"><button class="btn-estufa">Estufas</button></a>
+            <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
+        </div>
+        <div>
+            <a href="../../CTA/CTA.html"><button class="btn-sair">Sair</button></a>
+
+            <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
+        </div>
+    </section>
+
+    <section class="main-section">
+        <div class="inicio-main">
+            <div>
+                <h1>Estufa SPTECH</h1>
+            </div>
+            <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
+            <a href="historico.html"><button class="btn-navbar-dash" id="btn-ativo">Histórico</button></a>
+
+
+            <div>
+                <h5>Leitura mais recente:</h5>
+                <p>xx/xx/xxxx - xx:xx</p>
+            </div>
+        </div>
+
+        <div class="containerGraficos">
+            <section class="KPIs">
+                <div class="kpi1">
+                    <p>Mês com mais alertas</p>
+                    <h1>Agosto</h1>
+                </div>
+                <div class="kpi1">
+                    <p>Aumento de alertas</p>
+                    <h1>+7%</h1>
+                </div>
+                <div class="kpi1">
+                    <p>Semana com mais alertas</p>
+                    <h1>Semana 2</h1>
+                </div>
+                <div class="kpi1">
+                    <p>Horário com mais problemas</p>
+                    <h1>14:00 hrs</h1>
+                </div>
+            </section>
+
+            <div class="graficos">
+                <div class="GraficosAnalise">
+                    <div class="cardProblemasEstufa">
+                        <canvas id="problemasEstufa"></canvas>
+                    </div>
+
+                    <div class="cardProblemasEstufa">
+                        <canvas id="horariosProblemas"></canvas>
+                    </div>
+
+                </div>
+                <div class="graficoPizza">
+                    <canvas id="pizza"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('problemasEstufa');
+
+
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'problemasEstufa',
+                type: 'bar',
+                borderColor: ['#ffd902']
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    distribution: 'series',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'problemasEstufa'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            animation: {
+                duration: 0
+            }
+        }
+    }
+    );
+
+
+
+
+    const ctx1 = document.getElementById('horariosProblemas');
+
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'horariosProblemas',
+                type: 'bar',
+                borderColor: ['#ff3232']
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    distribution: 'series',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'horariosProblemas'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            animation: {
+                duration: 0
+            }
+        }
+    }
+    );
+
+
+    const ctx2 = document.getElementById('pizza');
+
+    new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                label: 'maduro',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    '#00B8A9',
+                    '#012E40',
+                    '#038C65'
+                ],
+                hoverOffset: 1
+            }]
+
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    distribution: 'series',
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'pizza'
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            animation: {
+                duration: 0
+            }
+        }
+    }
+    );
+</script>

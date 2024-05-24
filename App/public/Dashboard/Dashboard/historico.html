@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+
+    <link rel="shortcut icon" href="../../imgs/iconSmartFarm.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Histórico | SmartFarm</title>
+</head>
+
+<body>
+    <section class="menu-lateral">
+        <div class="identificacao">
+            <h1>Fusca Pimentões</h1>
+            <h2>Cláudio Frizzarini</h2>
+        </div>
+
+        <div>
+            <a href="../Estufas/estufas.html"><button class="btn-estufa">Estufas</button></a>
+            <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar" id="btn-ativo">Gerenciamento</button></a>
+        </div>
+        <div>
+            <a href="../../CTA/CTA.html"><button class="btn-sair">Sair</button></a>
+
+            <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
+        </div>
+    </section>
+
+    <section class="main-section">
+        <div class="inicio-main">
+            <div>
+                <h1>Estufa SPTECH</h1>
+            </div>
+            <a href="analise.html"><button class="btn-navbar-dash" id="btn-ativo">Análise</button></a>
+            <a href="historico.html"><button class="btn-navbar-dash" >Histórico</button></a>
+
+
+            <div>
+                <h5>Leitura mais recente:</h5>
+                <p>xx/xx/xxxx - xx:xx</p>
+            </div>
+        </div>
+
+        <div class="graficos_temp">
+            <div class="infos-grafico">
+                <div id="alerta_temp" class="alerta">
+                    <p>Em Alerta</p>
+                </div>
+                <div class="valores">
+                    <p>Temperatura</p>
+                    <h1 id="leitura_temp">20°C</h1>
+                </div>
+            </div>
+
+            <div class="grafico-div">
+                <!-- <section class="div-btn-on-off">
+                    <button id="btn_on_off" class="btn-on">ON</button>
+                </section> -->
+
+                <section id="grafico_temp" class="grafico">
+                    <canvas id="dht11Temperatura"></canvas>
+                    <!-- <img src="imgs/Gráfico.png" alt=""> -->
+                </section>
+            </div>
+
+            
+        </div>
+        <div class="graficos_umid">
+            <div class="infos-grafico">
+                <div id="alerta_umid" class="alerta">
+                    <p>Crítico</p>
+                </div>
+                <div class="valores">
+                    <p>Umidade</p>
+                    <h1 id="leitura_umid">80%</h1>
+                </div>
+            </div>
+
+            <div class="grafico-div">
+                <!-- <section class="div-btn-on-off">
+                    <button id="btn_on_off" class="btn-on">ON</button>
+                </section> -->
+
+                <section id="grafico_umid" class="grafico">
+                    <canvas id="dht11Umidade"></canvas>
+                    <!-- <img src="imgs/Gráfico.png" alt=""> -->
+                </section>
+            </div>
+
+            
+        </div>
+        <div class="graficos_lumi">
+
+            <div class="infos-grafico">
+                <div id="alerta_lumi" class="alerta">
+                    <p>Estável</p>
+                </div>
+                <div class="valores">
+                    <p>Luminosidade</p>
+                    <h1 id="leitura_lumi">600lux</h1>
+                </div>
+            </div>
+
+            <div class="grafico-div">
+                <!-- <section class="div-btn-on-off">
+                    <button id="btn_on_off" class="btn-on">ON</button>
+                </section> -->
+
+                <section class="grafico">
+                    <canvas id="luminosidade"></canvas>
+                    <!-- <img src="imgs/Gráfico.png" alt=""> -->
+                </section>
+            </div>
+
+        </div>
+
+
+    </section>
+</body>
+
+</html>
+<script>
+
+
+
+
+
+
+    /* -- dht11Umidade -- */
+    var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+    contextoDht11Umidade.canvas.width = 1000;
+    contextoDht11Umidade.canvas.height = 300;
+    var dht11Umidade = new Chart(
+        contextoDht11Umidade,
+        {
+            type: 'line',
+            data: {
+
+                datasets: [{
+                    label: 'Umidade',
+                    type: 'bar',
+                    borderColor: ['#45b3e7'],
+                    data: [],
+
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Umidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
+            }
+        }
+    );
+
+    /* -- dht11Temperatura -- */
+    var contextoDht11Temperatura = document.getElementById('dht11Temperatura').getContext('2d');
+    contextoDht11Temperatura.canvas.width = 1000;
+    contextoDht11Temperatura.canvas.height = 300;
+    var dht11Temperatura = new Chart(
+        contextoDht11Temperatura,
+        {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: "Temperatura",
+                    type: 'line',
+                    borderColor: ['#ff3232']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Temperatura'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
+            }
+        }
+    );
+    /* -- luminosidade -- */
+    var contextoLuminosidade = document.getElementById('luminosidade').getContext('2d');
+    contextoLuminosidade.canvas.width = 1000;
+    contextoLuminosidade.canvas.height = 300;
+    var luminosidade = new Chart(
+        contextoLuminosidade,
+        {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Luminosidade',
+                    type: 'line',
+                    borderColor: ['#ffd902']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Luminosidade'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                }
+            }
+        }
+    );
+
+
+    var paginacao = {};
+    var tempo = {};
+    function obterDados(grafico, endpoint) {
+        var http = new XMLHttpRequest();
+        http.open('GET', 'http://localhost:3300/sensores/' + endpoint, false);
+        http.send(null);
+        var valores = JSON.parse(http.responseText);
+        if (paginacao[endpoint] == null) {
+            paginacao[endpoint] = 0;
+        }
+        if (tempo[endpoint] == null) {
+            tempo[endpoint] = 0;
+        }
+        // Exibir à partir do último elemento exibido anteriormente
+        var ultimaPaginacao = paginacao[endpoint];
+        paginacao[endpoint] = valores.length;
+        var valores = valores.slice(ultimaPaginacao);
+        valores.forEach((valor) => {
+            //Máximo de 60 itens exibidos no gráfico
+            if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                grafico.data.labels.shift();
+                grafico.data.datasets[0].data.shift();
+            }
+
+            grafico.data.labels.push(tempo[endpoint]++);
+            grafico.data.datasets[0].data.push(parseFloat(valor));
+            grafico.update();
+        })
+
+    }
+
+    setInterval(() => {
+        obterDados(dht11Umidade, 'dht11/umidade');
+        obterDados(dht11Temperatura, 'dht11/temperatura');
+        obterDados(luminosidade, 'luminosidade');
+    }, 1000);
+
+
+
+</script>

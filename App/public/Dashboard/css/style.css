@@ -1,0 +1,839 @@
+:root {
+    --whiteSmart: #F5FAFF;
+    --blackSmart: #001220;
+    --mediumBlue: #025959;
+    --greenSmart: #038C65;
+    --lightGreen: #00B8A9;
+    --darkBlue: #012E40;
+    --graySmart: #D9D9D9;
+
+    --greenOK: #2A9C0D;
+    --yellowAlerta: #E7D31B;
+    --redCritico: #CE0606;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    display: flex;
+
+    width: 100vw;
+    height: 100vh;
+    /* overflow-x: hidden; */
+}
+
+
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+
+    width: 17%;
+
+    background-color: var(--greenSmart);
+}
+
+.identificacao {
+    width: 100%;
+    height: 15%;
+}
+
+
+.identificacao h1 {
+    color: var(--greenSmart);
+    background-color: var(--whiteSmart);
+
+    margin: 10px;
+    width: 80%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: larger;
+    font-weight: 900;
+}
+
+.menu-lateral h2 {
+    color: var(--whiteSmart);
+
+    margin: 10px;
+    font-size: medium;
+    font-weight: 900;
+}
+
+.menu-lateral div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.menu-lateral img {
+    width: 130px;
+
+    margin: 20px;
+}
+
+.menu-lateral button {
+    margin: 5% 0%;
+    padding: 4% 2%;
+    transition: ease-in-out 0.2s;
+}
+
+.menu-lateral .btn-estufa {
+    width: 200px;
+
+    color: var(--whiteSmart);
+    background-color: var(--mediumBlue);
+
+    font-weight: bold;
+
+
+
+    border: none;
+
+    transition: ease-in-out 0.2s;
+}
+
+
+.menu-lateral .btn-gerenciar {
+    width: 200px;
+
+    color: var(--greenSmart);
+
+    font-weight: bold;
+    border: none;
+
+    transition: ease-in-out 0.2s;
+}
+
+.menu-lateral button:hover {
+    color: var(--whiteSmart);
+    background-color: var(--mediumBlue);
+
+    cursor: pointer;
+}
+
+.menu-lateral .btn-gerenciar:hover {
+    color: var(--whiteSmart);
+    background-color: var(--mediumBlue);
+
+    cursor: pointer;
+}
+
+#btn-ativo-menu{
+    color: var(--whiteSmart);
+    background-color: var(--mediumBlue);
+    cursor: pointer;
+}
+
+
+
+
+.menu-lateral .btn-sair {
+    width: 100px;
+
+    color: var(--greenSmart);
+
+    margin: 20px;
+    padding: 8px 4px;
+
+    font-weight: 700;
+
+    border: none;
+}
+
+/* NAVBAR */
+.btn-navbar-dash {
+    width: 50%;
+    height: 13vh;
+
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 3px solid;
+    color: var(--greenSmart);
+
+    margin-top: 6%; 
+    gap: 3%;
+
+    transition: ease-in-out 0.2s;
+}
+.btn-navbar-dash:hover{
+    background-color: var(--greenSmart);
+    border: transparent 3px solid;
+    color: var(--whiteSmart);
+    cursor: pointer;
+}
+
+#btn-ativo{
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 3px solid;
+    color: var(--greenSmart);
+}
+
+
+
+.btn-navbar-dash a {
+    width: 180px;
+    height: 5vh;
+}
+
+.main-section button {
+    width: 175px;
+    height: 5vh;
+    background-color: var(--mediumBlue);
+    color: var(--graySmart);
+    font-weight: 600;
+    border: var(--mediumBlue);
+}
+
+/* MAIN SECTION */
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--mediumBlue);
+    width: 83%;
+}
+
+.inicio-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--whiteSmart);
+    color: var(--blackSmart);
+    width: 100%;
+}
+
+.inicio-main div {
+    margin: 1% 10%;
+}
+
+
+.graficos_temp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    margin: 1% 0%;
+}
+
+.graficos_umid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    margin: 1% 0%;
+}
+
+.graficos_lumi {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    margin: 1% 0%;
+}
+
+.grafico-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 80px;
+    height: 100%;
+    width: 70%;
+}
+
+.cardProblemasEstufa {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    margin: 1% 0%;
+}
+
+.GraficosAnalise{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    height: 90%;
+    width: 70%;
+}
+
+/* .btn-on {
+    background-color: var(--greenSmart);
+    color: var(--whiteSmart);
+
+    border: var(--greenSmart) 2px solid;
+
+    padding: 30% 100%;
+
+    transition: ease-in-out 0.2s;
+}
+
+.btn-on:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    color: var(--greenSmart);
+    border: var(--greenSmart) 2px solid;
+} */
+
+.grafico {
+    background-color: var(--whiteSmart);
+
+    border-radius: 20px;
+    border: var(--blackSmart) 3px solid;
+    
+    width: 70%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.grafico img {
+    height: 100%;
+    width: 100%;
+}
+
+.infos-grafico {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 20px;
+    width: 7%;
+}
+
+.graficos_temp .infos-grafico .alerta {
+    background-color: var(--yellowAlerta);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--blackSmart);
+    font-weight: 700;
+    width: 100%;
+    padding: 10% 50%;
+    margin: 5% 0%;
+}
+
+.graficos_temp .infos-grafico .valores {
+    background-color: var(--whiteSmart);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 10% 50%;
+
+    border: var(--yellowAlerta) 2px solid;
+}
+
+.graficos_umid .infos-grafico .alerta {
+    background-color: var(--redCritico);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    
+
+    color: var(--whiteSmart);
+    font-weight: 700;
+
+    width: 100%;
+    padding: 10% 50%;
+    margin: 5% 0%;
+}
+
+.graficos_umid .infos-grafico .valores {
+    background-color: var(--whiteSmart);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 10% 50%;
+
+    border: var(--redCritico) 2px solid;
+}
+
+.graficos_lumi .infos-grafico .alerta {
+    background-color: var(--greenOK);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 12% 40%;
+    margin: 5% 0%;
+
+    color: var(--whiteSmart);
+    font-weight: 700;
+    width: 100%;
+    padding: 10% 50%;
+    margin: 5% 0%;
+}
+
+.graficos_lumi .infos-grafico .valores {
+    background-color: var(--whiteSmart);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 10% 50%;
+
+    border: var(--greenOK) 2px solid;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------Gerenciamento Métricas------------------------------------------------ */
+/* -------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+.container-gerenciar {
+    width: 83%;
+    background-color: var(--mediumBlue);
+}
+
+.titulo-gerenciar {
+    margin: 3%;
+}
+
+.titulo-gerenciar h1 {
+    color: var(--whiteSmart);
+}
+
+.container-metrica {
+    display: flex;
+    width: 100%;
+
+    flex-direction: row;
+
+
+    justify-content: center;
+    align-items: center;
+}
+
+.metrica-atual {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    font-weight: 700;
+}
+
+.metrica-atual .titulo-metrica {
+    color: var(--whiteSmart);
+    margin-left: 2%;
+}
+
+
+.cards-parametros {
+    background-color: var(--whiteSmart);
+    width: 60%;
+    height: 7.5vh;
+    border-radius: 13px;
+
+    margin: 1%;
+    margin-left: 2%;
+
+
+    display: flex;
+    justify-content: space-around;
+
+    align-items: center;
+}
+
+.cards-parametros b {
+    font-size: larger;
+}
+
+
+
+
+
+.numero-parametro span {
+    font-size: large;
+    font-weight: bold;
+}
+
+
+
+
+
+
+.card-gerenciamento {
+    background-color: var(--whiteSmart);
+
+    width: 90%;
+    height: 35vh;
+    margin: 2%;
+    margin-top: 10%;
+
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-gerenciamento {
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.card-gerenciamento p {
+    margin-top: 5%;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.card-gerenciamento button {
+
+    color: var(--whiteSmart);
+    border: none;
+    background-color: var(--greenSmart);
+
+    width: 40%;
+    height: 5vh;
+    border-radius: 10px;
+    margin-top: 5%;
+
+    font-size: medium;
+    font-weight: 700;
+
+    transition: ease-in-out 0.2s;
+}
+
+.card-gerenciamento button:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 2px solid;
+    color: var(--greenSmart);
+    font-weight: 700;
+}
+
+
+.card-gerenciamento input {
+    height: 3.7vh;
+    width: 100%;
+    border: none;
+    background-color: var(--graySmart);
+    border-bottom: var(--greenSmart) 2px solid;
+}
+
+.card-gerenciamento p {
+    font-size: medium;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------Estufas (Home)----------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------------------------------------------------------- */
+
+
+.main-section-estufas {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+
+    background-color: var(--mediumBlue);
+
+    width: 83%;
+    height: 100%;
+}
+
+
+
+.main-section-estufas nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 95%;
+    height: 10%;
+    background-color: var(--whiteSmart);
+    padding: 0 0 0 5%;
+}
+
+.IndicadorProblemas {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px;
+    min-width: 10%;
+    padding: 5px 20px;
+    height: 60%;
+
+    border: var(--blackSmart) 3px solid;
+    border-radius: 10px;
+
+}
+
+.IndicadorProblemas h5 {
+    font-size: 16px;
+}
+
+.IndicadorProblemas p {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#qtd_problemas_atual {
+    background-color: #f8a9a9;
+    border: var(--redCritico) 2px solid;
+    color: var(--blackSmart);
+}
+
+#qtd_semana {
+    background-color: #f8f4a9;
+    border: var(--yellowAlerta) 2px solid;
+    color: var(--blackSmart);
+}
+
+#qtd_mes {
+    background-color: #a9f8b5;
+    border: var(--greenOK) 2px solid;
+    color: var(--blackSmart);
+}
+
+.main-content {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: start;
+    align-items: start;
+
+    height: 90%;
+    width: 100%;
+
+    overflow-y: hidden;
+}
+
+
+.estufas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    width: 50%;
+    height: 100%;
+    padding: 1%;
+    border-bottom: var(--blackSmart) 5px solid;
+    /* background-color: #CE0606; */
+
+    overflow-y: scroll;
+}
+
+.estufas::-webkit-scrollbar {
+    display: none;
+}
+
+.estufas .estufa {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+
+    width: 170px;
+    height: 170px;
+    background-color: var(--greenOK);
+
+    border: var(--blackSmart) 6px solid;
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.estufas .estufa img {
+    object-fit: contain;
+    width: 70px;
+}
+
+.estufas .estufa h1 {
+    background-color: var(--whiteSmart);
+    color: var(--blackSmart);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+
+    height: 20%;
+    width: 100%;
+
+    border-radius: 0 0 10px 10px;
+}
+
+.estufas .estufa a {
+    background-color: var(--whiteSmart);
+    color: var(--blackSmart);
+
+    margin: 8px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    padding: 4px 20%;
+
+    border-radius: 10px;
+    border: transparent 2px solid;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition: ease-in-out 0.2s;
+}
+
+.estufas .estufa a:hover {
+    cursor: pointer;
+    padding: 6px 24%;
+    border: var(--blackSmart) 2px solid;
+}
+
+
+.graficos-global {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 46%;
+    height: 100%;
+}
+
+.gráfico-global {
+    background-color: var(--whiteSmart);
+    width: 80%;
+    height: 28%;
+
+    margin-top: 2%;
+
+    border-radius: 20px;
+    border: var(--blackSmart) 5px solid;
+}
+
+.gráfico-global canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.cardProblemasEstufa {
+    background-color: var(--whiteSmart);
+    padding: 10px 50px;
+    width: 60%;
+    height: 30vh;
+}
+
+.containerGraficos {
+    width: 90%;
+    height: 80vh;
+    align-items: center;
+}
+
+.KPIs{
+    width: 80%;
+    display: flex;
+    
+}
+
+.kpi1{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: fit-content;
+
+    background-color: var(--whiteSmart);
+    padding: 20px 40px;
+    margin: 10px 10px 10px 0;
+    border: var(--blackSmart) 3px solid;
+}
+
+.graficoPizza {
+    width: 24%;
+    height: 70vh;
+    /* position: absolute; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-left: 40%;
+    padding-top: 15%; */
+}
+
+.cardProblemasEstufa {
+    border: var(--blackSmart) 3px solid;
+    border-radius: 20px;
+}
+
+.graficos{
+    display: flex;
+    flex-direction: row;
+}

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../imgs/iconSmartFarm.png" type="image/x-icon">
+
+    <title> SmartFarm - Semeando eficiência, colhendo inovação.</title>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="header">
+
+        <div class="container">
+
+            <div class="imgLogo">
+                <img src="Img/Logo SmartFarm Verde.png" alt="" width="250px" height="35px">
+            </div>
+
+            <ul class="navbarItens">
+                <a href="#banner">Home</a>
+                <a href="#produto">Produto</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#calculadora">Calculadora</a>
+                <a href="#footer">Contato</a>
+            </ul>
+            
+            <div class="buttons">
+                <a href="../Login/Login.html"><button class="btnLogin"> Login </button></a>
+                <a href="Cadastro/cadastro.html"><button class="btnCadastro"> Cadastro </button></a>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DA NAVBAR -->
+
+    <!-- PRIMEIRA PARTE - BANNER -->
+    <section class="banner" id="banner">
+
+        <div class="containerBanner">
+
+            <div class="containerBannerUM">
+
+                <div class="conteinerImgsBanner">
+
+                    <div class="pimentoesBanner">
+                        <img src="Img/PimentõesRecortados.png" alt="">
+                    </div>
+
+                </div>
+
+                <div class="imgBanner">
+                    <img src="Img/smartfarmrecortada.png" width="100%" height="100%">
+                </div>
+
+                <div class="textoBanner">
+                    <h1> Tenha uma produção eficiente!</h1>
+                    <p> Escolha inovar, e melhorar a sua produção atual com a nossa solução.</p>
+                </div>
+
+            </div>
+
+            <div class="containerBannerDois">
+
+                <div class="buttonBanner">
+                    <button onclick=""> Saiba mais! </button>
+                </div>
+            </div>
+
+        </div>
+
+    </section> <!-- FIM DA PRIMEIRA PARTE - BANNER -->
+
+    <section class="setaSaparacao" >
+        <a href="#produto"><img src="Img/seta.png" ></a>
+    </section>
+
+    <!-- SEGUNDA PARTE - PRODUTO -->
+    <section class="produto" id="produto">
+        <div class="containerProdutoUm">
+
+            <div class="logoProduto">
+                <img src="Img/Logo SmartFarm Branco.png">
+            </div>
+            <br>
+
+            <div class="textoProduto">
+                <h1>
+                    Somos SmartFarm e desenvolvemos um sistema completo de
+                    monitoramento e controle para estufas de pimentão,
+                    visando otimizar cada aspecto do cultivo.
+                </h1>
+                <p>
+                    Garantimos que cada planta receba o ambiente ideal para seu
+                    crescimento e desenvolvimento maxímo.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="containerProdutoDois">
+
+            <div class="fotoProduto">
+                <img src="Img/smart pepper com fundo branco.png" width="100" height="100%">
+            </div>
+
+        </div>
+
+    </section> <!-- FIM DA SEGUNDA PARTE - PRODUTO -->
+
+    <section class="setaSaparacaoInversa">
+        <a href="#sobre"><img src="Img/seta.png" ></a>
+    </section>
+    
+
+
+    <!-- TERCEIRA PARTE - SOBRE -->
+    <section class="sobre" id="sobre">
+        <div class="containerSobre">
+                <div class="tituloSobre">
+                    <h1> Sistema de Monitoramento de Estufas </h1>
+                    <p> Venha entender melhor como funciona o nosso monitoramento das estufas </p>
+                </div> 
+                <div id="conteinerDoisSessaotres">
+                    <div id="carrossel">
+                        <a id="prev" href="#">‹</a>
+                        <div id="carrosselInner">
+                        </div>
+                        <a id="next" href="#">›</a>
+                    </div>
+                </div>
+                </section>
+    </section> <!-- FIM DA TERCEIRA PARTE - SOBRE -->
+
+
+
+    <section class="setaSaparacao">
+        <a href="#calculadora"><img src="Img/seta.png" ></a>
+    </section>
+
+
+
+    <!-- QUARTA PARTE - CALCULADORA -->
+    <section class="calculadora" id="calculadora">
+        <div class="conteinerCalculadora">
+
+            <div class="titulo">
+
+                <h1>Calculadora Financeira - SmartFarm</h1>
+                <h3>Confira em nossa calculadora, os benefícios monetários ao utilizar a solução da SmartFarm!</h3>
+
+            </div>
+
+            <br>
+
+            <div class="main-card">
+
+                <div id="resultadoA"></div>
+
+                <div id="CALCULADORA" class="calculadoraMenor">
+
+                    <h3 class="titulomenor">Veja quanto você está perdendo!</h3>
+                    <br>
+                    <div class="inputs">
+                        <p class="label">Quantidade de estufas:</p>
+                        <input id="input_qtd_estufa">
+
+                        <p class="label">Quilos produzidos por estufa (mês):</p>
+                        <input id="input_kilos">
+
+                        <p class="label">Media de Quilos Vendidos por Estufa no mês:</p>
+                        <input id="input_vendas_mes">
+
+                        <p class="label">Média de preço por quilo:</p>
+                        <input id="input_preco_kilos">
+
+
+                    </div>
+                    <button onclick="calcularEstufas()">CALCULAR</button>
+
+                </div>
+                <div id="resultadoB"></div>
+                <!-- Necessário modificar o cálculo de diminuição de perdas!!! -->
+
+            </div>
+
+        </div>
+    </section> <!-- FIM DA QUARTA PARTE - CALCULADORA -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- QUINTA PARTE - CONTATO -->
+    <footer id="footer">
+        <img class="circuloAbsoluto" src="Img/Ellipse 3.png" alt="">
+
+        <div class="conteinerFooter">
+
+            <div class="card">
+                <h1> Quer entrar em contato?</h1>
+                <div class="traco"></div>
+                <p> Mande sugestões ou ideias no nosso canal de atendimento</p>
+                <div class="inputs">
+                    <input type="text" id="ipt_nome" placeholder="Nome" />
+                    <br />
+                    <input type="text" id="ipt_email" placeholder="E-mail" />
+                    <br />
+                    <input type="text" id="ipt_assunto" placeholder="Assunto" />
+                </div>
+                <br/>
+                <button onclick=""> ENVIAR </button>
+            </div>
+        </div>
+        x
+    </footer>
+
+    <section class="rodape">
+        <div class="conteinerRodape">
+            <div class="iconRedes">
+                <img src="Img/icones redes sociais.png">
+            </div>
+            <div class="logoRodape">
+                <img src="Img/Logo SmartFarm Branco.png " alt="Logo SmartFarm" />
+            </div>
+            <div class="contatosRodape">
+                <img src="Img/contatos SmartFarm.png">
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+
+
+
+
+
+<script>
+
+    
+    const tituloCardCarrossel = [
+        'O que é?',
+        'Como funciona?',
+        'Quais as vantagens?',
+        'Por que a Smartfarm?'
+    ]  
+
+    const iconCardCarrossel = [
+        'Img/pimetão-card-um.jpg',
+        'Img/pimentões.jpg',
+        'Img/dois.png',
+        'Img/smrt pepper dois.png'
+        
+    ]
+
+    const texto = [
+        'É um projeto que consiste em introduzir a automação nas estufas destinadas ao cultivo de pimentão, buscando aprimorar de maneira subtancial sua produção.',
+        'O projeto visa aumentar a produtividade através de uma estufa que transmite seus dados. Essas informações garatem a satisfação do cliente, melhorar o controle e aumentar a lucratividade de forma sustentavél.',
+        ' - Maior produtividade; - Maior lucratividade; - Melhor controle das estufas; - Automação moderna',
+        'A implementação deste projeto visa não apensa otimizar a eficiência operacional, mas também elevar tanto a quantidade, quanto a qualidade da produção'
+    ]
+
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const carrosselInner = document.getElementById('carrosselInner');
+
+    for (let i = 0; i < tituloCardCarrossel.length; i++) 
+    {
+        const card = document.createElement('div');
+        card.classList.add('cardCarrossel');
+        card.innerHTML = `
+            <div class="conteinerCardEsquerdo">
+                <div class="imagemCard">
+                    <img src="${iconCardCarrossel[i]}" class="iconCardCarrossel">
+                </div>
+            </div>
+            <div class="conteinerCardDireito">
+                <div class="textoCard">
+                    <h1>${tituloCardCarrossel[i]}</h1><br>
+                    <p>${texto[i]}</p>
+                </div>
+            </div>   
+        `;
+        carrosselInner.appendChild(card);
+    }
+
+    prev.addEventListener('click', function(event) 
+    {
+        event.preventDefault();
+        carrosselInner.scrollLeft -= 950;
+    });
+
+    next.addEventListener('click', function(event)
+    {
+        event.preventDefault();
+        carrosselInner.scrollLeft += 900;
+    })
+
+    // FIM DO CARROSSEL
+
+
+
+    function calcularEstufas() {
+
+        //INPUTS CALCULADORA  
+        let qtdEstufas = Number(input_qtd_estufa.value);
+
+        let kgProduzidoPorEstufa = Number(input_kilos.value);
+        let KgVendidaMes = Number(input_vendas_mes.value);
+
+        let precoKg = Number(input_preco_kilos.value);
+
+        //VARIAVEIS DE CALCULO
+
+        let kgProduzidoTotal = qtdEstufas * kgProduzidoPorEstufa
+
+        let valorProduzidoTotal = kgProduzidoTotal * precoKg
+
+        let valorVendidoMes = KgVendidaMes * precoKg
+
+        let valorVendidoAnual = valorVendidoMes * 12
+
+        let kgVendidoAnual = KgVendidaMes * 12
+
+        // Conta para encontrar o valor perdido mensalmente -> 
+
+        // Quilos produzidos Mensalmente - Quilos vendidos mensalmente = Quilos não-vendidos
+        let KgNaoVendidoMensal = kgProduzidoTotal - (KgVendidaMes * qtdEstufas)
+        // Quilos não-vendidos * Preço do Quilo = Valor Perdido (Que não foi vendido.)
+        let valorNaoVendidoMensal = KgNaoVendidoMensal * precoKg
+        //           6000                    600            10
+        
+
+
+        // Foi feita uma estimativa sobre os três maiores tipos de Perdas -> 
+
+        // Falha no Transporte (50%)
+        // Falha no Armazenamento (20%)
+        // Falha no Monitoramento da Estufa (30%)
+
+        // Valor perdido pela falta de monitoramento de Umidade, Temperatura e Luminosidade na Estufa. (30%).
+        let valorPerdaMonitoramento = valorNaoVendidoMensal - (valorNaoVendidoMensal * 0.70)
+        //            1.800                     6000                    4.200
+
+        let valorNaoVendidoAnual = valorNaoVendidoMensal * 12
+
+
+        // VARIAVEIS A SEREM MOSTRADAS NA TELA FINAL ----------------
+
+        // PERDAS
+
+        let valorPerdaMensal = valorNaoVendidoMensal
+
+        let valorPerdaAnual = valorNaoVendidoAnual
+
+        // GANHOS 
+
+        let valorDiminuicaoPerdasMes = valorPerdaMonitoramento
+
+        let valorDiminuicaoPerdasMesAnual = valorPerdaMonitoramento * 12
+
+        //MENSAGEM FINAL
+        resultadoA.innerHTML =
+            `
+            <div class="resultado-card">
+            <div> 
+                <span class="textos">Mensalmente,</span>
+
+                <span class="textos">você perde:</span>
+                <br>
+                <span class="valorPerdas">${valorPerdaMensal.toLocaleString('pt-br', { style: 'currency', currency: "BRL" })}</span>
+
+                <span class="linhaHorizontal"></span>
+
+                <br><br><br>
+                <span class="textos">Anualmente,</span>
+
+                <span class="textos">você perde:</span>
+                <br>
+                <span class="valorPerdas">${valorPerdaAnual.toLocaleString('pt-br', { style: 'currency', currency: "BRL" })}</span>
+
+                <span class="linhaHorizontal"></span>
+                </div>
+                </div>
+            `
+
+        resultadoB.innerHTML =
+
+            `
+                <div class="resultado-card">
+
+                <div> 
+                <span class="textos">Com nossa solução,</span>
+
+                <span class="textos">você irá diminuir:</span>
+                <br>
+                <span class="valorGanhos">${valorDiminuicaoPerdasMes.toLocaleString('pt-br', { style: 'currency', currency: "BRL" })}</span>
+
+                <span class="linhaHorizontal"></span>
+
+                <span class="textos">de perdas mensais</span>
+                <br><br><br>
+                <span class="textos">Resultando em uma</span>
+
+                <span class="textos">diminuição anual de:</span>
+                <br>
+                <span class="valorGanhos">${valorDiminuicaoPerdasMesAnual.toLocaleString('pt-br', { style: 'currency', currency: "BRL" })}</span>
+
+                <span class="linhaHorizontal"></span>
+                </div>
+
+                </div>
+                `
+        // Com a renda anual de R$ <span class="azuldiv">${valorAnualAtual}</span>,
+
+        // você esta deixando de ganhar aproximadamente <span class="verdediv"> ${'63%'} </span> a mais,
+
+        //sem a utilização de uma tecnologia de monitoramento,
+
+        //resultando em uma perda de até R$ <span class="vermelhodiv"> ${valorPerdaAnual} </span> ao ano.
+    }
+
+
+</script>

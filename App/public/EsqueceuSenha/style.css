@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --whiteSmart: #F5FAFF;
+    --blackSmart: #001220;
+    --mediumBlue: #025959;
+    --greenSmart: #038C65;
+    --lightGreen: #00B8A9;
+    --darkBlue: #012E40;
+    --graySmart: #D9D9D9;
+
+    --greenOK: #2A9C0D;
+    --yellowAlerta: #E7D31B;
+    --redCritico: #CE0606;
+}
+
+body {
+    margin: 0;
+    background-color: var(--mediumBlue);
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.header {
+    display: flex;
+    background-color: white;
+    height: 80px;
+    flex-direction: row;
+
+
+}
+
+.header {
+    width: 100%;
+    height: 40%;
+    flex-direction: row;
+    display: flex;
+    background-color: var(--whiteSmart);
+    overflow-y: hidden;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0.2%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.navbarItens {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarItens a {
+    text-decoration: none;
+    color: var(--mediumBlue);
+    border-bottom: transparent 4px solid;
+    padding: 3px;
+    font-weight: 600;
+    transition: ease-in-out 0.2s;
+}
+
+.navbarItens a:hover {
+    border-bottom: var(--greenSmart) 4px solid;
+    color: var(--greenSmart);
+}
+
+.imgLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.imgLogo img {
+    width: 100%;
+    display: block;
+}
+
+
+.container button {
+    width: 6rem;
+    height: 2.2rem;
+    gap: 0;
+}
+
+.btnLogin {
+    background-color: var(--whiteSmart);
+    border: transparent 2px solid;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: ease-in-out 0.2s;
+
+}
+
+.btnLogin:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    color: var(--greenSmart);
+    font-weight: 700;
+    border: var(--greenSmart) 2px solid;
+}
+
+.btnCadastro {
+    color: white;
+    background-color: var(--mediumBlue);
+    border: none;
+    box-shadow: 4px 4px 10px -5px black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: ease-in-out 0.2s;
+}
+
+.btnCadastro:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 2px solid;
+    color: var(--greenSmart);
+    font-weight: 700;
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1px;
+}
+
+.card-esqueceu-senha {
+    background-color: var(--whiteSmart);
+    margin-top: 1%;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30vw;
+    height: 55vh;
+    padding: 50px 40px;
+    padding-bottom: 30px;
+}
+
+.card-esqueceu-senha h1 {
+    font-family: "Montserrat", sans-serif;
+    margin-top: 20px;
+    color: var(--greenSmart);
+    font-size: 40px;
+    text-align: center;
+}
+
+.frase-esqueceu-senha {
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    color: var(--greenSmart);
+}
+
+.logo {
+    width: 150px;
+    margin-top: 10px;
+}
+
+
+.box-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 5%;
+}
+
+.card-inputs {
+    color: var(--greenSmart);
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.card-inputs-codigo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+
+    color: var(--greenSmart);
+    font-weight: bold;
+    margin-top: 24px;
+    
+    font-family: "Montserrat", sans-serif;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 30px;
+}
+
+.input-codigo{
+    width: 10%;
+    height: 55%;
+
+    text-transform: uppercase;
+
+    text-align: center;
+    color: var(--greenSmart);
+    font-size: xx-large;
+    font-weight: 600;
+
+    padding: 10px;
+
+    margin: 1%;
+    border-bottom: var(--greenSmart) solid 2px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color: rgb(228, 228, 228);
+}
+
+
+
+#input_email {
+    width: 100%;
+    height: 30px;
+    background-color: var(--graySmart);
+
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-color: var(--greenSmart);
+}
+
+#input_nova_senha {
+    width: 100%;
+    height: 30px;
+    background-color: var(--graySmart);
+
+
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-color: var(--greenSmart);
+}
+
+#input_confirmacao_senha {
+    width: 100%;
+    height: 30px;
+    background-color: var(--graySmart);
+
+
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-color: var(--greenSmart);
+}
+
+.botao-enviar {
+    width: 50%;
+    height: 40px;
+    font-family: "Montserrat", sans-serif;
+    background-color: var(--greenSmart);
+    color: var(--whiteSmart);
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 56px;
+    border: none;
+
+    transition: ease-in-out 0.3s;
+}
+
+.botao-enviar:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 2px solid;
+    color: var(--greenSmart);
+    font-weight: 700;
+}
+
+.botao-enviar:hover {
+    cursor: pointer;
+}
+
+.frase-tentar-novamente {
+    text-align: center;
+    color: var(--greenSmart);
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: small;
+    cursor: pointer;
+}
+
+.container-botao {
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFarm</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body class="body">
+
+    <div class="conteudo">
+
+        <div class="div_pai">
+
+            <!--DIV DOS INPUTS - LOCALIZADA A ESQUERDA-->
+
+            <div class="div_filha">
+                <img src="https://acq-static-pages.pagseguro.com.br/static-pages/campanhas/_next/static/media/money.43246ec7.svg"
+                    alt="">
+                <h3 class="h3_calculadora">Simule Já!</h3>
+                Informe a quantidade de estufas <br>
+                <input id="input_qtd_estufas" class="inputs"> <br>
+                Informe a quantidade de produção em (kg) da estufa
+                <br>
+                <input id="input_producao" class="inputs">
+                <br>
+                <p>
+                    <button class="button" onclick="calculadora_financeira()">SIMULE AGORA</button>
+                </p>
+                <div>
+                    <p id="exibir_resultado" class="p_resultado_calculadora"></p>
+                </div>
+            </div>
+
+            <!-- DIV DAS VANTAIGENS - LOCALIZADA A DIREITA -->
+
+            <div class="div_filha2">
+                <h2 style="text-align: center;">Vantagens do Monitoramento de Estufas</h2>
+
+                <div class="alinhamento">
+
+                    <div class="div_img">
+                        <div class="img_vantagens"><span style=" display: flex; align-items: center;"> <img width="50"
+                                    height="50"
+                                    src="https://img.icons8.com/ios/50/000000/vertical-settings-mixer--v1.png"
+                                    alt="vertical-settings-mixer--v1" />
+                            </span></div>
+                        <br>
+                        <div class="img_vantagens"><span style=" display: flex; align-items: center;"><img width="48"
+                                    height="48" src="https://img.icons8.com/fluency/48/solidworks-flow-simulation.png"
+                                    alt="solidworks-flow-simulation" /></span></div>
+                        <br>
+                        <div class="img_vantagens"><span style=" display: flex; align-items: center;"><img width="50"
+                                    height="50"
+                                    src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-productive-work-from-home-flaticons-flat-flat-icons.png"
+                                    alt="external-productive-work-from-home-flaticons-flat-flat-icons" /></span></div>
+                        <br>
+                        <div class="img_vantagens"><span
+                                style=" display: flex; align-items: center;"><!--<img width="45" height="45" src="https://img.icons8.com/matisse/100/money.png" alt="money"/>-->
+                                <img width="48" height="48" src="https://img.icons8.com/color/48/cash.png"
+                                    alt="cash" /></span></div>
+                        <br>
+                        <div class="img_vantagens"><span style=" display: flex; align-items: center;"><img width="48"
+                                    height="48" src="https://img.icons8.com/color/48/guarantee.png"
+                                    alt="guarantee" /></span></div>
+                        <br>
+                    </div>
+                    <div class="div_vantagens_pai">
+                        <div class="div_vantagens">
+                            <b>Produção Melhorada<br></b> <span>Automação controla o clima para mais pimentões
+                                melhores.</span>
+                        </div>
+                        <br>
+                        <div class="div_vantagens">
+                            <b>Inclusão em Estufas Pequenas <br></b> <span>Tecnologia acessível a pequenos
+                                produtores.</span>
+                        </div>
+                        <br>
+                        <div class="div_vantagens"> <b>Operações Eficientes <br></b> <span>Redução de erros e tarefas
+                                mais eficientes</span>
+                        </div>
+                        <br>
+                        <div class="div_vantagens"> <b>Lucro Maximizado <br></b> <span>Controle do ambiente para mais
+                                lucro.</span>
+                        </div>
+                        <br>
+                        <div class="div_vantagens"> <b>Qualidade Superior <br></b> <span>Pimentões de alta qualidade
+                                para atender às demandas do mercado.</span>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--Arrumar titulo das vantagens 
+Por as imagens e arrumar o texto do resultado-->
+
+
+
+    <!--<p> <button onclick="ir_para_calculadora()"> Calculadora Financeira <button></p> -->
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function calculadora_financeira() {
+        var qtdPimentao = Number(input_producao.value); /*por mês*/
+        var qtd_estufas = Number(input_qtd_estufas.value);
+        var producaoMensal = qtdPimentao * qtd_estufas
+        var lucroMensal = producaoMensal * 5.5 - (producaoMensal * 2.5);
+        var aumentoProducao = producaoMensal + (producaoMensal * 0.30)
+        var lucroMensalAumento = aumentoProducao * 5.5 - (aumentoProducao * 2.5);
+        var lucroFinal = lucroMensalAumento - lucroMensal
+
+        exibir_resultado.innerHTML = `Com base nos dados infomados acima, a implementação do nosso sistema de monitoramento proporcioná os seguintes aumentos nas margens de lucro: <br>
+        Ao mês: R$ ${lucroFinal} <br>
+        Ao ano: R$ ${lucroFinal * 12} <br>
+        `
+    }
+
+</script>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../imgs/iconSmartFarm.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <title>Estufas</title>
+</head>
+
+<body>
+    <section class="menu-lateral">
+        <div class="identificacao">
+            <h1>Fusca Pimentões</h1>
+            <h2>Cláudio Frizzarini</h2>
+        </div>
+
+        <div>
+            <a href="../Estufas/Estufas.html"><button class="btn-estufa" id="btn-ativo-menu">Estufas</button></a>
+            <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
+        </div>
+        <div>
+            <a href="../../CTA/CTA.html"><button class="btn-sair">Sair</button></a>
+
+            <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
+        </div>
+    </section>
+
+    <section class="main-section-estufas">
+        <nav>
+            <div class="IndicadorProblemas" id="qtd_problemas_atual">
+                <h5>Estufas com Problemas</h5>
+                <p>20/100</p>
+            </div>
+            <div class="IndicadorProblemas" id="qtd_semana">
+                <h5>Problemas na última Semana</h5>
+                <p>30/100</p>
+            </div>
+            <div class="IndicadorProblemas" id="qtd_mes">
+                <h5>Problemas no Mês</h5>
+                <p>50/100</p>
+            </div>
+        </nav>
+
+
+        <div class="main-content">
+            <div class="estufas" id="estufas">
+
+
+            </div>
+            <div class="graficos-global">
+                <div class="gráfico-global">
+                    <canvas id="grafico1"></canvas>
+                </div>
+                <div class="gráfico-global">
+                    <canvas id="grafico2"></canvas>
+                </div>
+                <div class="gráfico-global">
+                    <canvas id="grafico3"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+</body>
+
+</html>
+
+<script>
+
+    // FUTURA FUNÇÃO EM DESENVOLVIMENTO PARA CRIAÇÃO DOS CARDS DAS ESTUFAS DE ACORDO COM A QUANTIDADE EXISTENTE NO BANCO
+
+    // function listar() {
+    //     fetch("/estufas/listar", {
+    //         method: "GET",
+    //     })
+    //         .then(function (resposta) {
+    //             resposta.json().then((estufas) => {
+    //                 estufa.forEach((estufa) => {
+    //                     estufas.innerHTML += `<div class='estufa' id='${estufa.id}'>${estufa.tipoPimentao}</div>`;
+    //                 });
+    //             });
+    //         })
+    //         .catch(function (resposta) {
+    //             console.log(`#ERRO: ${resposta}`);
+    //         });
+    // }
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none";
+    // }
+
+
+
+
+    const estufas = document.getElementById('estufas');
+
+    // Função para ordenar por cor de fundo
+    
+
+    for (let i = 0; i < 100; i++) {
+        const div = document.createElement('div');
+        div.className = 'estufa';
+
+        // div.style.backgroundColor = colors[i % colors.length];
+
+        const titulo = document.createElement('h1');
+        titulo.textContent = 'Estufa ' + (i + 1);
+
+        const img = document.createElement('img');
+
+
+        const a = document.createElement('a');
+        a.textContent = 'Visualizar ';
+        a.href = '../Dashboard/analise.html'
+
+        div.appendChild(titulo);
+        div.appendChild(img);
+        div.appendChild(a);
+
+        if (i < 20) {
+            div.style.backgroundColor = '#CE0606';
+            img.src = '../img/critico.png'
+        } else if (i < 50) {
+            div.style.backgroundColor = '#E7D31B';
+            img.src = '../img/alerta.png'
+        } else {
+            div.style.backgroundColor = '#2A9C0D';
+            img.src = '../img/ok.png'
+        }
+
+        estufas.appendChild(div);
+    }
+
+   
+
+
+
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+    var ctx = document.getElementById('grafico1').getContext('2d');
+
+    var grafico1 = new Chart(ctx, {
+        type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
+        data: {
+            labels: ['Fevereiro', 'Março', 'Abril', 'Maio'], // Rótulos do eixo x
+            datasets: [{
+                label: 'Problemas Mensais', // Rótulo do conjunto de dados
+                data: [12, 19, 3, 5, 2, 3], // Dados para o gráfico
+                backgroundColor: [
+                    'rgba(15, 200, 132, 1)'
+
+                ],
+            }]
+        },
+        options: {
+            responsive: true, // Torna o gráfico responsivo
+            maintainAspectRatio: false, // Permite que o gráfico preencha o contêiner
+            scales: {
+                y: {
+                    beginAtZero: true // Iniciar o eixo y no zero
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            weight: 'bolder' // Deixa a letra da legenda mais grossa
+                        },
+                        backgroundColor: 'green',
+                        boxWidth: 20, // Largura do quadrado da legenda
+                        boxHeight: 10, // Altura do quadrado da legenda (Chart.js 3.7.0+)
+                        usePointStyle: true, // Usar o estilo de ponto (círculo) ao invés do quadrado
+                        pointStyle: 'circle'
+                    }
+                }
+            }
+        }
+    });
+
+
+
+
+
+    var ctx = document.getElementById('grafico2').getContext('2d');
+
+    var grafico2 = new Chart(ctx, {
+        type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
+        data: {
+            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'], // Rótulos do eixo x
+            datasets: [{
+                label: 'Problemas Semanais', // Rótulo do conjunto de dados
+                data: [12, 19, 3, 5, 2, 3], // Dados para o gráfico
+                backgroundColor: [
+                    'rgba(15, 200, 132, 1)'
+
+                ],
+            }]
+        },
+        options: {
+            responsive: true, // Torna o gráfico responsivo
+            maintainAspectRatio: false, // Permite que o gráfico preencha o contêiner
+            scales: {
+                y: {
+                    beginAtZero: true // Iniciar o eixo y no zero
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            weight: 'bolder' // Deixa a letra da legenda mais grossa
+                        },
+                        backgroundColor: 'green',
+                        boxWidth: 20, // Largura do quadrado da legenda
+                        boxHeight: 10, // Altura do quadrado da legenda (Chart.js 3.7.0+)
+                        usePointStyle: true, // Usar o estilo de ponto (círculo) ao invés do quadrado
+                        pointStyle: 'circle'
+                    }
+                }
+            }
+        }
+    });
+
+    var ctx = document.getElementById('grafico3').getContext('2d');
+
+    var grafico3 = new Chart(ctx, {
+        type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
+        data: {
+            labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'], // Rótulos do eixo x
+            datasets: [{
+                label: 'Problemas Diários', // Rótulo do conjunto de dados
+                data: [12, 19, 3, -5, 2, 3], // Dados para o gráfico
+                backgroundColor: [
+                    'rgba(15, 200, 132, 1)'
+
+                ],
+            }]
+        },
+        options: {
+            responsive: true, // Torna o gráfico responsivo
+            maintainAspectRatio: false, // Permite que o gráfico preencha o contêiner
+            scales: {
+                y: {
+                    beginAtZero: true // Iniciar o eixo y no zero
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            weight: 'bolder' // Deixa a letra da legenda mais grossa
+                        },
+                        backgroundColor: 'green',
+                        boxWidth: 20, // Largura do quadrado da legenda
+                        boxHeight: 10, // Altura do quadrado da legenda (Chart.js 3.7.0+)
+                        usePointStyle: true, // Usar o estilo de ponto (círculo) ao invés do quadrado
+                        pointStyle: 'circle'
+                    }
+                }
+            }
+        }
+    });
+</script>

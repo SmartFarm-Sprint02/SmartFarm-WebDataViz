@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="shortcut icon" href="../imgs/iconSmartFarm.png" type="image/x-icon">
+  <script src="../js/sessao.js"></script>
+
+  <title>Login | SmartFarm</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="imgLogo">
+        <a href="../CTA/CTA.html">
+          <img src="img/Logo SmartFarm Verde.png" alt="" width="250px" height="35px" />
+        </a>
+      </div>
+
+      <ul class="navbarItens">
+        <a href="../CTA.html">Home</a>
+        <a href="../CTA.html">Produto</a>
+        <a href="../CTA.html">Sobre Nós</a>
+        <a href="../CTA.html">Calculadora</a>
+        <a href="../CTA.html">Contato</a>
+      </ul>
+
+      <div class="buttons">
+        <a href="../Login/Login.html"><button onclick="" class="btnLogin">Login</button></a>
+        <a href="../Cadastro/cadastro.html"><button onclick="" class="btnCadastro">Cadastro</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="LOGIN" class="login">
+    <h1 style="text-align: center; color: #038c65; font-family: Montserrat">
+      Acesse sua conta!
+    </h1>
+    <div class="card-inputs">
+      <p class="input_">Email:</p>
+      <input id="input_email" placeholder="Nome@email.com" />
+
+      <p class="input_">Senha:</p>
+      <input id="input_senha" type="password" placeholder="Senha (mínimo 8 caracteres, sendo ao menos 1 número)" />
+
+      <a href="../EsqueceuSenha/esqueceuSenha.html" style="text-decoration: none">
+        <p class="esqueceuSenha">Esqueceu a senha?</p>
+      </a>
+    </div>
+
+    <div class="container-botoes">
+      <div id="mensagemErro" class="mensagem_erro"></div>
+    </div>
+    <div class="botao">
+      <button onclick="Login()">Entrar</button>
+
+      <a href="../Cadastro/cadastro.html" style="text-decoration: none">
+        <p class="CriarConta">
+          <b>Criar conta</b>
+        </p>
+      </a>
+    </div>
+    <div id="div_aguardar"></div>
+  </div>
+
+  <br />
+  <div class="box-logo">
+    <img class="logo" src="img/logo-smart-farm.png" />
+  </div>
+</body>
+
+</html>
+
+<script>
+  function Login() {
+    mensagemErro.innerHTML = "";
+    let email = input_email.value;
+    let senha = input_senha.value;
+
+    // Variáveis para condição.
+    let valoresVazios = email == "" || senha == "";
+    let contemArrobaPonto =
+      email.indexOf("@") == -1 || email.indexOf(".") == -1;
+    let senhaCaracteresMinimos = senha.length < 8;
+    let senhaContemNumero = false;
+
+    // Laço de Repetição para verificação de números na senha.
+    for (
+      let contadorNumero = 0;
+      contadorNumero < senha.length;
+      contadorNumero++
+    ) {
+      for (let contadorIndex = 0; contadorIndex < 9; contadorIndex++) {
+        if (senha.indexOf(contadorIndex) != -1) {
+          senhaContemNumero = true;
+        }
+      }
+    }
+
+    if (valoresVazios) {
+      // Teste de valores vazios
+      mensagemErro.innerHTML = "Todos os campos precisam estar preenchidos.";
+    } else if (contemArrobaPonto) {
+      // Teste de @ e . no Email
+      mensagemErro.innerHTML = "E-Mail inválido.";
+    } else if (senhaCaracteresMinimos) {
+      // Teste de Tamanho mínimo da Senha
+      mensagemErro.innerHTML = "Senha inválida.";
+    } else if (senhaContemNumero == false) {
+      // Teste de conter número na senha
+      mensagemErro.innerHTML = "Erro. Senha não contém número.";
+    }
+    //Abrir DASHBOARD
+
+    console.log("FORM LOGIN: ", email);
+    console.log("FORM SENHA: ", senha);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: email,
+        senhaServer: senha
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          sessionStorage.ESTUFAS = JSON.stringify(json.estufas)
+
+          setTimeout(function () {
+            window.location = "./Dashboard/Estufas/Estufas.html";
+          }, 1000); // apenas para exibir o loading
+
+        });
+      } else {
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+
+</script>

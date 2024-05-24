@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Calculadora SmartFarm</title>
+</head>
+
+<body>
+    <h1>Calculadora Financeira</h1>
+
+    <section id="ParteDaCalculadora">
+        <div>
+
+            <p> Olá, aqui o nosso teams vai te ajudar a calcular o seu rendimento com a nossa tecnologia. </p>
+
+            Insira quantas estufas você possui:
+            <input id="input_estufas" type="number">
+            <br>
+            <br>
+            Estufas de Pequeno ou Médio porte:
+            <input type="text" id="input_porte">
+            <br>
+            <br>
+            Qual pimentão você irá plantar (vermelho, verde ou amarelo):
+            <input type="text" id="input_pimentao">
+            <br>
+            <br>
+
+            <button id="button_calcular" onclick="calcularEstufas()">
+                Calcular
+            </button>
+
+            <div id="div_resultado_pimentoes"></div>
+
+        </div>
+    </section>
+
+
+
+    <script>
+        function calcularEstufas() {
+            var estufa = Number(input_estufas.value);
+            var porteEstufa = (input_porte.value);
+            var pimentao = (input_pimentao.value);
+
+
+            if (porteEstufa == "pequeno") {
+                var portePequeno = 40
+                estufa = estufa * portePequeno
+            } if (porteEstufa == "medio") {
+                var porteMedio = 80
+                estufa = estufa * porteMedio
+            }
+
+            if (pimentao == "vermelho") {
+                var pimentaoVermelho = 5.40
+                var valorPimentoes = estufa * pimentaoVermelho
+            } if (pimentao == "amarelo") {
+                var pimentaoAmarelo = 4.25
+                valorPimentoes = estufa * pimentaoAmarelo
+            } if (pimentao == "verde") {
+                var pimentaoVerde = 3.50
+                valorPimentoes = estufa * pimentaoVerde
+            }
+            var valorDoProjeto = 2.50
+            valorPimentoes = valorPimentoes * 12
+
+            var valorTotal = valorPimentoes + (valorPimentoes * valorDoProjeto)
+
+            div_resultado_pimentoes.innerHTML = ` <br>
+    O resultado por ano das suas produções irá ter um aumento de 2.50 com a nossa tecnologia,<br> com um incrivel resultado de R$${valorTotal}
+    para uma maior produtividade de suas economias`
+
+        }
+    </script>
+
+</body>
+
+</html>

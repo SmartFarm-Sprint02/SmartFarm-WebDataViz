@@ -1,0 +1,944 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --whiteSmart: #F5FAFF;
+    --blackSmart: #001220;
+    --mediumBlue: #025959;
+    --greenSmart: #038C65;
+    --lightGreen: #00B8A9;
+    --darkBlue: #012E40;
+    --graySmart: #D9D9D9;
+
+    --greenOK: #2A9C0D;
+    --yellowAlerta: #E7D31B;
+    --redCritico: #CE0606;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: "Montserrat", sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #038C65;
+    scroll-behavior: smooth
+    
+}
+
+/* NAVBAR */
+
+.header {
+    width: 100%;
+    height: 10%;
+    flex-direction: row;
+    display: flex;
+    background-color: var(--whiteSmart);
+    overflow-y: hidden;
+    z-index: 1;
+    position: fixed;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0.9%;
+    
+}
+
+.navbarItens {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarItens a {
+    text-decoration: none;
+    color: var(--mediumBlue);
+    border-bottom: transparent 4px solid;
+    padding: 3px;
+    font-weight: 600;
+    transition: ease-in-out 0.2s;
+    position: relative;
+}
+
+
+.navbarItens a:hover {
+    border-bottom: var(--greenSmart) 4px solid;
+    color: var(--greenSmart);
+}
+
+
+
+
+.imgLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.imgLogo img {
+    width: 100%;
+    display: block;
+}
+
+.container button {
+    width: 6rem;
+    height: 2.2rem;
+    gap: 0;
+}
+
+.btnLogin {
+    background-color: var(--whiteSmart);
+    border: transparent 2px solid;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    
+
+    transition: ease-in-out 0.2s;
+}
+
+.btnLogin:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    color: var(--greenSmart);
+    font-weight: 700;
+    border: var(--greenSmart) 2px solid;
+}
+
+.btnCadastro {
+    color: white;
+    background-color: var(--mediumBlue);
+    border: none;
+    box-shadow: 4px 4px 10px -5px black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: ease-in-out 0.2s;
+}
+
+.btnCadastro:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 2px solid;
+    color: var(--greenSmart);
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* CONFIGURAÇÃO DAS SETAS */
+
+.setaSaparacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    overflow-y: hidden;
+    width: 100vw;
+    padding: 3% 0%;
+    background: rgb(2, 89, 89);
+    background: linear-gradient(0deg, var(--mediumBlue) 50%, var(--greenSmart));
+}
+
+
+.setaSaparacao img {
+    width: 4rem;
+    height: 10%;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.setaSaparacao img:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+
+.setaSaparacaoInversa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    overflow-y: hidden;
+    width: 100vw;
+    padding: 5% 0%;
+    background: rgb(2, 89, 89);
+    background: linear-gradient(0deg, var(--greenSmart) 50%, var(--mediumBlue));
+}
+
+.setaSaparacaoInversa img {
+    width: 4rem;
+    height: 10%;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.setaSaparacaoInversa img:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+
+/* SESSÃO UM - BANNER */
+
+.banner {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+
+}
+
+.containerBanner {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.containerBannerUm {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.containerBannerDois {
+    height: 10%;
+}
+
+.imgBanner img {
+    width: 84%;
+    height: 95%;
+    border-radius: 0 0 3.5rem 3.5rem;
+}
+
+.pimentoesBanner {
+    display: flex;
+
+}
+
+.pimentoesBanner img {
+    width: 26%;
+    height: 48%;
+    position: absolute;
+    margin-top: 16%;
+    margin-left: 70%;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.pimentoesBanner img:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.textoBanner {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    margin-left: 8.5%;
+}
+
+.textoBanner h1 {
+    font-family: "Montserrat", sans-serif;
+    color: var(--whiteSmart);
+    font-size: 3.5rem;
+}
+
+.textoBanner p {
+    font-family: "Montserrat", sans-serif;
+    color: var(--whiteSmart);
+
+}
+
+.containerTextoBanner {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonBanner,
+.imgBanner,
+.textoBanner {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonBanner button {
+    border-radius: 2rem;
+    border: 0;
+    color: var(--blackSmart);
+    background-color: var(--whiteSmart);
+    width: 14%;
+    height: 2rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 2.5%;
+}
+
+.pimentoesBanner {
+    width: 20%;
+}
+
+
+
+/* SESSÃO DOIS - PRODUTO*/
+
+.produto {
+    background-color: var(--mediumBlue);
+    box-shadow: 5px 5px 50px 4px var(--mediumBlue);
+    width: 100%;
+    height: 48rem;
+    display: flex;
+}
+
+.containerProdutoUm {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-top: 3%;
+}
+
+.containerProdutoDois {
+    margin-top: 3%;
+    width: 40%;
+}
+
+.logoProduto {
+    margin-left: 3%;
+    margin-top: 3%;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+
+}
+
+.logoProduto img {
+    width: 20%;
+    height: 28%;
+}
+
+.fotoProduto {
+    display: flex;
+}
+
+.fotoProduto img {
+    width: 100%;
+    height: 75%;
+    padding-top: 5%;
+}
+
+.textoProduto {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 5%;
+    flex-wrap: wrap;
+    color: var(--whiteSmart);
+    font-family: "Montserrat", sans-serif;
+}
+
+.textoProduto h1 {
+
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.textoProduto p {
+
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SESSÃO TRÊS - SOBRE*/
+
+.sobre {
+    width: 100%;
+    height: 115vh;
+    display: flex;
+    justify-content: center;
+}
+
+.containerSobre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    width: 95%;
+    gap: 2rem;
+}
+
+.tituloSobre {
+    display: flex;
+    flex-direction: column;
+    color: var(--whiteSmart);
+    font-family: "Montserrat", sans-serif;
+    width: 80%;
+    height: 15%;
+    
+}
+
+.tituloSobre h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.tituloSobre p {
+    font-size: 1.4rem;
+}
+
+
+
+/* CARROSSEL */
+#carrossel
+{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 85%;
+     height: 80vh;
+     align-self: center;
+     padding-left: 6rem;
+     gap: 1rem;
+    
+}
+#carrossel a 
+{
+     font-size: 5rem;
+     text-decoration: none;
+     color: var(--whiteSmart);
+     transition: all 0.3s ease-in-out;
+}
+#carrossel a:hover
+{
+    color: #025959;
+    transition: all 0.3s ease-in-out;
+}
+
+#carrosselInner {
+     display: flex;
+     scroll-behavior: smooth; 
+     width: 100%; 
+     gap: 3rem;
+     padding-left: 3rem;
+     align-items: center;
+ }
+
+.cardCarrossel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5faff00;
+    color: #000000;
+    flex: 1 0 auto;
+    
+    margin-left: 1rem;
+    width: 80%;
+    height: 33rem;
+    /* box-shadow: 3px 3px 5px 1px #001220; */
+    margin-bottom: 0.3rem;
+    margin-top: 0.3rem;
+}
+
+.conteinerCardEsquerdo
+{
+   background-color: #f5faff2f;
+   width: 45%;
+   height: 90%;
+   border-radius: 3rem;
+   display: flex;
+   border: 6px solid #fff;
+   box-shadow: 3px 3px 10px 1px #1f0f0f;
+   position: sticky;
+
+   img, .imagemCard{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    overflow-y: hidden;
+    
+   }
+}
+
+.conteinerCardDireito
+{
+    display: flex;
+    width: 50%;
+    height: 80%;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 0rem 3rem 3rem 0rem;
+
+    .textoCard{
+        flex-direction: column;
+        display: flex;
+        gap: 2rem;
+        white-space: wrap;
+        text-align: left;
+        padding: 2.5rem 1.5rem;
+
+        h1
+        {
+            font-size: 2rem;
+        }
+        p
+        {
+            font-size: 1.3rem;
+            max-width: 21rem;
+            max-height: 19rem
+        }
+
+    }
+}
+ 
+
+
+
+
+
+
+
+
+
+
+/* CALCULADORA */
+.calculadora {
+    width: 100%;
+    background-color: var(--mediumBlue);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50rem;
+
+}
+
+.conteinerCalculadora {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90%;
+    margin: 2rem;
+    overflow-x: hidden;
+}
+
+.titulo {
+
+    margin: 1rem;
+    margin-left: 2rem;
+    color: white;
+}
+
+.titulo h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.titulo h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.main-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+
+    width: 100%;
+    height: 75%;
+    gap: 5rem;
+    overflow-x: hidden;
+}
+
+.calculadoraMenor {
+    height: 80%;
+    width: 25rem;
+    border-radius: 2rem;
+    align-items: center;
+    background-color: var(--whiteSmart);
+    box-shadow: 5px 5px 25px #616161;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+
+    padding: 2%;
+
+}
+
+.titulomenor {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.calculadoraMenor .inputs input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    border-bottom: var(--greenSmart) solid 2px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color:  var(--graySmart);
+    
+    padding: 5px;
+}
+
+.calculadoraMenor .label {
+    font-size: small;
+    align-items: center;
+    font-weight: bold;
+    font-family: Montserrat;
+    
+    margin: 2px;
+    }
+
+.calculadoraMenor button {
+    width: 40%;
+    height: 40px;
+    margin-top: 0.8rem;
+
+    background-color: var(--greenSmart);
+    border-radius: 56px;
+    border: none;
+    color: var(--whiteSmart);
+    font-weight: 600;
+
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.calculadoraMenor button:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 2px solid;
+    color: var(--greenSmart);
+    font-weight: 700;
+}
+
+.calculadoraMenor .inputs{
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+    justify-content: flex-start;
+    font-weight: 600;
+
+    width: 80%;
+
+
+    gap: 1rem;
+}
+
+.resultado-card {
+
+    width: 20rem;
+    height: 19rem;
+    border-radius: 50px;
+    align-items: center;
+    font-size: small;
+    background-color: var(--whiteSmart);
+    box-shadow: 5px 5px 25px #616161;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resultado-card input {
+    width: 15rem;
+    height: 30px;
+    border: none;
+    background-color: var(--whiteSmart);
+    margin: 5px 10px 0 5%;
+    padding: 5px;
+    text-align: center;
+}
+
+.resultado-card button {
+    width: 40%;
+    height: 40px;
+    margin: 20px;
+    background-color: var(--greenSmart);
+    border: none;
+    color: var(--whiteSmart);
+    font-weight: bold;
+    align-items: center;
+    margin-left: 25%;
+
+}
+
+.valorGanhos {
+    color: var(--greenSmart);
+
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.valorPerdas {
+    color: var(--redCritico);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.linhaHorizontal {
+    width: 200px;
+    border: 1px solid var(--graySmart);
+    display: flex;
+    flex-direction: row;
+
+}
+
+.textos {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CONTATO */
+footer {
+    width: 100%;
+    background-image: url("Img/fundofooter.png");
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    height: 40rem;
+}
+
+.conteinerFooter {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--whiteSmart);
+
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    height: 33rem;
+    width: 35rem;
+    padding: 1rem;
+    gap: 0.8rem;
+}
+
+.traco {
+    height: 2px;
+    width: 24rem;
+    margin-bottom: 1rem;
+    background-color: var(--mediumBlue);
+}
+
+.card h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--darkBlue);
+}
+
+.card p {
+    font-weight: 600;
+    color: var(--mediumBlue);
+    font-size: 1.4rem;
+    text-align: center;
+    width: 80%;
+    flex-wrap: wrap;
+}
+
+.card .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-top: 0.5rem;
+}
+
+.card input {
+    background-color: var(--graySmart);
+    color: var(--mediumBlue);
+    font-weight: 500;
+    border: none;
+    border-bottom: var(--greenSmart) solid 2px;
+    width: 21rem;
+    height: 2.3rem;
+    padding: 0.1rem;
+    padding-left: 10px;
+}
+
+#ipt_assunto {
+    height: 5rem;
+}
+
+.card button {
+    width: 30%;
+    height: 35px;
+    background-color: var(--greenSmart);
+    border: none;
+    color: var(--whiteSmart);
+    font-weight: 600;
+    font-size: 11px;
+    border-radius: 2rem;
+    box-shadow: 2px 2px 8px #616161;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.card button:hover {
+    cursor: pointer;
+    background-color: var(--whiteSmart);
+    border: var(--greenSmart) 2px solid;
+    color: var(--greenSmart);
+    font-weight: 700;
+}
+
+.imagensFooter img {
+    width: 100%;
+    height: 100%;
+}
+
+.imagensFooter {
+    display: flex;
+    flex-direction: row;
+}
+
+.circuloAbsoluto {
+    display: flex;
+    margin-left: 12.5rem;
+    position: absolute;
+    width: 22rem;
+    height: 17rem;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* RODAPÉ */
+.rodape
+{
+    display: flex;
+    background-color: var(--blackSmart);
+    width: 100%;
+    height: 10rem;
+}
+.conteinerRodape
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.iconRedes
+{
+    display: flex;
+    width: 25%;
+    flex-direction: row;
+    justify-content: center;
+}
+.logoRodape
+{
+    width: 38%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.logoRodape img
+{
+    width: 25%;
+    height: 20%;
+}
+.logoRodape img:hover
+{
+    cursor: pointer;
+}
+
+
+.contatosRodape
+{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.contatosRodape img
+{
+    width: 55%;
+    height: 45%;
+}

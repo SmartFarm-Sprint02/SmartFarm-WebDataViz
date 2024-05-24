@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calculadora Financeira</h1>
+    estufa
+    <input id="input_estufa">
+    <br>
+    <br>
+    tamanho
+    <input id="input_tamanho">
+    <br>
+    <br>
+    Pimentao
+    <input id="input_pimentão">
+    <br>
+    <br>
+    <button onclick="Calcular()"
+    >Calcular
+    </button>
+</body>
+<div id="resultado"></div>
+
+</html>
+<script>
+function Calcular(){
+var estufa=Number(input_estufa.value)
+var tamanho=input_tamanho.value
+var pimentão=input_pimentão.value 
+var estufapequena = 50
+var estufaMédia = 100
+var producaoTotal 
+var aumentoVendas 
+var valorPimentoes 
+
+if(pimentão == "vermelho"){
+        var pimentaoVermelho = 5.00
+        valorPimentoes = estufa * pimentaoVermelho
+    }
+    if (pimentão == "amarelo"){
+        var pimentãoAmarelo = 4.00
+        valorPimentoes = estufa * pimentaoAmarelo
+    }
+    if(pimentão == "verde"){
+        var pimentãoVerde = 3.00
+        valorPimentoes = estufa * pimentãoVerde
+        }
+
+    if (tamanho =='pequeno') {
+            producaoTotal = estufa * estufapequena * valorPimentoes;
+        } 
+    if (tamanho == 'medio') {
+            producaoTotal = estufa * estufaMédia * valorPimentoes;
+    }
+    
+         aumentoVendas = producaoTotal * 3.00;
+        
+       resultado.innerHTML= `Nossa tecnologia aumentará sua produção gerando um acréscimo total de 
+       R$ ${aumentoVendas} em suas vendas anuais, impulsionando a eficácia e a sustentabilidade de sua operação.`
+        
+       
+}
+</script>

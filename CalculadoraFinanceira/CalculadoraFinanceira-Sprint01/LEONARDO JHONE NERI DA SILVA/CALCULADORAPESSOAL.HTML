@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro SmartFarm</title>
+    <link rel="stylesheet" href="CALCULADORAPESSOAL.CSS">
+</head>
+
+<body>
+
+    <div class="barratop">
+        <div class="container">
+            <h1 class="tituloMenu">SMARTFARM</h1>
+            <ul class="navbarra">
+
+
+        </div>
+
+
+        <div class="fundo">
+
+            <div class="calculadora">
+
+                <p class="input_calculadora">INSIRA A QUANTIDADE DE ESTUFAS:</p>
+                <input id="inputqtd_estufas">
+
+                <p class="input_calculadora">MEDIA DE KILOS GERADOS POR ESTUFA:</p>
+                <input id="input_kilos_por_estufa">
+
+                <p class="input_calculadora">TIPO DE PIMENTÃO:</p>
+                <input id="input_tipo_pimentao" placeholder="Vermelho,Amarelo ou Verde">
+
+                <button onclick="calcular()">Calcular</button>
+                <div id="final" class="final"></div>
+
+            </div>
+
+        </div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var qtd_estufas = Number(inputqtd_estufas.value)
+        var kilos_por_estufa = Number(input_kilos_por_estufa.value)
+        var tipo_pimentao = input_tipo_pimentao.value
+
+        if (tipo_pimentao == "vermelho") {
+
+            var valorgeradoestufa = kilos_por_estufa * 10.90
+
+        }
+
+        if (tipo_pimentao == "verde") {
+
+            var valorgeradoestufa = kilos_por_estufa * 12.90
+
+        }
+
+        if (tipo_pimentao == "amarelo") {
+
+            var valorgeradoestufa = kilos_por_estufa * 10.90
+
+        }
+
+        var lucroanualatual = (qtd_estufas * valorgeradoestufa) * 12
+
+        var novoLucro = lucroanualatual * 0.60
+
+        var novoLucroAnual = lucroanualatual + novoLucro
+
+        final.innerHTML = `Sua media de lucro anual de R$ ${lucroanualatual} aumentara em R$ ${novoLucro} 
+        totalizando um valor anual de R$ ${novoLucroAnual} utilizando nossa tecnologia.`
+
+
+
+
+    }
+</script>

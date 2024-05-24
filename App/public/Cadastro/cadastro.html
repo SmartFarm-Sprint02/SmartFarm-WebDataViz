@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="../imgs/iconSmartFarm.png" type="image/x-icon">
+
+  <script src="../js/sessao.js"></script>
+
+  <title>Cadastro | SmartFarm</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="imgLogo">
+        <a href="../CTA/CTA.html">
+          <img src="img/Logo SmartFarm Verde.png" alt="" width="250px" height="35px" />
+        </a>
+      </div>
+
+      <ul class="navbarItens">
+        <a href="../CTA.html">Home</a>
+        <a href="../CTA.html">Produto</a>
+        <a href="../CTA.html">Sobre Nós</a>
+        <a href="../CTA.html">Calculadora</a>
+        <a href="../CTA.html">Contato</a>
+      </ul>
+
+      <div class="buttons">
+        <a href="../Login/Login.html"><button onclick="" class="btnLogin">Login</button></a>
+        <a href="../Cadastro/cadastro.html"><button onclick="" class="btnCadastro">Cadastro</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="CADASTRO" class="cadastro">
+    <h1 style="text-align: center; color: #038c65; font-family: Montserrat">
+      Cadastre-se
+    </h1>
+    <div class="card-inputs">
+      <p class="label">Nome:</p>
+      <input id="input_nome" placeholder="Insira o seu nome" />
+
+      <p class="label">Email:</p>
+      <input type="email" id="input_email" placeholder="Nome@email.com" />
+
+      <p class="label">Senha:</p>
+      <input id="input_senha" type="password" placeholder="Senha (mínimo 8 caracteres, sendo ao menos 1 número)" />
+
+      <p class="label">Confirme sua senha:</p>
+      <input id="input_confirme_senha" type="password" placeholder="Deve ser a mesma que a anterior." />
+
+      <p class="label">Insira seu Token:</p>
+      <input id="input_token" class="input_token" placeholder="123456" />
+    </div>
+
+
+    <div class="container-botoes">
+      <div id="mensagemErro" class="mensagem_erro"></div>
+    </div>
+    <button class="botao" onclick="cadastrar()">
+      Cadastrar
+    </button>
+    <a href="../Login/Login.html" style="text-decoration: none;">
+      <p class="frase-ja-possui-uma-conta">
+        Já possui uma conta? <b>Entrar</b>
+      </p>
+    </a>
+      <div id="div_aguardar"></div>
+  </div>
+
+  <div class="box-img">
+    <img class="logo" src="img/logo-smart-farm.png" />
+  </div>
+</body>
+
+</html>
+
+<script>
+  function cadastrar() {
+    mensagemErro.innerHTML = "";
+    let nome = input_nome.value;
+    let email = input_email.value;
+    let senha = input_senha.value;
+    let confirmacaoSenha = input_confirme_senha.value;
+    let token = input_token.value;
+
+
+
+
+
+    // Variáveis para condição.
+    let valoresVazios = nome == "" || email == "" || senha == "" || confirmacaoSenha == "" || token == "";
+    let nomeMinimo = nome.length < 1;
+    let contemArrobaPonto = email.indexOf("@gmail.com") > -1 || email.indexOf("@hotmail.com") > -1 || email.indexOf("@outlook.com") > -1;
+    let senhaCaracteresMinimos = senha.length < 8;
+    let tamanhoToken = token.length == 6;
+    let senhaContemNumero = false;
+
+    // Laço de Repetição para verificação de números na senha.
+    for (
+      let contadorNumero = 0;
+      contadorNumero < senha.length;
+      contadorNumero++
+    ) {
+      for (let contadorIndex = 0; contadorIndex < 9; contadorIndex++) {
+        if (senha.indexOf(contadorIndex) != -1) {
+          senhaContemNumero = true;
+        }
+      }
+    }
+
+
+
+    if (valoresVazios) {
+      // Teste de valores vazios
+      mensagemErro.innerHTML = "Todos os campos precisam estar preenchidos.";
+    } else if (nomeMinimo) {
+      // Teste de nome com pelo menos um caractere.
+      mensagemErro.innerHTML = "Nome inválido.";
+    } else if (contemArrobaPonto == false) {
+      // Teste de @ e . no Email
+      mensagemErro.innerHTML = "E-Mail inválido.";
+    } else if (senhaCaracteresMinimos) {
+      // Teste de Tamanho mínimo da Senha
+      mensagemErro.innerHTML = "Senha inválida.";
+    } else if (confirmacaoSenha != senha) {
+      // Teste de confirmação Senha = Senha
+      mensagemErro.innerHTML = "Senhas não coincidem.";
+    } else if (senhaContemNumero == false) {
+      // Teste de conter número na senha 
+      mensagemErro.innerHTML = "Erro. Senha não contém número.";
+    } else if (tamanhoToken == false) {
+      // Teste de tamanho de Token (atual = 6)
+      mensagemErro.innerHTML = "Token Inválido.";
+    } else {
+
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nome,
+          emailServer: email,
+          senhaServer: senha,
+          tokenServer: token
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+
+
+            mensagemErro.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+            setTimeout(() => {
+              window.location.href = "../Login/Login.html";
+            }, "2000");
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+
+      return false;
+    }
+  }
+
+</script>

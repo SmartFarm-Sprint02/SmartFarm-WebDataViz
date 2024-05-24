@@ -1,0 +1,162 @@
+.body {
+    background-color: #67b78e;
+    /* define a cor de fundo da body*/
+    margin: 0;
+    padding: 0;
+    /* Remove margens e preenchimentos padrão */
+    /* Usa flexbox para centralizar conteúdo verticalmente e horizontalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Define a altura como 100% da altura da janela de visualização */
+    height: 100vh;
+
+}
+
+.div_pai {
+    background-color: #ffffff;
+    margin: auto;
+    /* Centraliza a div horizontalmente */
+    width: 1200px;
+    /* Define a largura */
+    min-height: 600px;
+    /* Define a altura mínima */
+    font-family: 'Arial';
+    font-size: 18px;
+    color: #ffffff;
+    border-radius: 1%;
+    /* Define a borda com um pequeno arredondamento */
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.conf_txt {
+    width: 932px;
+    overflow-wrap: break-word;
+    /*define a quebra de linha, sem que ultrapesse o elemento pai*/
+    line-height: 1.8;
+    /* espaçamento entre linhas*/
+    word-spacing: 5px;
+    /*distancia entre as palavras na horizontal*/
+}
+
+.h1_simulador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    /* Define a margem inferior*/
+}
+
+.h3_calculadora {
+    color: #59b368;
+}
+
+.div_filha {
+    width: 57%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_filha2 {
+    margin: auto;
+    width: 43%;
+    background-color: #579877;
+    height: 600px;
+    color: #ffffff;
+}
+
+
+.inputs {
+    background-color: transparent;
+    /* para deixar os inputs transparentes*/
+    border: 2px solid rgba(76, 70, 70, 0.329);
+    /*deixar borda a amostra*/
+    color: #000000;
+    cursor: pointer;
+    width: 450px;
+    height: 25px;
+}
+
+.button {
+    background-color: #000000d8;
+    color: #ffffff;
+    font-size: 16px;
+    border: none;
+    /*sem bordar*/
+    border-radius: 4px;
+    padding: 10px 20px;
+    /* controla a largura e altura entre as bordas*/
+    cursor: pointer;
+    /*icone do curso aparece em cima do elemento*/
+    width: 455px;
+
+}
+
+.div_vantagens_pai {
+    margin-left: 60px;
+    /*mova a div para esquerda*/
+
+}
+
+.div_vantagens {
+    width: 255px;
+    font-size: 14px;
+    line-height: 1.8;
+    /*espaço entre linhas*/
+    display: flex;
+    /* Utiliza o modelo flexível */
+    flex-direction: column;
+    /* Alinha os itens verticalmente */
+    justify-content: flex-end;
+    margin-bottom: 5px;
+
+}
+
+.div_vantagens span {
+    color: #0e2c18;
+    font-weight: 650;
+
+}
+
+.img_vantagens {
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 70px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    color: #000000;
+    margin-bottom: 14px;
+
+
+}
+
+.alinhamento {
+    width: 25%;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.div_img {
+    margin-left: 75px;
+    /* Define a margem à direita*/
+
+}
+
+.div_filha div {
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    /* Define o preenchimento */
+    line-height: 1.5;
+    /*espaçamento entre linhas*/
+}
