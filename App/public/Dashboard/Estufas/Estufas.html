@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../imgs/iconSmartFarm.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../../js/carregarInformacoes.js"></script>
     <script src="../../js/sessao.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,11 +15,12 @@
     <title>Estufas</title>
 </head>
 
-<body onload="validarSessao()">
+<body >
+    <!-- onload="validarSessao()" -->
     <section class="menu-lateral">
         <div class="identificacao">
-            <h1>Fusca Pimentões</h1>
-            <h2>Cláudio Frizzarini</h2>
+            <h1 id="b_empresa">Fusca Pimentões</h1>
+            <h2 id="b_usuario">Cláudio Frizzarini</h2>
         </div>
 
         <div>
@@ -36,7 +38,7 @@
         <nav>
             <div class="IndicadorProblemas" id="qtd_problemas_atual">
                 <h5>Estufas com Problemas</h5>
-                <p>20/100</p>
+                <p>20/<span id="qtd_estufas_empresa">qtdEstufas</span></p>
             </div>
             <div class="IndicadorProblemas" id="qtd_semana">
                 <h5>Problemas na última Semana</h5>
@@ -76,6 +78,8 @@
 </html>
 
 <script>
+
+    window.onload = carregarInformacoes()
 
     // FUTURA FUNÇÃO EM DESENVOLVIMENTO PARA CRIAÇÃO DOS CARDS DAS ESTUFAS DE ACORDO COM A QUANTIDADE EXISTENTE NO BANCO
 

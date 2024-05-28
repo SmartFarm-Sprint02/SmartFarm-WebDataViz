@@ -11,5 +11,9 @@ router.post("/cadastrar", function (req, res) {
     estufasController.cadastrar(req, res);
 });
 
+router.post("/mostrarQntdEstufas", function (req, res) {
+  estufasController.mostrarQntdEstufas(req, res);
+});
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 var estufasModel = require("../models/estufasModel");
+var empresaModel = require("../models/empresaModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -28,6 +29,7 @@ function autenticar(req, res) {
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
+                                        empresa: resultadoAutenticar[0].nomeEm,
                                         estufas: resultadoEstufas
                                     });
                                 } else {

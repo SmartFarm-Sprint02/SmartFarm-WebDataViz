@@ -7,7 +7,15 @@ function buscarEstufasPorEmpresa(token) {
   
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
-  }
+}
+
+function mostrarQntdEstufas(token){
+    var instrucaoSql = `select
+                        count(id)
+                        from smartfarm.estufa
+                        where fk_empresa = ${token};`;
+    return database.executar(instrucaoSql);
+}
 
 function listar(){
     var instrucao = `
@@ -31,5 +39,6 @@ function cadastrar(nome){
 module.exports = {
     cadastrar,
     listar,
-    buscarEstufasPorEmpresa
+    buscarEstufasPorEmpresa,
+    mostrarQntdEstufas
 };
