@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../imgs/iconSmartFarm.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../../js/sessao.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -13,7 +14,7 @@
     <title>Estufas</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <section class="menu-lateral">
         <div class="identificacao">
             <h1>Fusca Pimentões</h1>
@@ -25,7 +26,7 @@
             <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
         </div>
         <div>
-            <a href="../../CTA/CTA.html"><button class="btn-sair">Sair</button></a>
+            <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
 
             <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
         </div>
@@ -50,7 +51,7 @@
 
         <div class="main-content">
             <div class="estufas" id="estufas">
-
+                
 
             </div>
             <div class="graficos-global">

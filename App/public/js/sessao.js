@@ -8,13 +8,13 @@ function validarSessao() {
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
     } else {
-        window.location = "../login.html";
+        window.location = "../../Login/login.html";
     }
 }
 
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../login.html";
+    window.location = "../../CTA.html";
 }
 
 // carregamento (loading)
@@ -33,4 +33,6 @@ function finalizarAguardar(texto) {
         divErrosLogin.innerHTML = texto;
     }
 }
+
+
 

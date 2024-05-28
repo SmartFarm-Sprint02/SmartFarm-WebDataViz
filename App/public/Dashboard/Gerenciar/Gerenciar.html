@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../js/sessao.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../../imgs/iconSmartFarm.png" type="image/x-icon">
     <title>Gerenciar | SmartFarm</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <section class="menu-lateral">
         <div class="identificacao">
             <h1>Fusca Pimentões</h1>
@@ -21,7 +22,7 @@
             <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar" id="btn-ativo-menu">Gerenciamento</button></a>
         </div>
         <div>
-            <a href="../../CTA/CTA.html"><button class="btn-sair">Sair</button></a>
+            <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
 
             <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
         </div>

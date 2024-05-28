@@ -7,6 +7,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="../../js/sessao.js"></script>
 
     <link rel="shortcut icon" href="../../imgs/iconSmartFarm.png" type="image/x-icon">
 
@@ -14,7 +15,7 @@
     <title>Histórico | SmartFarm</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <section class="menu-lateral">
         <div class="identificacao">
             <h1>Fusca Pimentões</h1>
@@ -26,7 +27,7 @@
             <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar" id="btn-ativo">Gerenciamento</button></a>
         </div>
         <div>
-            <a href="../../CTA/CTA.html"><button class="btn-sair">Sair</button></a>
+            <a ><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
 
             <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
         </div>
