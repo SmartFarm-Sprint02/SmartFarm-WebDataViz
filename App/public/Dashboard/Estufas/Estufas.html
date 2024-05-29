@@ -15,8 +15,8 @@
     <title>Estufas</title>
 </head>
 
-<body >
-    <!-- onload="validarSessao()" -->
+<body onload="validarSessao()">
+    
     <section class="menu-lateral">
         <div class="identificacao">
             <h1 id="b_empresa">Fusca Pimentões</h1>
@@ -125,7 +125,7 @@
 
         const a = document.createElement('a');
         a.textContent = 'Visualizar ';
-        a.href = '../Dashboard/analise.html'
+        a.href = '../Dashboard/historico.html'
 
         div.appendChild(titulo);
         div.appendChild(img);
@@ -162,9 +162,9 @@
     var grafico1 = new Chart(ctx, {
         type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
         data: {
-            labels: ['Fevereiro', 'Março', 'Abril', 'Maio'], // Rótulos do eixo x
+            labels: ['Fevereiro', 'Março', 'Abril', 'Maio'], // Quantidade de vezes que ficou "Crítico" nos últimos quatro meses
             datasets: [{
-                label: 'Problemas Mensais', // Rótulo do conjunto de dados
+                label: 'Quantidade de Problemas Mensais', // Rótulo do conjunto de dados
                 data: [12, 19, 3, 5, 2, 3], // Dados para o gráfico
                 backgroundColor: [
                     'rgba(15, 200, 132, 1)'
@@ -206,9 +206,9 @@
     var grafico2 = new Chart(ctx, {
         type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
         data: {
-            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'], // Rótulos do eixo x
+            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'], // Quantidade de vezes que ficou "Crítico" nas últimas 4 semanas.
             datasets: [{
-                label: 'Problemas Semanais', // Rótulo do conjunto de dados
+                label: 'Quantidade de Problemas Semanais', // Rótulo do conjunto de dados
                 data: [12, 19, 3, 5, 2, 3], // Dados para o gráfico
                 backgroundColor: [
                     'rgba(15, 200, 132, 1)'
@@ -248,7 +248,7 @@
         data: {
             labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'], // Rótulos do eixo x
             datasets: [{
-                label: 'Problemas Diários', // Rótulo do conjunto de dados
+                label: 'Quantidade de Problemas Diários', // Quantidade de vezes que ficou "Crítico" nos últimos 4 dias
                 data: [12, 19, 3, -5, 2, 3], // Dados para o gráfico
                 backgroundColor: [
                     'rgba(15, 200, 132, 1)'
