@@ -31,6 +31,5 @@ function cadastrar(nome) {
 module.exports = {
     cadastrar,
     listar,
-    buscarEstufasPorEmpresa,
-    mostrarQntdEstufas
+    buscarEstufasPorEmpresa
 };

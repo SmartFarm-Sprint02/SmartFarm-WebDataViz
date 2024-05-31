@@ -25,4 +25,4 @@ var database = require("../database/config");
 //   return database.executar(instrucaoSql);
 // }
 
-module.exports = {buscarNomeEmpresa};
+module.exports = {};

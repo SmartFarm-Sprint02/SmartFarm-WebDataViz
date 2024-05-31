@@ -43,6 +43,5 @@ function cadastrar(req, res) {
 module.exports = {
   listar,
   cadastrar,
-  buscarEstufasPorEmpresa,
-  mostrarQntdEstufas
+  buscarEstufasPorEmpresa
 }

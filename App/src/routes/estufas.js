@@ -11,7 +11,4 @@ router.post("/cadastrar", function (req, res) {
     estufasController.cadastrar(req, res);
 });
 
-
-
-
 module.exports = router;
