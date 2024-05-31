@@ -86,6 +86,10 @@ constraint fk_usuario_empresa foreign key (fk_empresa) references smartfarm.empr
 constraint uk_email unique key email(email)
 ) auto_increment = 50;
 
+-- Coluna do email possibilita agora, somente um email específico cadastrado, impossibilitando contas com o mesmo email.
+ALTER TABLE smartfarm.usuario
+ADD CONSTRAINT uk_email UNIQUE (email);
+
 -- -------------------------------------------------------------------------------------------------------- --
 -- ------------------------------------ Insert da tabela Usuario ------------------------------------------ --
 -- -------------------------------------------------------------------------------------------------------- --

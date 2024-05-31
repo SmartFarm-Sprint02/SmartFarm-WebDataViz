@@ -95,7 +95,9 @@ display: flex;
 .container-botoes{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
+    width: 80%;
 }
 
 .botao {
@@ -132,7 +134,7 @@ display: flex;
     font-weight: 700;
     display: flex;
     justify-content: center;
-
+    text-align: center;
     margin-top: 5px;
 }
 
