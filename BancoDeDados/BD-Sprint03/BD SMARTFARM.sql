@@ -241,4 +241,25 @@ from smartfarm.leitura as lei
 inner join smartfarm.conjuntoSensores as sen on lei.fk_sensores = sen.id
 inner join smartfarm.estufa as est on sen.fk_estufa = est.id;
 
+
+SELECT 
+    lei.temperatura AS 'Temperatura',
+    lei.umidade AS 'Umidade',
+    lei.luminosidade AS 'Luminosidade',
+    lei.DataHora_medida,
+    sen.id AS 'Conjunto Sensores',
+    est.id AS 'Estufa',
+    emp.id AS 'Empresa',
+    emp.nome_fantasia AS 'Nome Empresa'
+FROM 
+    smartfarm.leitura AS lei
+INNER JOIN 
+    smartfarm.conjuntoSensores AS sen ON lei.fk_sensores = sen.id
+INNER JOIN 
+    smartfarm.estufa AS est ON sen.fk_estufa = est.id
+INNER JOIN 
+    smartfarm.empresa AS emp ON est.fk_empresa = emp.id
+ORDER BY 
+    emp.id, est.id, lei.DataHora_medida;
+
 select * from information_schema.tables;
