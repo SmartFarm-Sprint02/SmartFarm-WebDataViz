@@ -16,26 +16,6 @@ function buscarEstufasPorEmpresa(req, res) {
   });
 }
 
-function mostrarQntdEstufas(req, res) {
-  console.log("mostrarQntdEstufas");
-
-  var token = req.params.id;
-
-  estufasModel.mostrarQntdEstufas(token).then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-      // qtd_estufas_empresa.innerHTML = resultado
-    } else {
-      res.status(204).json([]);
-    }
-  }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar as estufas: ", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-  });
-
-}
-
 
 function listar(req, res) {
   estufasModel.listar().then(function (resultado) {

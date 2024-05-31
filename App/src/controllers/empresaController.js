@@ -1,40 +1,6 @@
 var empresaModel = require("../models/empresaModel");
 
 
-function buscarNomeEmpresa(req, res) {
-  var email = req.body.emailServer;
-  var nome = req.body.nomeServer;
-
-  if (email == undefined) {
-    res.status(400).send("Seu email está undefined!");
-  } else if (nome == undefined) {
-    res.status(400).send("Sua senha está indefinida!");
-  } else {
-    console.log(nome + " " + email)
-
-    // var nomeEm = req.query.empresa;
-
-    empresaModel.buscarNomeEmpresa(nome, email)
-      .then(
-        function (resultado) {
-          res.json(resultado);
-        }
-      ).catch(
-        function (erro) {
-          console.log(erro);
-          console.log(
-            "\nHouve um erro ao realizar o cadastro! Erro: ",
-            erro.sqlMessage
-          );
-          res.status(500).json(erro.sqlMessage);
-        }
-      );
-  }
-}
-
-
-
-
 // function buscarPorCnpj(req, res) {
 //   var cnpj = req.query.cnpj;
 

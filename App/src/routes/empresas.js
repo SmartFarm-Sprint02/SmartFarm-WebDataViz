@@ -5,10 +5,6 @@ var empresaController = require("../controllers/empresaController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 
-router.get("/buscarNome", function(req,res){
-   empresaController.buscarNomeEmpresa(req,res);
-})
-
 // router.post("/cadastrar", function (req, res) {
 //     empresaController.cadastrar(req, res);
 // })

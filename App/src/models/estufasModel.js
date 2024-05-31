@@ -9,14 +9,6 @@ function buscarEstufasPorEmpresa(token) {
     return database.executar(instrucaoSql);
 }
 
-function mostrarQntdEstufas(id) {
-    var instrucaoSql = `select
-                        count(id)
-                        from smartfarm.estufa
-                        where fk_empresa = ${id};`;
-    return database.executar(instrucaoSql);
-}
-
 function listar() {
     var instrucao = `
         SELECT * FROM estufa;
