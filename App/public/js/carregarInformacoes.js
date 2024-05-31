@@ -1,7 +1,7 @@
 function carregarInformacoes(){
     
     fetch("/estufas/mostrarQntdEstufas", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json"
         },

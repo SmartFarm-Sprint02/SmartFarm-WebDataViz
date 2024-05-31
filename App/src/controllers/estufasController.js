@@ -1,7 +1,7 @@
 var estufasModel = require("../models/estufasModel");
 
 function buscarEstufasPorEmpresa(req, res) {
-  var token = req.params.token;
+  var token = req.params.id;
 
   estufasModel.buscarEstufasPorEmpresa(token).then((resultado) => {
     if (resultado.length > 0) {

@@ -16,11 +16,11 @@
 </head>
 
 <body onload="validarSessao()">
-    
+
     <section class="menu-lateral">
         <div class="identificacao">
-            <h1 id="b_empresa">Fusca Pimentões</h1>
-            <h2 id="b_usuario">Cláudio Frizzarini</h2>
+            <h1 id="nome_empresa">Empresa</h1>
+            <h2 id="b_usuario">Usuário</h2>
         </div>
 
         <div>
@@ -53,7 +53,7 @@
 
         <div class="main-content">
             <div class="estufas" id="estufas">
-                
+
 
             </div>
             <div class="graficos-global">
@@ -79,7 +79,9 @@
 
 <script>
 
-    window.onload = carregarInformacoes()
+    
+
+    // window.onload = carregarInformacoes()
 
     // FUTURA FUNÇÃO EM DESENVOLVIMENTO PARA CRIAÇÃO DOS CARDS DAS ESTUFAS DE ACORDO COM A QUANTIDADE EXISTENTE NO BANCO
 
@@ -109,7 +111,7 @@
     const estufas = document.getElementById('estufas');
 
     // Função para ordenar por cor de fundo
-    
+
 
     for (let i = 0; i < 100; i++) {
         const div = document.createElement('div');
@@ -145,7 +147,7 @@
         estufas.appendChild(div);
     }
 
-   
+
 
 
 

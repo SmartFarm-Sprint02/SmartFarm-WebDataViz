@@ -86,9 +86,6 @@ constraint fk_usuario_empresa foreign key (fk_empresa) references smartfarm.empr
 constraint uk_email unique key email(email)
 ) auto_increment = 50;
 
--- Coluna do email possibilita agora, somente um email específico cadastrado, impossibilitando contas com o mesmo email.
-ALTER TABLE smartfarm.usuario
-ADD CONSTRAINT uk_email UNIQUE (email);
 
 -- -------------------------------------------------------------------------------------------------------- --
 -- ------------------------------------ Insert da tabela Usuario ------------------------------------------ --
@@ -102,10 +99,15 @@ values
 select * from smartfarm.usuario;
 
 -- Visualiza os usuários e suas empresas.
-select *
+select 
+us.id idUsuario,
+us.nome nomeUsuario,
+us.email emailUsuario,
+us.senha senhaUsuario,
+emp.nome_fantasia nome_fantasia,
+us.fk_empresa fk_empresa
 from smartfarm.empresa as emp
 inner join smartfarm.usuario as us on us.fk_empresa = emp.id;
-
 
 -- -------------------------------------------------------------------------------------------------------- --
 -- ----------------------------------- Create da tabela Metricas ------------------------------------------ --
@@ -166,6 +168,8 @@ join smartfarm.empresa em on es.fk_empresa = em.id;
 select * 
 from smartfarm.estufa as est
 inner join smartfarm.empresa as emp on est.fk_empresa = emp.id;
+
+SELECT * FROM smartfarm.estufa WHERE fk_empresa = 100000;
 
 -- -------------------------------------------------------------------------------------------------------- --
 -- -------------------------------- Create da tabela ConjuntoSensores ------------------------------------- --

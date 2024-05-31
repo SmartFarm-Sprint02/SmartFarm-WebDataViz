@@ -2,31 +2,31 @@ var database = require("../database/config");
 
 function buscarEstufasPorEmpresa(token) {
 
-    var instrucaoSql = `SELECT * FROM estufa WHERE fk_empresa = ${token}`;
+    var instrucaoSql = `select * from smartfarm.estufa WHERE fk_empresa = ${token}`;
 
-  
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function mostrarQntdEstufas(token){
+function mostrarQntdEstufas(id) {
     var instrucaoSql = `select
                         count(id)
                         from smartfarm.estufa
-                        where fk_empresa = ${token};`;
+                        where fk_empresa = ${id};`;
     return database.executar(instrucaoSql);
 }
 
-function listar(){
+function listar() {
     var instrucao = `
         SELECT * FROM estufa;
         `;
-        console.log("Executando" + instrucao);
+    console.log("Executando" + instrucao);
 
-        return database.executar(instrucao);
+    return database.executar(instrucao);
 }
 
-function cadastrar(nome){
+function cadastrar(nome) {
     var instrucao = `
     INSERT INTO estufa (nome) VALUES ('${nome}');
     `;

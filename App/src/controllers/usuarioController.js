@@ -25,12 +25,12 @@ function autenticar(req, res) {
                             .then((resultadoEstufas) => {
                                 if (resultadoEstufas.length > 0) {
                                     res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        empresa: resultadoAutenticar[0].nomeEm,
-                                        estufas: resultadoEstufas
+                                        idUsuario: resultadoAutenticar[0].idUsuario,
+                                        emailUsuario: resultadoAutenticar[0].emailUsuario,
+                                        nomeUsuario: resultadoAutenticar[0].nomeUsuario,
+                                        senhaUsuario: resultadoAutenticar[0].senhaUsuario,
+                                        nome_fantasia: resultadoAutenticar[0].nome_fantasia,
+                                        estufas: resultadoEstufas,
                                     });
                                 } else {
                                     res.status(204).json({ estufas: [] });

@@ -136,10 +136,12 @@
         resposta.json().then(json => {
           console.log(json);
           console.log(JSON.stringify(json));
-          sessionStorage.EMAIL_USUARIO = json.email;
-          sessionStorage.NOME_USUARIO = json.nome;
-          sessionStorage.ID_USUARIO = json.id;
-          sessionStorage.ESTUFAS = JSON.stringify(json.estufas)
+          sessionStorage.ID_USUARIO = json.idUsuario;
+          sessionStorage.NOME_USUARIO = json.nomeUsuario;
+          sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+          sessionStorage.NOME_EMPRESA = json.nome_fantasia;
+          sessionStorage.ESTUFAS = JSON.stringify(json.estufas);
+          
 
           setTimeout(function () {
             window.location = "../Dashboard/Estufas/Estufas.html";
