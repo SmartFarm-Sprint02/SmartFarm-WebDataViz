@@ -156,6 +156,10 @@ values (null, 'verde', 100000, 10),
 	   (null, 'amarelo', 100000, 11),
        (null, 'vermelho', 100001, 11);
        
+insert into smartfarm.estufa(id, tipoPimentao, fk_empresa, fk_metricas)
+values (null, 'verde', 100000, 10),
+	   (null, 'amarelo', 100000, 11);
+       
 -- Visualizando todas as estufas.
 select * from smartfarm.estufa;
 

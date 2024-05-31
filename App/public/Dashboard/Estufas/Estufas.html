@@ -15,7 +15,7 @@
     <title>Estufas</title>
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), exibirEstufas()" >
 
     <section class="menu-lateral">
         <div class="identificacao">
@@ -38,15 +38,15 @@
         <nav>
             <div class="IndicadorProblemas" id="qtd_problemas_atual">
                 <h5>Estufas com Problemas</h5>
-                <p>20/<span id="qtd_estufas_empresa">qtdEstufas</span></p>
+                <p>20/<span id="qtd_estufas_empresa_kpi1">qtdEstufas</span></p>
             </div>
             <div class="IndicadorProblemas" id="qtd_semana">
                 <h5>Problemas na última Semana</h5>
-                <p>30/100</p>
+                <p>30/<span id="qtd_estufas_empresa_kpi2">qtdEstufas</span></p>
             </div>
             <div class="IndicadorProblemas" id="qtd_mes">
                 <h5>Problemas no Mês</h5>
-                <p>50/100</p>
+                <p>50/<span id="qtd_estufas_empresa_kpi3">qtdEstufas</span></p>
             </div>
         </nav>
 
@@ -71,6 +71,7 @@
 
 
 
+
     </section>
 
 </body>
@@ -78,29 +79,40 @@
 </html>
 
 <script>
+    const stringEstufas = (sessionStorage.getItem('ESTUFAS'));
 
+    const arrayEstufas = JSON.parse(stringEstufas);
 
-    // FUTURA FUNÇÃO EM DESENVOLVIMENTO PARA CRIAÇÃO DOS CARDS DAS ESTUFAS DE ACORDO COM A QUANTIDADE EXISTENTE NO BANCO
+    const qtdEstufas = arrayEstufas.length
 
-    // function listar() {
-    //     fetch("/estufas/listar", {
-    //         method: "GET",
-    //     })
-    //         .then(function (resposta) {
-    //             resposta.json().then((estufas) => {
-    //                 estufa.forEach((estufa) => {
-    //                     estufas.innerHTML += `<div class='estufa' id='${estufa.id}'>${estufa.tipoPimentao}</div>`;
-    //                 });
-    //             });
-    //         })
-    //         .catch(function (resposta) {
-    //             console.log(`#ERRO: ${resposta}`);
-    //         });
-    // }
+    qtd_estufas_empresa_kpi1.innerHTML = qtdEstufas
+    qtd_estufas_empresa_kpi2.innerHTML = qtdEstufas
+    qtd_estufas_empresa_kpi3.innerHTML = qtdEstufas
 
-    // function sumirMensagem() {
-    //     cardErro.style.display = "none";
-    // }
+    function exibirEstufas() {
+        JSON.parse(sessionStorage.ESTUFAS).forEach(item => {
+            document.getElementById("estufas").innerHTML += `
+                    <div class="estufa" style="background-color: rgb(206, 6, 6);">
+                        <h1>Estufa ${item.id}</h1>
+                        <img src="../img/critico.png">
+                        <a href="../Dashboard/historico.html">Visualizar </a>
+                    </div>
+                    `
+        });
+    }
+
+    // <div class="card-aquario">
+    //     <div class="title-aquario">
+    //         <h1>Estufa ${item.id}</h1>
+    //     </div>
+    //     <div class="desc-aquario">
+    //     <div class="temperatura">
+    //         <p id="temp_aquario_${item.id}">-°C</p>
+    //     </div>
+    //         <div class="cor-alerta" id="card_${item.id}"></div>
+    //     </div>
+    // </div>
+
 
 
 
@@ -109,39 +121,41 @@
 
     // Função para ordenar por cor de fundo
 
+    function mostrarEstufasAntigo() {
+        for (let i = 0; i < 100; i++) {
+            const div = document.createElement('div');
+            div.className = 'estufa';
 
-    for (let i = 0; i < 100; i++) {
-        const div = document.createElement('div');
-        div.className = 'estufa';
+            // div.style.backgroundColor = colors[i % colors.length];
 
-        // div.style.backgroundColor = colors[i % colors.length];
+            const titulo = document.createElement('h1');
+            titulo.textContent = 'Estufa ' + (i + 1);
 
-        const titulo = document.createElement('h1');
-        titulo.textContent = 'Estufa ' + (i + 1);
-
-        const img = document.createElement('img');
+            const img = document.createElement('img');
 
 
-        const a = document.createElement('a');
-        a.textContent = 'Visualizar ';
-        a.href = '../Dashboard/historico.html'
+            const a = document.createElement('a');
+            a.textContent = 'Visualizar ';
+            a.href = '../Dashboard/historico.html'
 
-        div.appendChild(titulo);
-        div.appendChild(img);
-        div.appendChild(a);
+            div.appendChild(titulo);
+            div.appendChild(img);
+            div.appendChild(a);
 
-        if (i < 20) {
-            div.style.backgroundColor = '#CE0606';
-            img.src = '../img/critico.png'
-        } else if (i < 50) {
-            div.style.backgroundColor = '#E7D31B';
-            img.src = '../img/alerta.png'
-        } else {
-            div.style.backgroundColor = '#2A9C0D';
-            img.src = '../img/ok.png'
+            if (i < 20) {
+                div.style.backgroundColor = '#CE0606';
+                img.src = '../img/critico.png'
+            } else if (i < 50) {
+                div.style.backgroundColor = '#E7D31B';
+                img.src = '../img/alerta.png'
+            } else {
+                div.style.backgroundColor = '#2A9C0D';
+                img.src = '../img/ok.png'
+            }
+
+            estufas.appendChild(div);
         }
 
-        estufas.appendChild(div);
     }
 
 
