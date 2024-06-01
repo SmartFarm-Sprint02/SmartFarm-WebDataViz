@@ -666,7 +666,7 @@ body {
     flex-wrap: wrap;
 
     justify-content: start;
-    align-items: start;
+    align-items: center;
 
     height: 90%;
     width: 100%;
@@ -679,12 +679,12 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: start;
+    align-content: start;
     align-items: start;
     width: 50%;
-    height: 100%;
+    height: 90%;
     padding: 1%;
-    border-bottom: var(--blackSmart) 5px solid;
     /* background-color: #CE0606; */
 
     overflow-y: scroll;
@@ -701,19 +701,19 @@ body {
     align-items: center;
     margin: 1%;
 
-    width: 170px;
-    height: 170px;
+    width: 100px;
+    height: 100px;
     background-color: var(--greenOK);
 
-    border: var(--blackSmart) 6px solid;
-    border-radius: 20px;
+    border: var(--blackSmart) 3px solid;
+    border-radius: 10px;
 
     overflow: hidden;
 }
 
 .estufas .estufa img {
     object-fit: contain;
-    width: 70px;
+    width: 30px;
 }
 
 .estufas .estufa h1 {
@@ -722,38 +722,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 14px;
 
     height: 20%;
     width: 100%;
 
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 5px 5px;
 }
 
 .estufas .estufa a {
     background-color: var(--whiteSmart);
     color: var(--blackSmart);
-
-    margin: 8px;
-
     font-size: 16px;
     font-weight: 600;
-
-    padding: 4px 20%;
-
+    padding: 1px 10%;
+    margin-bottom: 10%;
     border-radius: 10px;
     border: transparent 2px solid;
-
     text-align: center;
     text-decoration: none;
-
     transition: ease-in-out 0.2s;
 }
 
 .estufas .estufa a:hover {
     cursor: pointer;
-    padding: 6px 24%;
-    border: var(--blackSmart) 2px solid;
+    padding: 6px 14%;
+    margin-bottom: 10%;
+    border-radius: 10px;
+    border: var(--blackSmart) 1px solid;
 }
 
 .estufas .estufa button{

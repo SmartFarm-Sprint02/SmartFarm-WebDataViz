@@ -157,11 +157,13 @@ values (null, 'verde', 100000, 10),
        (null, 'vermelho', 100001, 11);
        
 insert into smartfarm.estufa(id, tipoPimentao, fk_empresa, fk_metricas)
-values (null, 'verde', 100000, 10),
-	   (null, 'amarelo', 100000, 11);
+values (null, 'verde', 100001, 10),
+	   (null, 'amarelo', 100001, 11);
        
 -- Visualizando todas as estufas.
-select * from smartfarm.estufa;
+select * from smartfarm.estufa
+order by fk_empresa;
+
 
 select
 count(es.id)
