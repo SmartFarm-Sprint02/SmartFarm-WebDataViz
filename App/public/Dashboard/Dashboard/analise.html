@@ -32,11 +32,11 @@
     <section class="main-section">
         <div class="inicio-main">
             <div>
-                <h1>Estufa SPTECH</h1>
+                <h1 id="titulo_estufa">Estufa SPTECH</h1>
             </div>
             <a href="historico.html"><button class="btn-navbar-dash" id="btn-ativo">Histórico</button></a>
             <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
-            
+
 
 
             <div>
@@ -94,6 +94,14 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+
+
+    let tituloEstufa = document.getElementById('titulo_estufa')
+    let estufaAtual = sessionStorage.ESTUFA_ATUAL
+    tituloEstufa.innerHTML = `Estufa ${estufaAtual}`
+
+
+
     const ctx = document.getElementById('problemasEstufa');
 
 
