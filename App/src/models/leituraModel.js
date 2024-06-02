@@ -20,7 +20,7 @@ function buscarUltimasMedidas(idEstufa, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idEstufa) {
+function buscarMedidasEmTempoReal(estufaAtual) {
 
     var instrucaoSql = `SELECT 
         lei.temperatura 'Temperatura',

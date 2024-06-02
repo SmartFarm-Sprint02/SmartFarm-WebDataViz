@@ -2,10 +2,11 @@ var leituraModel = require("../models/leituraModel");
 
 function buscarUltimasMedidas(req, res) {
 
+
     const limite_linhas = 7;
     var idEstufa = req.params.idEstufa;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+    console.log(`Recuperando as ultimas ${limite_linhas} leituras`);
     leituraModel.buscarUltimasMedidas(idEstufa, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -14,7 +15,7 @@ function buscarUltimasMedidas(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        console.log("Houve um erro ao buscar as ultimas leituras.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
