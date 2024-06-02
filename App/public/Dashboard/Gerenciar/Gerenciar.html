@@ -13,7 +13,7 @@
 </head>
 
 <body onload="validarSessao()">
-    
+
     <section class="menu-lateral">
         <div class="identificacao">
             <h1 id="nome_empresa">Empresa</h1>
@@ -22,7 +22,8 @@
 
         <div>
             <a href="../Estufas/Estufas.html"><button class="btn-gerenciar">Estufas</button></a>
-            <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar" id="btn-ativo-menu">Gerenciamento</button></a>
+            <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar"
+                    id="btn-ativo-menu">Gerenciamento</button></a>
         </div>
         <div>
             <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
@@ -39,8 +40,8 @@
                 <h1>Gerenciamento de Métricas</h1>
             </div>
         </div>
-        
-        
+
+
 
 
         <div class="container-metrica">
@@ -48,25 +49,25 @@
                 <p class="titulo-metrica">Temperatura Atual</p>
                 <div class="cards-parametros">
                     <span>Mínima</span>
-                    <b>15°C</b>
+                    <b id="b_temperatura_minima">15°C</b>
                 </div>
                 <div class="cards-parametros">
                     <span>Máxima</span>
-                    <b>25°C</b>
+                    <b id="b_temperatura_maxima">25°C</b>
                 </div>
 
                 <div class="card-gerenciamento">
                     <div class="texto-input">
                         <p>Temperatura Mínima</p>
-                        <input type="number">
-                    </div>
-                    
-                    <div class="texto-input">
-                        <p>Temperatura Máxima</p>
-                        <input type="number">
+                        <input type="number" id="ipt_temperatura_minima">
                     </div>
 
-                    <button>Atualizar</button>
+                    <div class="texto-input">
+                        <p>Temperatura Máxima</p>
+                        <input type="number" id="ipt_temperatura_maxima">
+                    </div>
+
+                    <button onclick="atualizarMetricaTemperatura()">Atualizar</button>
                 </div>
             </div>
 
@@ -74,29 +75,29 @@
                 <p class="titulo-metrica">Umidade Atual</p>
                 <div class="cards-parametros">
                     <span>Mínima</span>
-                    <b>70%</b>
+                    <b id="b_umidade_minima">70%</b>
                 </div>
 
                 <div class="cards-parametros">
                     <span>Máxima</span>
-                    <b>85%</b>
+                    <b id="b_umidade_maxima">85%</b>
                 </div>
 
                 <div class="card-gerenciamento">
 
                     <div class="texto-input">
                         <p>Umidade Mínima</p>
-                        <input type="number">
+                        <input type="number" id="ipt_umidade_minima">
                     </div>
 
                     <div class="texto-input">
                         <p>Umidade Máxima</p>
-                        <input type="number">
+                        <input type="number" id="ipt_umidade_maxima">
                     </div>
 
 
 
-                    <button>Atualizar</button>
+                    <button onclick="atualizarMetricaUmidade()">Atualizar</button>
                 </div>
 
             </div>
@@ -105,38 +106,78 @@
                 <p class="titulo-metrica">Luminosidade Atual</p>
                 <div class="cards-parametros">
                     <span>Mínima</span>
-                    <b>800lux</b>
+                    <b id="b_luminosidade_minima">800lux</b>
                 </div>
                 <div class="cards-parametros">
                     <span>Máxima</span>
-                    <b>1000lux</b>
+                    <b id="b_luminosidade_maxima">1000lux</b>
                 </div>
 
                 <div class="card-gerenciamento">
                     <div class="texto-input">
                         <p>Luminosidade Mínima</p>
-                        <input type="number" class="input-card">
+                        <input type="number" class="input-card" id="ipt_luminosidade_minima">
                     </div>
 
                     <div class="texto-input">
                         <p>Luminosidade Máxima</p>
-                        <input type="number" class="input-card">
+                        <input type="number" class="input-card" id="ipt_luminosidade_maxima">
                     </div>
 
-                    <button>Atualizar</button>
+                    <button onclick="atualizarMetricaLuminosidade()">Atualizar</button>
                 </div>
             </div>
-
-
-
-        </div>
-
-
-
-
         </div>
     </section>
 
 </body>
 
 </html>
+
+<script>
+
+    // Fazer uma lógica de os dois input devem conter valor para poder atualizar as métricas mínimas e máximas.
+    function atualizarMetricaTemperatura(){
+        const temperaturaMinima = ipt_temperatura_minima.value
+        const temperaturaMaxima = ipt_temperatura_maxima.value
+        const temperaturasValidas = temperaturaMinima > 0 && temperaturaMaxima > 0 && temperaturaMaxima > temperaturaMinima
+
+        if (temperaturasValidas){
+            // Aqui vai ser implementado o fetch para dar update do valor no banco
+        } else{
+            alert("Insira o valor mínimo e o máximo da métrica de Temperatura.")
+        }
+    }
+
+
+
+    function atualizarMetricaUmidade(){
+        const umidadeMinima = ipt_umidade_minima.value
+        const umidadeMaxima = ipt_umidade_maxima.value
+        const umidadesValidas = umidadeMinima > 0 && umidadeMaxima > 0 && umidadeMaxima > umidadeMinima
+
+        if (umidadesValidas){
+            // Aqui vai ser implementado o fetch para dar update do valor no banco.
+        } else{
+            alert("Insira o valor mínimo e o máximo da métrica de Umidade.")
+        }
+    }
+
+
+
+    function atualizarMetricaLuminosidade(){
+        const luminosidadeMinima = ipt_luminosidade_minima.value
+        const luminosidadeMaxima = ipt_luminosidade_maxima.value
+        const luminosidadesValidas = luminosidadeMinima > 0 && luminosidadeMaxima > 0 && luminosidadeMaxima > luminosidadeMinima
+
+        if (luminosidadesValidas){
+            // Caso dê certo:
+            // Aqui vai ser implementado o fetch para dar update do valor no banco
+        } else{
+            alert("Insira o valor mínimo e o máximo da métrica de Luminosidade.")
+        }
+    }
+
+
+
+</script>
