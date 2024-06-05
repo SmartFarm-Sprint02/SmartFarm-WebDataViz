@@ -285,7 +285,7 @@ body {
     justify-content: center;
 }
 
-.buttonBanner button {
+.buttonBanner a {
     border-radius: 2rem;
     border: 0;
     color: var(--blackSmart);
@@ -296,6 +296,11 @@ body {
     font-weight: 700;
     cursor: pointer;
     margin-top: 2.5%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    text-decoration: none;
 }
 
 .pimentoesBanner {

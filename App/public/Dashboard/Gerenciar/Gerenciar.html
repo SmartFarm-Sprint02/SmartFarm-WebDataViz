@@ -144,6 +144,16 @@
     let estufas = JSON.parse(sessionStorage.getItem('ESTUFAS'));
     let select = document.getElementById('select_estufa');
 
+    // function recarregaPagina() {
+    //     let estufaAtual = sessionStorage.ESTUFAS
+    //     sessionStorage.ESTUFA_SELECT = estufaAtual
+    //     buscarMetricas()
+    // }
+
+    window.onload = buscarMetricas()
+
+
+
     function carregarMetricas() {
         b_temperatura_minima.innerHTML = sessionStorage.TEMP_MINIMA + "°C"
         b_temperatura_maxima.innerHTML = sessionStorage.TEMP_MAXIMA + "°C"
