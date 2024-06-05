@@ -94,7 +94,8 @@ alter table smartfarm.usuario add mensagem varchar(200);
 
 insert into smartfarm.usuario(id, nome, email, senha, mensagem, fk_empresa)
 values 
-(null, "Guilherme","guilherme@gmail.com","gavassa123",100000);
+(null, "Guilherme","guilherme@gmail.com","gavassa123", "Meu nome 123" ,100000);
+
 
 -- Visualiza todos os usuarios.
 select * from smartfarm.usuario;
@@ -225,15 +226,28 @@ CONSTRAINT fk_leitura_sensor FOREIGN KEY (fk_sensores) REFERENCES smartfarm.conj
 -- ----------------------------------- Insert da tabela Leitura ------------------------------------------- --
 -- -------------------------------------------------------------------------------------------------------- --
 
-
+-- Adicionando uma leitura para cada Conjunto de Sensores.
 insert into smartfarm.leitura(id, temperatura, umidade, luminosidade, fk_sensores)
 values (null, 22.2, 75, 870.00, 1000),
 		(null, 23.2, 75, 880.00, 1001),
         (null, 21.2, 75, 868.00, 1002);
         
-        
+-- Adicionando varias leituras para apenas um conjunto de sensores.
+INSERT INTO smartfarm.leitura(id, temperatura, umidade, luminosidade, fk_sensores)
+VALUES 
+(null, 22.5, 72, 850.00, 1000),
+(null, 23.1, 80, 900.00, 1000),
+(null, 24.7, 85, 950.00, 1000),
+(null, 25.0, 90, 870.00, 1000),
+(null, 26.5, 75, 800.00, 1000),
+(null, 27.3, 70, 810.00, 1000),
+(null, 28.0, 82, 940.00, 1000),
+(null, 29.8, 88, 970.00, 1000),
+(null, 30.2, 93, 990.00, 1000),
+(null, 32.1, 95, 1000.00, 1000);
     
 select 
+lei.id 'idLeitura',
 lei.temperatura 'Temperatura',
 lei.umidade 'Umidade',
 lei.luminosidade 'Luminosidade',
