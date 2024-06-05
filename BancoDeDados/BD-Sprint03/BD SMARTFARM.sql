@@ -86,12 +86,13 @@ constraint fk_usuario_empresa foreign key (fk_empresa) references smartfarm.empr
 constraint uk_email unique key email(email)
 ) auto_increment = 50;
 
+alter table smartfarm.usuario add mensagem varchar(200);
 
 -- -------------------------------------------------------------------------------------------------------- --
 -- ------------------------------------ Insert da tabela Usuario ------------------------------------------ --
 -- -------------------------------------------------------------------------------------------------------- --
 
-insert into smartfarm.usuario(id, nome, email, senha, fk_empresa)
+insert into smartfarm.usuario(id, nome, email, senha, mensagem, fk_empresa)
 values 
 (null, "Guilherme","guilherme@gmail.com","gavassa123",100000);
 

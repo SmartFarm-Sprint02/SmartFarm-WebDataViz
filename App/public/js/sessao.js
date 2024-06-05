@@ -1,7 +1,7 @@
 // sessão
 function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
-    var nome = sessionStorage.NOME_USUARIO;
+    var nome = (sessionStorage.NOME_USUARIO);
     var nomeEmpresa = sessionStorage.NOME_EMPRESA;
 
     console.log(email + " " + nome);
@@ -17,6 +17,7 @@ function validarSessao() {
     if (email != null && nome != null && nomeEmpresa != null) {
         b_usuario.innerHTML = nome;
         b_empresa.innerHTML = nomeEmpresa;
+        
 
 
         // fetch("/empresas/buscarNome", {

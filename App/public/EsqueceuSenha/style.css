@@ -14,6 +14,8 @@
     --redCritico: #CE0606;
 }
 
+
+
 body {
     margin: 0;
     background-color: var(--mediumBlue);
@@ -148,7 +150,7 @@ body {
     align-items: center;
     justify-content: space-evenly;
     width: 30vw;
-    height: 55vh;
+    height: fit-content;
     padding: 50px 40px;
     padding-bottom: 30px;
 }
@@ -179,7 +181,7 @@ body {
     flex-direction: column;
     align-items: center;
 
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 .card-inputs {
@@ -304,4 +306,32 @@ body {
 .container-botao {
     width: 100%;
     text-align: center;
+}
+
+.divErro{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+}
+
+.mensagem_erro{
+    color: var(--blackSmart);
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    
+    margin-bottom: 20px;
+}
+
+.mensagem_erro span{
+    color: var(--mediumBlue);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
 }

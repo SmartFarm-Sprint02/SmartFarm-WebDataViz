@@ -19,6 +19,7 @@ body{
     background-color: var(--mediumBlue);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
     font-family: "Montserrat", sans-serif;
     
@@ -47,7 +48,7 @@ display: flex;
     background-color: var(--whiteSmart);
     box-shadow: 5px 5px 25px  rgb(97, 97, 97);
     
-    padding: 2% 6px;
+    padding: 1% 4px;
 }
 
 .cadastro input {
@@ -88,8 +89,6 @@ display: flex;
     cursor: pointer;
 
     margin-top: 10px;
-    
-
 }
 
 .container-botoes{

@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/lembrarSenha", function (req, res) {
+    usuarioController.lembrarSenha(req, res);
+});
+
 module.exports = router;

@@ -19,7 +19,7 @@ function autenticar(req, res) {
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
                     console.log(resultadoAutenticar);
                     if (resultadoAutenticar.length == 1) {
-                        
+
 
                         estufasModel.buscarEstufasPorEmpresa(resultadoAutenticar[0].token)
                             .then((resultadoEstufas) => {
@@ -58,6 +58,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var mensagem = req.body.mensagemServer;
     var token = req.body.tokenServer;
 
     // Faça as validações dos valores
@@ -67,12 +68,14 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+    } else if (mensagem == undefined) {
+        res.status(400).send("Sua mensagem está undefined!");
     } else if (token == undefined) {
-        res.status(400).send("Sua empresa está undefined!");
+        res.status(400).send("Seu token está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, token)
+        usuarioModel.cadastrar(nome, email, senha, mensagem, token)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -90,7 +93,42 @@ function cadastrar(req, res) {
     }
 }
 
+
+
+
+
+function lembrarSenha(req, res) {
+    var email = req.body.emailServer;
+
+    if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else {
+
+        usuarioModel.lembrarSenha(email)
+            .then(
+                function (resultadoLembrarSenha) {
+                    console.log(`\nResultados encontrados: ${resultadoLembrarSenha.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoLembrarSenha)}`); // transforma JSON em String
+                    console.log(resultadoLembrarSenha);
+                    if (resultadoLembrarSenha.length == 1) {
+                        res.json(resultadoLembrarSenha);
+                    } else if (resultadoLembrarSenha.length == 0) {
+                        res.status(403).send("Email não cadastrado, ou usuário não cadastrou mensagem.");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    lembrarSenha
 }

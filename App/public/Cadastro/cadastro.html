@@ -52,6 +52,9 @@
 
       <p class="label">Confirme sua senha:</p>
       <input id="input_confirme_senha" type="password" placeholder="Deve ser a mesma que a anterior." />
+ 
+      <p class="label">Insira uma mensagem de segurança:</p>
+      <input id="input_mensagem_seguranca" type="text" placeholder="Ex: 'Nome do meu primeiro pet.'" />
 
       <p class="label">Insira seu Token:</p>
       <input id="input_token" class="input_token" placeholder="123456" />
@@ -69,7 +72,7 @@
         Já possui uma conta? <b>Entrar</b>
       </p>
     </a>
-      <div id="div_aguardar"></div>
+    <div id="div_aguardar"></div>
   </div>
 
   <div class="box-img">
@@ -86,14 +89,15 @@
     let email = input_email.value;
     let senha = input_senha.value;
     let confirmacaoSenha = input_confirme_senha.value;
+    let mensagemSeguranca = input_mensagem_seguranca.value;
     let token = input_token.value;
 
 
-
+    
 
 
     // Variáveis para condição.
-    let valoresVazios = nome == "" || email == "" || senha == "" || confirmacaoSenha == "" || token == "";
+    let valoresVazios = nome == "" || email == "" || senha == "" || confirmacaoSenha == "" || mensagemSeguranca == "" || token == "";
     let nomeMinimo = nome.length < 1;
     let contemArrobaPonto = email.indexOf("@gmail.com") > -1 || email.indexOf("@hotmail.com") > -1 || email.indexOf("@outlook.com") > -1;
     let senhaCaracteresMinimos = senha.length < 8;
@@ -149,6 +153,7 @@
           nomeServer: nome,
           emailServer: email,
           senhaServer: senha,
+          mensagemServer: mensagemSeguranca,
           tokenServer: token
         }),
       })
@@ -157,9 +162,9 @@
 
           if (resposta.ok) {
 
-
+            mensagemErro.style.color = "green";
             mensagemErro.innerHTML =
-              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+              "Cadastro realizado com sucesso! <br> Redirecionando para tela de Login...";
 
             setTimeout(() => {
               window.location.href = "../Login/Login.html";
