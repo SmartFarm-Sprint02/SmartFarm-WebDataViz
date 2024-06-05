@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../js/sessao.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/sessao.js"></script>
+
     <link rel="shortcut icon" href="../../imgs/favicon.ico" type="image/x-icon">
 
     <title>Gerenciar | SmartFarm</title>
@@ -41,7 +41,7 @@
             </div>
             <div>
                 <label for="select_estufa">Estufas</label>
-                <select id="select_estufa">
+                <select id="select_estufa" onchange="alterarEstufa()">
 
                 </select>
             </div>
@@ -144,13 +144,28 @@
     let estufas = JSON.parse(sessionStorage.getItem('ESTUFAS'));
     let select = document.getElementById('select_estufa');
 
-    
+    function carregarMetricas() {
+        b_temperatura_minima.innerHTML = sessionStorage.TEMP_MINIMA + "°C"
+        b_temperatura_maxima.innerHTML = sessionStorage.TEMP_MAXIMA + "°C"
+        b_umidade_minima.innerHTML = sessionStorage.UMID_MINIMA + "%"
+        b_umidade_maxima.innerHTML = sessionStorage.UMID_MAXIMA + "%"
+        b_luminosidade_minima.innerHTML = sessionStorage.LUMI_MINIMA + "lux"
+        b_luminosidade_maxima.innerHTML = sessionStorage.LUMI_MAXIMA + "lux"
+    }
+
     estufas.forEach(estufa => {
         let optionEstufa = document.createElement('option');
-        optionEstufa.textContent = `Estufa: ${estufa.id}`; 
+        optionEstufa.textContent = `Estufa: ${estufa.id}`;
         optionEstufa.value = estufa.id;
         select.appendChild(optionEstufa);
     });
+
+    function alterarEstufa() {
+        let estufaSelect = select_estufa.value
+        sessionStorage.setItem('ESTUFA_SELECT', estufaSelect);
+
+        buscarMetricas()
+    }
 
 
     // Fazer uma lógica de os dois input devem conter valor para poder atualizar as métricas mínimas e máximas.
@@ -198,9 +213,9 @@
 
     function buscarMetricas() {
 
-        estufa = sessionStorage.ESTUFA
+        estufaID = sessionStorage.ESTUFA_SELECT
 
-        fetch("/metricas/buscarMetricas", {
+        fetch(`/metricas/buscarMetricas/${estufaID}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -214,6 +229,16 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
+
+                    sessionStorage.TEMP_MINIMA = json[0].TempMinima;
+                    sessionStorage.TEMP_MAXIMA = json[0].TempMaxima;
+                    sessionStorage.UMID_MINIMA = json[0].UmidMinima;
+                    sessionStorage.UMID_MAXIMA = json[0].UmidMaxima;
+                    sessionStorage.LUMI_MINIMA = json[0].LuminMinima;
+                    sessionStorage.LUMI_MAXIMA = json[0].LuminMaxima;
+
+                    carregarMetricas()
+
                 });
 
             } else {
@@ -229,6 +254,8 @@
         })
 
         return false;
+
+
 
     }
 

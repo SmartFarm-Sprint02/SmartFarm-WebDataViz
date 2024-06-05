@@ -4,7 +4,7 @@ var router = express.Router();
 var metricaController = require("../controllers/metricaController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de metricaController.js
-router.get("/buscarMetricas", function (req, res) {
+router.get("/buscarMetricas/:estufaID", function (req, res) {
     metricaController.buscarMetricas(req, res);
 })
 

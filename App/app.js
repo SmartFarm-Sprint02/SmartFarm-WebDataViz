@@ -23,6 +23,7 @@ var avisosRouter = require("./src/routes/avisos");
 var empresasRouter = require("./src/routes/empresas");
 var leituraRouter = require("./src/routes/leitura");
 var estufasRouter = require("./src/routes/estufas"); // Rota para estufas
+var metricasRouter = require("./src/routes/metricas");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,6 +45,7 @@ app.use("/avisos", avisosRouter);
 app.use("/empresas", empresasRouter);
 app.use("/leitura", leituraRouter);
 app.use("/estufas", estufasRouter);
+app.use("/metricas", metricasRouter)
 
 app.listen(PORTA_APP, function () {
     console.log(`
