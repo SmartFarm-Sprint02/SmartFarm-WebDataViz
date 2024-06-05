@@ -139,6 +139,10 @@ values
 (null, 501,'20.0', '30.0', '60.0', '80.0', '600', '800'),
 (null, 502, '25.0', '33.0', '65.0', '85.0', '700', '900');
 
+update smartfarm.metricas set TempMinima = '10', TempMaxima = '20' where fk_estufa = 500;
+update smartfarm.metricas set UmidMinima = '10', UmidMaxima = '20' where fk_estufa = 500;
+update smartfarm.metricas set LumiMinima = '10', LumiMaxima = '20' where fk_estufa = 500;
+
 
 SELECT 
     *

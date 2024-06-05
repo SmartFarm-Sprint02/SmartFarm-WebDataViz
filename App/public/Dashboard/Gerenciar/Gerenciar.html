@@ -175,10 +175,32 @@
         const temperaturasValidas = temperaturaMinima > 0 && temperaturaMaxima > 0 && temperaturaMaxima > temperaturaMinima
 
         if (temperaturasValidas) {
-            // Aqui vai ser implementado o fetch para dar update do valor no banco
+            const estufaID = sessionStorage.ESTUFA_SELECT;
+            fetch(`/metricas/atualizarTemperatura/${estufaID}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // Adicione qualquer cabeçalho de autenticação necessário aqui
+                },
+                body: JSON.stringify({
+                    temperaturaMaximaServer: temperaturaMaxima,
+                    temperaturaMinimaServer: temperaturaMinima
+                }),
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    buscarMetricas();
+                } else {
+                    throw "Houve um erro ao tentar atualizar a métrica de temperatura!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+            return false;
         } else {
-            alert("Insira o valor mínimo e o máximo da métrica de Temperatura.")
+            alert("Insira o valor mínimo e o máximo da métrica de Temperatura.");
         }
+
     }
 
 
@@ -189,9 +211,30 @@
         const umidadesValidas = umidadeMinima > 0 && umidadeMaxima > 0 && umidadeMaxima > umidadeMinima
 
         if (umidadesValidas) {
-            // Aqui vai ser implementado o fetch para dar update do valor no banco.
+            const estufaID = sessionStorage.ESTUFA_SELECT;
+            fetch(`/metricas/atualizarUmidade/${estufaID}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // Adicione qualquer cabeçalho de autenticação necessário aqui
+                },
+                body: JSON.stringify({
+                    umidadeMaximaServer: umidadeMaxima,
+                    umidadeMinimaServer: umidadeMinima
+                }),
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    buscarMetricas();
+                } else {
+                    throw "Houve um erro ao tentar atualizar a métrica de umidade!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+            return false;
         } else {
-            alert("Insira o valor mínimo e o máximo da métrica de Umidade.")
+            alert("Insira o valor mínimo e o máximo da métrica de umidade.");
         }
     }
 
@@ -205,10 +248,33 @@
         if (luminosidadesValidas) {
             // Caso dê certo:
             // Aqui vai ser implementado o fetch para dar update do valor no banco
+            const estufaID = sessionStorage.ESTUFA_SELECT;
+            fetch(`/metricas/atualizarLuminosidade/${estufaID}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    // Adicione qualquer cabeçalho de autenticação necessário aqui
+                },
+                body: JSON.stringify({
+                    luminosidadeMaximaServer: luminosidadeMaxima,
+                    luminosidadeMinimaServer: luminosidadeMinima
+                }),
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    buscarMetricas();
+                } else {
+                    throw "Houve um erro ao tentar atualizar a métrica de luminosidade!";
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+            return false;
         } else {
-            alert("Insira o valor mínimo e o máximo da métrica de Luminosidade.")
+            alert("Insira o valor mínimo e o máximo da métrica de luminosidade.");
         }
     }
+
 
 
     function buscarMetricas() {
