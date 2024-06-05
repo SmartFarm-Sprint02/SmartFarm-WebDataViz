@@ -116,24 +116,26 @@ inner join smartfarm.usuario as us on us.fk_empresa = emp.id;
 -- -------------------------------------------------------------------------------------------------------- --
 
 create table smartfarm.metricas (
-id	INT AUTO_INCREMENT,
+id INT NOT NULL AUTO_INCREMENT,
+fk_estufa INT NOT NULL,
 TempMinima  DECIMAL(3,1) NOT NULL comment 'Temperatura Mínima do sensor, para gerar alerta crítico.',
 TempMaxima  DECIMAL(3,1) NOT NULL comment 'Temperatura Máxima do sensor, para gerar alerta crítico.',
 UmidMinima  DECIMAL(3,1) NOT NULL comment 'Umidade Mínima do sensor, para gerar alerta crítico.',
 UmidMaxima  DECIMAL (3,1) NOT NULL comment 'Umidade Máxima do sensor, para gerar alerta crítico.',
 LuminMinima INT NOT NULL comment 'Luminosidade Mínima do sensor, para gerar alerta crítico.',
 LuminMaxima INT NOT NULL comment 'Luminosidade Máxima do sensor, para gerar alerta crítico.',
-PRIMARY KEY(id)
+PRIMARY KEY(id,fk_estufa),
+CONSTRAINT fk_metricas_estufa1 FOREIGN KEY (fk_estufa) REFERENCES smartfarm.estufa (id)
 ) AUTO_INCREMENT = 10;
 
 -- -------------------------------------------------------------------------------------------------------- --
 -- ----------------------------------- Insert da tabela Metricas ------------------------------------------ --
 -- -------------------------------------------------------------------------------------------------------- --
 
-insert into smartfarm.metricas (id, TempMinima, TempMaxima, UmidMinima, UmidMaxima, LuminMinima, LuminMaxima)
+insert into smartfarm.metricas (id, fk_estufa,TempMinima, TempMaxima, UmidMinima, UmidMaxima, LuminMinima, LuminMaxima)
 values
-(null, '20.0', '30.0', '60.0', '80.0', '600', '800'),
-(null, '25.0', '33.0', '65.0', '85.0', '700', '900');
+(null, 500,'20.0', '30.0', '60.0', '80.0', '600', '800'),
+(null, 500, '25.0', '33.0', '65.0', '85.0', '700', '900');
 
 -- -------------------------------------------------------------------------------------------------------- --
 -- ----------------------------------- Create da tabela Estufa -------------------------------------------- --
@@ -143,24 +145,22 @@ create table smartfarm.estufa (
 id INT PRIMARY KEY AUTO_INCREMENT,
 tipoPimentao varchar(15),
 fk_empresa INT NOT NULL,
-fk_metricas INT NOT NULL,
 CONSTRAINT ck_tipo_pimentao check (tipoPimentao in('verde', 'amarelo', 'vermelho')),
-CONSTRAINT fk_empresa_estufa FOREIGN KEY (fk_empresa) REFERENCES empresa (id),
-CONSTRAINT fk_metricas_estufa FOREIGN KEY (fk_metricas) REFERENCES metricas (id)
-)AUTO_INCREMENT = 500; 
+CONSTRAINT fk_empresa_estufa FOREIGN KEY (fk_empresa) REFERENCES empresa (id)
+)AUTO_INCREMENT = 500;
 
 -- -------------------------------------------------------------------------------------------------------- --
 -- ----------------------------------- Insert da tabela Estufa -------------------------------------------- --
 -- -------------------------------------------------------------------------------------------------------- --
 
-insert into smartfarm.estufa(id, tipoPimentao, fk_empresa, fk_metricas)
-values (null, 'verde', 100000, 10),
-	   (null, 'amarelo', 100000, 11),
-       (null, 'vermelho', 100001, 11);
+insert into smartfarm.estufa(id, tipoPimentao, fk_empresa)
+values (null, 'verde', 100000),
+	   (null, 'amarelo', 100000),
+       (null, 'vermelho', 100001);
        
-insert into smartfarm.estufa(id, tipoPimentao, fk_empresa, fk_metricas)
-values (null, 'verde', 100001, 10),
-	   (null, 'amarelo', 100001, 11);
+insert into smartfarm.estufa(id, tipoPimentao, fk_empresa)
+values (null, 'verde', 100001),
+	   (null, 'amarelo', 100001);
        
 -- Visualizando todas as estufas.
 select * from smartfarm.estufa
@@ -185,8 +185,8 @@ SELECT * FROM smartfarm.estufa WHERE fk_empresa = 100000;
  
 create table smartfarm.conjuntoSensores(
 id int primary key auto_increment,
-codigo varchar (20), 
 fk_estufa int not null,
+codigo varchar (20),
 constraint fk_sensor_estufa foreign key (fk_estufa) references estufa (id)
 )auto_increment = 1000;
 

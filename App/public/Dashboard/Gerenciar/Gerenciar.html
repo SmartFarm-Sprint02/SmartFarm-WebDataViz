@@ -39,6 +39,12 @@
             <div class="titulo-gerenciar">
                 <h1>Gerenciamento de Métricas</h1>
             </div>
+            <div>
+                <label for="select_estufa">Estufas</label>
+                <select id="select_estufa">
+
+                </select>
+            </div>
         </div>
 
 
@@ -135,47 +141,95 @@
 </html>
 
 <script>
+    let estufas = JSON.parse(sessionStorage.getItem('ESTUFAS'));
+    let select = document.getElementById('select_estufa');
+
+    
+    estufas.forEach(estufa => {
+        let optionEstufa = document.createElement('option');
+        optionEstufa.textContent = `Estufa: ${estufa.id}`; 
+        optionEstufa.value = estufa.id;
+        select.appendChild(optionEstufa);
+    });
+
 
     // Fazer uma lógica de os dois input devem conter valor para poder atualizar as métricas mínimas e máximas.
-    function atualizarMetricaTemperatura(){
+    function atualizarMetricaTemperatura() {
         const temperaturaMinima = ipt_temperatura_minima.value
         const temperaturaMaxima = ipt_temperatura_maxima.value
         const temperaturasValidas = temperaturaMinima > 0 && temperaturaMaxima > 0 && temperaturaMaxima > temperaturaMinima
 
-        if (temperaturasValidas){
+        if (temperaturasValidas) {
             // Aqui vai ser implementado o fetch para dar update do valor no banco
-        } else{
+        } else {
             alert("Insira o valor mínimo e o máximo da métrica de Temperatura.")
         }
     }
 
 
 
-    function atualizarMetricaUmidade(){
+    function atualizarMetricaUmidade() {
         const umidadeMinima = ipt_umidade_minima.value
         const umidadeMaxima = ipt_umidade_maxima.value
         const umidadesValidas = umidadeMinima > 0 && umidadeMaxima > 0 && umidadeMaxima > umidadeMinima
 
-        if (umidadesValidas){
+        if (umidadesValidas) {
             // Aqui vai ser implementado o fetch para dar update do valor no banco.
-        } else{
+        } else {
             alert("Insira o valor mínimo e o máximo da métrica de Umidade.")
         }
     }
 
 
 
-    function atualizarMetricaLuminosidade(){
+    function atualizarMetricaLuminosidade() {
         const luminosidadeMinima = ipt_luminosidade_minima.value
         const luminosidadeMaxima = ipt_luminosidade_maxima.value
         const luminosidadesValidas = luminosidadeMinima > 0 && luminosidadeMaxima > 0 && luminosidadeMaxima > luminosidadeMinima
 
-        if (luminosidadesValidas){
+        if (luminosidadesValidas) {
             // Caso dê certo:
             // Aqui vai ser implementado o fetch para dar update do valor no banco
-        } else{
+        } else {
             alert("Insira o valor mínimo e o máximo da métrica de Luminosidade.")
         }
+    }
+
+
+    function buscarMetricas() {
+
+        estufa = sessionStorage.ESTUFA
+
+        fetch("/metricas/buscarMetricas", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO buscarMetricas()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar buscar os Carros!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+
     }
 
 
