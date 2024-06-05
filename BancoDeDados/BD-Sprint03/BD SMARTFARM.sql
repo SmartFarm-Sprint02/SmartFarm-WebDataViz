@@ -141,7 +141,7 @@ values
 
 update smartfarm.metricas set TempMinima = '10', TempMaxima = '20' where fk_estufa = 500;
 update smartfarm.metricas set UmidMinima = '10', UmidMaxima = '20' where fk_estufa = 500;
-update smartfarm.metricas set LumiMinima = '10', LumiMaxima = '20' where fk_estufa = 500;
+update smartfarm.metricas set LuminMinima = '10', LuminMaxima = '20' where fk_estufa = 500;
 
 
 SELECT 
