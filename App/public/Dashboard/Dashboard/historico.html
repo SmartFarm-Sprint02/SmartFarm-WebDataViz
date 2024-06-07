@@ -136,11 +136,11 @@
 </html>
 <script>
     
-    let estufaAtual = sessionStorage.ESTUFA_ATUAL
+    let idEstufa = sessionStorage.ESTUFA_ATUAL
 
     let proximaAtualizacao;
 
-    window.onload = obterDadosGrafico(estufaAtual);
+    window.onload = obterDadosGrafico(idEstufa);
 
     // function exibirAquariosDoUsuario() {
     //     var estufas = JSON.parse(sessionStorage.ESTUFAS);
@@ -148,8 +148,6 @@
 
     //         obterDadosGrafico(item.id)
     //     });
-
-        
     // }
 
 
@@ -160,7 +158,7 @@
         tituloEstufa.innerHTML = `Estufa ${estufaAtual}`
     }
 
-    function obterDadosGrafico(idEstufa) {
+    function obterDadosGrafico() {
 
         alterarTitulo(idEstufa)
 
