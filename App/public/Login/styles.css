@@ -14,7 +14,15 @@
     --redCritico: #CE0606;
 }
 
+::-webkit-scrollbar {
+    width: 13px;
+    border-radius: 50px;
+}
 
+::-webkit-scrollbar-thumb {
+    background-color: var(--whiteSmart);
+    border-radius: 50px;
+}
 
 body {
     margin: 0;

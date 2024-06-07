@@ -26,6 +26,16 @@ body{
     align-items: center;
 }
 
+::-webkit-scrollbar {
+    width: 13px;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--whiteSmart);
+    border-radius: 50px;
+}
+
 /* .tudo {
 float: center;
 justify-content: center;

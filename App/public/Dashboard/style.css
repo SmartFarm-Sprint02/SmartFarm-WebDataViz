@@ -22,6 +22,16 @@
     font-family: "Roboto", sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 13px;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--whiteSmart);
+    border-radius: 50px;
+}
+
 body{
     display: flex;
 
