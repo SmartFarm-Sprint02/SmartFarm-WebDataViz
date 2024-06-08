@@ -74,21 +74,17 @@
 
                     <div class="kpi1">
                         <p>Alertas este mês</p>
-                        <h1>10 Alertas</h1>
+                        <h1 id="KPI_qtd_alertas_mes"></h1>
                     </div>
                     <div class="kpi1">
                         <p>Horário com mais problemas</p>
-                        <h1>14:00</h1>
+                        <h1 id="KPI_qtd_horario"></h1>
                     </div>
                     <div class="kpi1">
                         <p>Quantidade de Alertas</p>
-                        <h1>29 Alertas</h1>
+                        <h1 id="KPI_qtd_alertas"></h1>
                     </div>
                 </section>
-
-                <!-- <div class="graficoPizza">
-                    <canvas id="pizza"></canvas>
-                </div> -->
 
             </div>
         </div>
@@ -99,28 +95,77 @@
 
 <script>
 
-    // window.onload = function() {
-    //     qtdAlertasMes(),                         EXPORTANDO FUTURAS KPI DA PARTE DE HISTÓRICO
-    //     horarioMaisProblemas(),
-    //     qtdAlertasTotais()                        
+    window.onload = function () {
+        // qtdAlertasMes(),
+        horarioMaisProblemas()
+        // qtdAlertasTotais()
+    }
+
+    // function qtdAlertasMes() {
+    //     fetch(`/analise/qtdAlertasMes/${idEstufa}`, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         }
+    //     })
+    //         .then(function (resposta) {
+    //             resposta.json().then((resposta) => {
+    //                 resposta.forEach((resposta) => {
+    //                     if (resposta.quantidade) {
+    //                         KPI_qtd_horario.innerHTML = "oi"
+    //                     }
+    //                 });
+    //             });
+    //         });
     // }
 
+    function horarioMaisProblemas() {
+        fetch(`/analise/horarioMaisProblema/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((resposta) => {
+                        if (resposta.quantidade) {
+                            KPI_qtd_horario.innerHTML = "oi"
+                        }
+                    });
+                });
+            });
+    }
+
+    // function qtdAlertasTotais() {
+    //     fetch(`/analise/horarioMaisProblema/${idEstufa}`, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         }
+    //     })
+    //         .then(function (resposta) {
+    //             resposta.json().then((resposta) => {
+    //                 resposta.forEach((resposta) => {
+    //                     if (resposta.mes) {
+    //                         KPI_qtd_horario.innerHTML = "oi"
+    //                     }
+    //                 });
+    //             });
+    //         });
+    // }
 
     let tituloEstufa = document.getElementById('titulo_estufa')
     let estufaAtual = sessionStorage.ESTUFA_ATUAL
     tituloEstufa.innerHTML = `Estufa ${estufaAtual}`
 
-
-
     const ctx = document.getElementById('problemasEstufa');
-
-
 
     new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
-                label: 'problemasEstufa',
+                label: 'Quantidade de problemas',
                 type: 'bar',
                 borderColor: ['#ffd902']
             }]
@@ -150,16 +195,13 @@
     }
     );
 
-
-
-
     const ctx1 = document.getElementById('horariosProblemas');
 
     new Chart(ctx1, {
         type: 'bar',
         data: {
             datasets: [{
-                label: 'horariosProblemas',
+                label: 'Horarios com problemas',
                 type: 'bar',
                 borderColor: ['#ff3232']
             }]
@@ -176,49 +218,6 @@
                     scaleLabel: {
                         display: true,
                         labelString: 'horariosProblemas'
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-            animation: {
-                duration: 0
-            }
-        }
-    }
-    );
-
-
-    const ctx2 = document.getElementById('pizza');
-
-    new Chart(ctx2, {
-        type: 'pie',
-        data: {
-            datasets: [{
-                label: 'maduro',
-                data: [300, 50, 100],
-                backgroundColor: [
-                    '#00B8A9',
-                    '#012E40',
-                    '#038C65'
-                ],
-                hoverOffset: 1
-            }]
-
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    distribution: 'series',
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'pizza'
                     },
                     ticks: {
                         beginAtZero: true

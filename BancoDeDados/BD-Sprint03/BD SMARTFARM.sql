@@ -258,6 +258,20 @@ VALUES
 (null, 29.8, 88, 970.00, 1000),
 (null, 30.2, 93, 990.00, 1000),
 (null, 32.1, 95, 1000.00, 1000);
+
+INSERT INTO smartfarm.leitura (temperatura, umidade, luminosidade, DataHora_medida, fk_sensores) 
+VALUES 
+(25.50, 60.00, 1200.50, '2024-06-08 08:00:00', 1001),
+(26.30, 62.10, 1185.75, '2024-06-08 09:00:00', 1001),
+(27.00, 61.20, 1190.00, '2024-06-08 10:00:00', 1001),
+(28.50, 58.70, 1210.45, '2024-06-08 11:00:00', 1001),
+(29.20, 57.80, 1225.00, '2024-06-08 12:00:00', 1001),
+(30.00, 56.50, 1230.60, '2024-06-08 13:00:00', 1001),
+(31.25, 55.00, 1240.20, '2024-06-08 14:00:00', 1001),
+(32.10, 54.30, 1255.50, '2024-06-08 15:00:00', 1001),
+(33.00, 53.20, 1260.75, '2024-06-08 16:00:00', 1001),
+(34.50, 52.10, 1275.00, '2024-06-08 17:00:00', 1001);
+
     
 select 
 lei.id 'idLeitura',
@@ -269,10 +283,11 @@ sen.id 'Conjunto Sensores',
 est.id 'Estufa'
 from smartfarm.leitura as lei
 inner join smartfarm.conjuntoSensores as sen on lei.fk_sensores = sen.id
-inner join smartfarm.estufa as est on sen.fk_estufa = est.id;
+inner join smartfarm.estufa as est on sen.fk_estufa = est.id
+where lei.fk_sensores = 1001;
 
 
-SELECT 
+SELECT
     lei.temperatura AS 'Temperatura',
     lei.umidade AS 'Umidade',
     lei.luminosidade AS 'Luminosidade',
@@ -293,3 +308,41 @@ ORDER BY
     emp.id, est.id, lei.DataHora_medida;
 
 select * from information_schema.tables;
+
+
+-- -------------------------------------------------------------------------------------------------------- --
+-- ------------------------- Select para puxar leituras acima ou abaixo da métrica ------------------------ --
+-- -------------------------------------------------------------------------------------------------------- --
+
+select * from metricas;
+select * from leitura;
+select * from conjuntoSensores;
+select * from estufa;
+select * from empresa;
+
+select lei.id ID,
+	   lei.temperatura,
+       lei.umidade,
+       lei.luminosidade,
+       lei.DataHora_medida 'Hora da leitura',
+       lei.fk_sensores,
+       est.fk_Empresa
+from leitura lei
+inner join conjuntoSensores coSe on lei.fk_sensores = coSe.id
+inner join estufa est on est.id = coSe.fk_estufa
+where lei.fk_sensores = 1001;
+
+select count(*) 'quantidade'
+from leitura lei
+inner join conjuntoSensores coSe on lei.fk_sensores = coSe.id
+inner join estufa est on est.id = coSe.fk_estufa
+where lei.fk_sensores = 1001;
+
+
+-- inner join estufa est on = met.
+-- inner join conjuntoSensores coSe on coSe.fk_estufa = est.id
+-- where TempMinima or TempMaxima or UmidMinima or UmidMaxima or LuminMinima or LuminMaxima > 60;
+
+
+
+
