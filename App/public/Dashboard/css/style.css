@@ -309,7 +309,7 @@ body {
     border-radius: 20px;
     border: var(--blackSmart) 3px solid;
     
-    width: 70%;
+    width: 50%;
     height: 100%;
 
     display: flex;
