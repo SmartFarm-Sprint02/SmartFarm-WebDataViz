@@ -10,6 +10,7 @@
     --greenOK: #2A9C0D;
     --yellowAlerta: #E7D31B;
     --redCritico: #CE0606;
+   
 }
 
 
@@ -324,8 +325,8 @@ body {
     border-radius: 20px;
     border: var(--blackSmart) 3px solid;
     
-    width: 50%;
-    height: 100%;
+    width: 60%;
+    height: 90%;
 
     display: flex;
     flex-direction: column;

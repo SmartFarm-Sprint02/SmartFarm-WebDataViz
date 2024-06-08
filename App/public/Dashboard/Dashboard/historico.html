@@ -77,10 +77,12 @@
 
         <div class="grafico-div">
           <section id="grafico_temp" class="grafico">
-            <canvas id="dht11Temperatura"></canvas>
+            <canvas id="dht11Temperatura" width="30px" height="10px"></canvas>
           </section>
         </div>
       </div>
+
+
       <div class="graficos_umid">
         <div class="infos-grafico">
           <div id="alerta_umid" class="alerta">
@@ -94,10 +96,12 @@
 
         <div class="grafico-div">
           <section id="grafico_umid" class="grafico">
-            <canvas id="dht11Umidade"></canvas>
+            <canvas id="dht11Umidade" width="30px" height="10px"></canvas>
           </section>
         </div>
       </div>
+
+
       <div class="graficos_lumi">
         <div class="infos-grafico">
           <div id="alerta_lumi" class="alerta">
@@ -111,10 +115,12 @@
 
         <div class="grafico-div">
           <section class="grafico" id>
-            <canvas id="luminosidade"></canvas>
+            <canvas id="luminosidade" width="30px" height="10px"></canvas>
           </section>
         </div>
       </div>
+
+
     </section>
   </body>
 </html>
@@ -172,7 +178,8 @@
           label: "Temperatura",
           data: [],
           fill: false,
-          borderColor: "rgb(199, 52, 52)",
+          backgroundColor: '#990000',
+          borderColor: '#990000',
           tension: 0.1,
         },
       ],
@@ -185,7 +192,8 @@
           label: "Umidade",
           data: [],
           fill: false,
-          borderColor: "rgb(199, 52, 52)",
+          backgroundColor: 'rgb(3, 78, 163)',
+          borderColor: 'rgb(3, 78, 163)',
           tension: 0.1,
         },
       ],
@@ -198,7 +206,8 @@
           label: "Luminosidade",
           data: [],
           fill: false,
-          borderColor: "rgb(199, 52, 52)",
+          backgroundColor: 'rgb(178, 117, 4)',
+          borderColor:'rgb(178, 117, 4)',
           tension: 0.1,
         },
       ],
