@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body onload="validarSessao()">
+<!-- <body onload="validarSessao()"> -->
+
+<body>
+    <!-- Apenas para estilizar -->
 
     <section class="menu-lateral">
         <div class="identificacao">
@@ -21,7 +24,8 @@
         <div>
             <a href="../Estufas/estufas.html"><button class="btn-estufa">Estufas</button></a>
             <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
-            <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button class="btn-gerenciar">Suporte</button></a>
+            <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button
+                    class="btn-gerenciar">Suporte</button></a>
         </div>
         <div>
             <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
@@ -37,10 +41,6 @@
             </div>
             <a href="historico.html"><button class="btn-navbar-dash" id="btn-ativo">Histórico</button></a>
             <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
-            
-
-
-
             <div>
                 <h5>Leitura mais recente:</h5>
                 <p>xx/xx/xxxx - xx:xx</p>
@@ -48,28 +48,6 @@
         </div>
 
         <div class="containerGraficos">
-            <section class="KPIs">
-                <div class="kpi1">
-                    <p>Mês com mais alertas</p>
-                    <h1>Agosto</h1>
-                </div>
-                <div class="kpi1">
-                    <p>Aumento de alertas</p>
-                    <h1>+7% de aumento</h1>
-                </div>
-                <div class="kpi1">
-                    <p>Alertas este mês</p>
-                    <h1>10 Alertas</h1>
-                </div>
-                <div class="kpi1">
-                    <p>Horário com mais problemas</p>
-                    <h1>14:00</h1>
-                </div>
-                <div class="kpi1">
-                    <p>Quantidade de Alertas</p>
-                    <h1>29 Alertas</h1>
-                </div>
-            </section>
 
             <div class="graficos">
                 <div class="GraficosAnalise">
@@ -80,16 +58,40 @@
                     <div class="cardProblemasEstufa">
                         <canvas id="horariosProblemas"></canvas>
                     </div>
+                </div>
 
-                </div>
-                <div class="graficoPizza">
+                <section class="KPIs">
+                    <!-- Tirando essas duas KPIS e o gráfico de pizza para fazer a nova atualização de layout -->
+
+                    <!-- <div class="kpi1">
+                        <p>Mês com mais alertas</p>
+                        <h1>Agosto</h1>
+                    </div> -->
+                    <!-- <div class="kpi1">
+                        <p>Aumento de alertas</p>
+                        <h1>+7% de aumento</h1>
+                    </div> -->
+
+                    <div class="kpi1">
+                        <p>Alertas este mês</p>
+                        <h1>10 Alertas</h1>
+                    </div>
+                    <div class="kpi1">
+                        <p>Horário com mais problemas</p>
+                        <h1>14:00</h1>
+                    </div>
+                    <div class="kpi1">
+                        <p>Quantidade de Alertas</p>
+                        <h1>29 Alertas</h1>
+                    </div>
+                </section>
+
+                <!-- <div class="graficoPizza">
                     <canvas id="pizza"></canvas>
-                </div>
+                </div> -->
+
             </div>
         </div>
-
-
-
 </body>
 
 </html>
