@@ -3,6 +3,7 @@ var database = require("../database/config");
 function buscarUltimasMedidas(idEstufa, limite_linhas) {
 
     var instrucaoSql = `SELECT 
+        lei.id,
         lei.temperatura 'Temperatura',
         lei.umidade 'Umidade',
         lei.luminosidade 'Luminosidade',
