@@ -261,7 +261,7 @@ VALUES
 
 INSERT INTO smartfarm.leitura (temperatura, umidade, luminosidade, DataHora_medida, fk_sensores) 
 VALUES 
-(25.50, 60.00, 1200.50, '2024-06-08 08:00:00', 1001),
+(25.50, 60.00, 1200.50, '2024-06-08 03:00:00', 1001),
 (26.30, 62.10, 1185.75, '2024-06-08 09:00:00', 1001),
 (27.00, 61.20, 1190.00, '2024-06-08 10:00:00', 1001),
 (28.50, 58.70, 1210.45, '2024-06-08 11:00:00', 1001),
@@ -376,5 +376,25 @@ WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
 GROUP BY mes
 ORDER BY quantidade DESC
 LIMIT 1;
+
+-- -------------------------------------------------------------------------------------------------------- --
+-- ------------------------- Select para puxar todos os alertas da estufa (gráfico) ----------------------- --
+-- -------------------------------------------------------------------------------------------------------- --
+
+SELECT
+    HOUR(lei.DataHora_medida) AS hora,
+    COUNT(*) AS quantidade
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
+    AND est.id = 501
+GROUP BY hora
+ORDER BY hora;
+
+select * from leitura;
 
 use smartfarm;
