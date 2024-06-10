@@ -102,31 +102,31 @@
             .then(function (resposta) {
                 resposta.json().then((resposta) => {
                     resposta.forEach((resposta) => {
-                        if (resposta.mes) {
+                        if (resposta.mes) { 
                             if (resposta.mes == 1) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Janeiro';
+                            KPI_qtd_alertas_mes.innerHTML = `Janeiro (${resposta.quantidade})`;
                         } else if (resposta.mes == 2) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Fevereiro';
+                            KPI_qtd_alertas_mes.innerHTML = `Fevereiro (${resposta.quantidade})`;
                         } else if (resposta.mes == 3) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Março';
+                            KPI_qtd_alertas_mes.innerHTML = `Março (${resposta.quantidade})`;
                         } else if (resposta.mes == 4) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Abril';
+                            KPI_qtd_alertas_mes.innerHTML = `Abril (${resposta.quantidade})`;
                         } else if (resposta.mes == 5) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Maio';
+                            KPI_qtd_alertas_mes.innerHTML = `Maio (${resposta.quantidade})`;
                         } else if (resposta.mes == 6) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Junho';
+                            KPI_qtd_alertas_mes.innerHTML = `Junho (${resposta.quantidade})`;
                         } else if (resposta.mes == 7) { 
-                            KPI_qtd_alertas_mes.innerHTML = 'Julho';
+                            KPI_qtd_alertas_mes.innerHTML = `Julho (${resposta.quantidade})`;
                         } else if (resposta.mes == 8) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Agosto';
+                            KPI_qtd_alertas_mes.innerHTML = `Agosto (${resposta.quantidade})`;
                         } else if (resposta.mes == 9) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Setembro';
+                            KPI_qtd_alertas_mes.innerHTML = `Setembro (${resposta.quantidade})`;
                         } else if (resposta.mes == 10) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Outubro';
+                            KPI_qtd_alertas_mes.innerHTML = `Outubro (${resposta.quantidade})`;
                         } else if (resposta.mes == 11) {
-                            KPI_qtd_alertas_mes.innerHTML = 'Novembro';
+                            KPI_qtd_alertas_mes.innerHTML = `Novembro (${resposta.quantidade})`;
                         } else {
-                            KPI_qtd_alertas_mes.innerHTML = 'Dezembro';
+                            KPI_qtd_alertas_mes.innerHTML = `Dezembro (${resposta.quantidade})`
                         }
                         }
                     });

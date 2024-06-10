@@ -405,7 +405,8 @@ SELECT
         AND est.id = 501
 ) AS subquery;
 
-SELECT MONTH(DataHora_medida) AS mes 
-FROM leitura WHERE fk_sensores = 501 AND DataHora_medida BETWEEN '2024-01-01' AND '2024-12-31' GROUP BY mes order by COUNT(DataHora_medida) desc;
+SELECT MONTH(DataHora_medida) AS mes,
+	   COUNT(DataHora_medida) AS quantidade
+FROM leitura WHERE fk_sensores = 1001 AND DataHora_medida BETWEEN '2024-01-01' AND '2024-12-31' GROUP BY mes order by COUNT(DataHora_medida) desc;
 
 use smartfarm;

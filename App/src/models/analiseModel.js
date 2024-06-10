@@ -4,7 +4,8 @@ function qtdAlertasMes(idEstufa) {
   console.log("ACESSEI O ANALISE MODEL para buscar a quantidade de alertas nesse mês, function qtdAlertasMes()", idEstufa);
 
   var instrucao = `
-  SELECT MONTH(DataHora_medida) AS mes 
+  SELECT MONTH(DataHora_medida) AS mes,
+         COUNT(DataHora_medida) AS quantidade 
 FROM leitura WHERE fk_sensores = 1001 AND DataHora_medida BETWEEN '2024-01-01' AND '2024-12-31' GROUP BY mes order by COUNT(DataHora_medida) desc;
 `;
 
