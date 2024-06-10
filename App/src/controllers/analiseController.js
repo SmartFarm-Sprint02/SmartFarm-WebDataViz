@@ -22,7 +22,7 @@ var analiseModel = require("../models/analiseModel");
 // }
 
 
-function horarioMaisProblemas(req, res) {
+function horariosMaisProblemas(req, res) {
 
     var fk_sensores = req.params.fk_sensores;
 
@@ -62,6 +62,6 @@ function horarioMaisProblemas(req, res) {
 
 module.exports = {
     // qtdAlertasMes,
-    horarioMaisProblemas,
+    horariosMaisProblemas,
     // qtdAlertasTotais
 }

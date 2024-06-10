@@ -7,8 +7,8 @@ var analiseController = require("../controllers/analiseController");
 //     analiseController.qtdAlertasMes(req, res);
 // });
 
-router.get("/horarioMaisProblemas/:idEstufa", function (req, res) {
-    analiseController.horarioMaisProblemas(req, res);
+router.get("/horariosMaisProblemas/:idEstufa", function (req, res) {
+    analiseController.horariosMaisProblemas(req, res);
 })
 
 // router.get("/qtdAlertasTotais/:idEstufa", function (req, res) {

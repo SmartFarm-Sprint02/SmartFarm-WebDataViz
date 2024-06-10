@@ -314,35 +314,24 @@ select * from information_schema.tables;
 -- ------------------------- Select para puxar leituras acima ou abaixo da métrica ------------------------ --
 -- -------------------------------------------------------------------------------------------------------- --
 
-select * from metricas;
-select * from leitura;
-select * from conjuntoSensores;
-select * from estufa;
-select * from empresa;
+CREATE VIEW alertas_leituras
+AS
+SELECT
+	lei.id idLeitura,
+    CASE
+        WHEN HOUR(lei.DataHora_medida) BETWEEN 0 AND 5 THEN 'Madrugada'
+        WHEN HOUR(lei.DataHora_medida) BETWEEN 6 AND 11 THEN 'Manhã'
+        WHEN HOUR(lei.DataHora_medida) BETWEEN 12 AND 17 THEN 'Tarde'
+        WHEN HOUR(lei.DataHora_medida) BETWEEN 18 AND 23 THEN 'Noite'
+    END AS periodo
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima;
 
-select lei.id ID,
-	   lei.temperatura,
-       lei.umidade,
-       lei.luminosidade,
-       lei.DataHora_medida 'Hora da leitura',
-       lei.fk_sensores,
-       est.fk_Empresa
-from leitura lei
-inner join conjuntoSensores coSe on lei.fk_sensores = coSe.id
-inner join estufa est on est.id = coSe.fk_estufa
-where lei.fk_sensores = 1001;
+select * from alertas_leituras;
 
-select count(*) 'quantidade'
-from leitura lei
-inner join conjuntoSensores coSe on lei.fk_sensores = coSe.id
-inner join estufa est on est.id = coSe.fk_estufa
-where lei.fk_sensores = 1001;
-
-
--- inner join estufa est on = met.
--- inner join conjuntoSensores coSe on coSe.fk_estufa = est.id
--- where TempMinima or TempMaxima or UmidMinima or UmidMaxima or LuminMinima or LuminMaxima > 60;
-
-
-
-
+drop view alertas_leituras;

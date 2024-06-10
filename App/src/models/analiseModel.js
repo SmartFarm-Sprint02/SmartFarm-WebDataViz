@@ -10,15 +10,10 @@ var database = require("../database/config");
 //   return database.executar(instrucao);
 // }
 
-function horarioMaisProblemas(fk_sensores) {
-  console.log("ACESSEI O ANALISE MODEL para buscar o período que mais teve alertas, function horariosMaisProblemas()", fk_sensores);
+function horariosMaisProblemas(idLeitura, periodo) {
+  console.log("ACESSEI O ANALISE MODEL para buscar o período que mais teve alertas, function horariosMaisProblemas()", idLeitura, periodo);
 
-  var instrucao = `
-select count(*) 'quantidade'
-from leitura lei
-inner join conjuntoSensores coSe on lei.fk_sensores = coSe.id
-inner join estufa est on est.id = coSe.fk_estufa
-where lei.fk_sensores = ${fk_sensores};`;
+  var instrucao = `select * from alertas_leituras;`;
 
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
@@ -37,6 +32,6 @@ where lei.fk_sensores = ${fk_sensores};`;
 
 module.exports = {
   // qtdAlertasMes,
-  horarioMaisProblemas,
+  horariosMaisProblemas,
   // qtdAlertasTotais
 }

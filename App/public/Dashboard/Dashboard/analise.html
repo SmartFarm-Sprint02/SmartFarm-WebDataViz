@@ -61,17 +61,6 @@
                 </div>
 
                 <section class="KPIs">
-                    <!-- Tirando essas duas KPIS e o gráfico de pizza para fazer a nova atualização de layout -->
-
-                    <!-- <div class="kpi1">
-                        <p>Mês com mais alertas</p>
-                        <h1>Agosto</h1>
-                    </div> -->
-                    <!-- <div class="kpi1">
-                        <p>Aumento de alertas</p>
-                        <h1>+7% de aumento</h1>
-                    </div> -->
-
                     <div class="kpi1">
                         <p>Alertas este mês</p>
                         <h1 id="KPI_qtd_alertas_mes"></h1>
@@ -85,7 +74,6 @@
                         <h1 id="KPI_qtd_alertas"></h1>
                     </div>
                 </section>
-
             </div>
         </div>
 </body>
@@ -97,7 +85,7 @@
 
     window.onload = function () {
         // qtdAlertasMes(),
-        horarioMaisProblemas()
+        horariosMaisProblemas()
         // qtdAlertasTotais()
     }
 
@@ -119,8 +107,8 @@
     //         });
     // }
 
-    function horarioMaisProblemas() {
-        fetch(`/analise/horarioMaisProblemas/${estufaAtual}`, {
+    function horariosMaisProblemas() {
+        fetch(`/analise/horariosMaisProblemas/${idLeitura}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -129,8 +117,8 @@
             .then(function (resposta) {
                 resposta.json().then((resposta) => {
                     resposta.forEach((resposta) => {
-                        if (resposta.quantidade) {
-                            KPI_qtd_horario.innerHTML = "oi"
+                        if (resposta.periodo) {
+                            KPI_qtd_horario.innerHTML = `${periodo}`;
                         }
                     });
                 });
