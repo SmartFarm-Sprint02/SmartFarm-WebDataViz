@@ -360,53 +360,21 @@ SELECT
 -- -------------------------------------------------------------------------------------------------------- --
 -- ------------------------- Select para puxar todos os alertas que teve no mês --------------------------- --
 -- -------------------------------------------------------------------------------------------------------- --
-
-SELECT
-	periodo,
-    COUNT(*) AS quantidade
-FROM (
-    SELECT
-        lei.id,
-        CASE
-            WHEN MONTH(lei.DataHora_medida) BETWEEN 0 AND 5 THEN 'Madrugada'
-            WHEN MONTH(lei.DataHora_medida) BETWEEN 6 AND 11 THEN 'Manhã'
-            WHEN MONTH(lei.DataHora_medida) BETWEEN 12 AND 17 THEN 'Tarde'
-            WHEN MONTH(lei.DataHora_medida) BETWEEN 18 AND 23 THEN 'Noite'
-        END AS periodo
-    FROM leitura lei
-    JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
-    JOIN estufa est ON cs.fk_estufa = est.id
-    JOIN metricas met ON est.id = met.fk_estufa
-    WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
-        OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
-        OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
-        AND est.id = 501
-) AS subquery
-GROUP BY periodo
-ORDER BY periodo DESC;
-
-
 select * from leitura;
 
-
 SELECT
+    MONTH(lei.DataHora_medida) AS mes,
     COUNT(*) AS quantidade
-    FROM (
-    SELECT
-        lei.id,
-        MONTH (lei.DataHora_medida)
-    FROM leitura lei
-    JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
-    JOIN estufa est ON cs.fk_estufa = est.id
-    JOIN metricas met ON est.id = met.fk_estufa
-    WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
-        OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
-        OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
-        AND est.id = 501
-) AS subquery;
-
-SELECT MONTH(DataHora_medida) AS mes,
-	   COUNT(DataHora_medida) AS quantidade
-FROM leitura WHERE fk_sensores = 1001 AND DataHora_medida BETWEEN '2024-01-01' AND '2024-12-31' GROUP BY mes order by COUNT(DataHora_medida) desc;
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
+    AND est.id = 501
+GROUP BY mes
+ORDER BY quantidade DESC
+LIMIT 1;
 
 use smartfarm;

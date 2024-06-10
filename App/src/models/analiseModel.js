@@ -4,9 +4,20 @@ function qtdAlertasMes(idEstufa) {
   console.log("ACESSEI O ANALISE MODEL para buscar a quantidade de alertas nesse mês, function qtdAlertasMes()", idEstufa);
 
   var instrucao = `
-  SELECT MONTH(DataHora_medida) AS mes,
-         COUNT(DataHora_medida) AS quantidade 
-FROM leitura WHERE fk_sensores = 1001 AND DataHora_medida BETWEEN '2024-01-01' AND '2024-12-31' GROUP BY mes order by COUNT(DataHora_medida) desc;
+SELECT
+    MONTH(lei.DataHora_medida) AS mes,
+    COUNT(*) AS quantidade
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
+    AND est.id = ${idEstufa}
+GROUP BY mes
+ORDER BY quantidade DESC
+LIMIT 1;
 `;
 
   console.log("Executando a instrução SQL: \n" + instrucao);
