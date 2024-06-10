@@ -150,7 +150,6 @@
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
             resposta.reverse();
-
             plotarGrafico(resposta, idEstufa);
           });
         } else {
@@ -232,7 +231,7 @@
 
     var ultimoRegistro = resposta[6];
 
-    leitura_temp.innerHTML = `${ultimoRegistro.Temperatura}`;
+    leitura_temp.innerHTML = `${ultimoRegistro.Temperatura}ºC`;
     leitura_umid.innerHTML = `${ultimoRegistro.Umidade}%`;
     leitura_lumi.innerHTML = `${ultimoRegistro.Luminosidade}`;
     ultima_leitura.innerHTML = `${ultimoRegistro.DataHora_medida}`;

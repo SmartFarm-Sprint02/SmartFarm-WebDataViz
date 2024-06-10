@@ -1,67 +1,31 @@
 var analiseModel = require("../models/analiseModel");
 
-// function qtdAlertasMes(req, res) {
+function qtdAlertasMes(req, res) {
+    var idEstufa = req.params.idEstufa;
 
-//     const limite_linhas = 7;
-
-//     var idEstufa = req.params.idEstufa;
-
-//     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-//     analiseModel.qtdAlertasMes(idEstufa, limite_linhas).then(function (resultado) {
-//         if (resultado.length > 0) {
-//             res.status(200).json(resultado);
-//         } else {
-//             res.status(204).send("Nenhum resultado encontrado!")
-//         }
-//     }).catch(function (erro) {
-//         console.log(erro);
-//         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-//         res.status(500).json(erro.sqlMessage);
-//     });
-// }
-
-
-function horariosMaisProblemas(req, res) {
-
-    var fk_sensores = req.params.fk_sensores;
-
-    console.log(`Recuperando medidas em tempo real`);
-
-    analiseModel.horarioMaisProblemas(fk_sensores).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
+    analiseModel.qtdAlertasMes(idEstufa).then((resposta) => {
+        res.status(200).json(resposta);
     });
 }
 
-// function qtdAlertasTotais(req, res) {
+function horariosMaisProblemas(req, res) {
+    var idEstufa = req.params.idEstufa;
 
-//     var idEstufa = req.params.idEstufa;
+    analiseModel.horariosMaisProblemas(idEstufa).then((resposta) => {
+        res.status(200).json(resposta);
+    });
+}
 
-//     console.log(`Recuperando medidas em tempo real`);
+function qtdAlertasTotais(req, res) {
+    var idEstufa = req.params.idEstufa;
 
-//     analiseModel.qtdAlertasTotais(idEstufa).then(function (resultado) {
-//         if (resultado.length > 0) {
-//             res.status(200).json(resultado);
-//         } else {
-//             res.status(204).send("Nenhum resultado encontrado!")
-//         }
-//     }).catch(function (erro) {
-//         console.log(erro);
-//         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-//         res.status(500).json(erro.sqlMessage);
-//     });
-// }
+    analiseModel.qtdAlertasTotais(idEstufa).then((resposta) => {
+        res.status(200).json(resposta);
+    });
+}
 
 module.exports = {
-    // qtdAlertasMes,
+    qtdAlertasMes,
     horariosMaisProblemas,
-    // qtdAlertasTotais
+    qtdAlertasTotais
 }
