@@ -15,5 +15,8 @@ router.get("/qtdAlertasTotais/:idEstufa", function (req, res) {
     analiseController.qtdAlertasTotais(req, res);                    
 })
 
+router.get("/graficoHorarios/:idEstufa", function (req, res) {
+    analiseController.graficoHorarios(req, res);                    
+})
 
 module.exports = router;

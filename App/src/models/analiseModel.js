@@ -80,9 +80,33 @@ function qtdAlertasTotais(idEstufa) {
   return database.executar(instrucao);
 }
 
+function graficoHorarios(idEstufa) {
+  console.log("ACESSEI O ANALISE MODEL para montar o grafico de horas, function graficoHorarios()", idEstufa);
+
+  var instrucao = `
+SELECT
+    HOUR(lei.DataHora_medida) AS hora,
+    COUNT(*) AS quantidade
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
+    AND est.id = ${idEstufa}
+GROUP BY hora
+ORDER BY hora;
+`;
+
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
 
 module.exports = {
   qtdAlertasMes,
   horariosMaisProblemas,
-  qtdAlertasTotais
+  qtdAlertasTotais,
+  graficoHorarios
 }
