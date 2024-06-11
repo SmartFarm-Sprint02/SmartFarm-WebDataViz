@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<!-- <body onload="validarSessao()"> -->
-
 <body>
+
+<!-- <body> -->
     <!-- Apenas para estilizar -->
 
     <section class="menu-lateral">
@@ -71,7 +71,6 @@
                         <p>Aumento de alertas</p>
                         <h1>+7% de aumento</h1>
                     </div> -->
-
                     <div class="kpi1">
                         <p>Alertas este mês</p>
                         <h1 id="KPI_qtd_alertas_mes"></h1>
@@ -96,6 +95,7 @@
 <script>
 
     window.onload = function () {
+        validarSessao(),
         // qtdAlertasMes(),
         horarioMaisProblemas()
         // qtdAlertasTotais()

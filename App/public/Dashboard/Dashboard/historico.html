@@ -18,7 +18,7 @@
     <title>Histórico | SmartFarm</title>
   </head>
 
-  <body onload="validarSessao(), obterDadosGrafico()">
+  <body onload="obterDadosGrafico()">
     <section class="menu-lateral">
       <div class="identificacao">
         <h1 id="nome_empresa">Empresa</h1>
@@ -129,7 +129,7 @@
 
   let proximaAtualizacao;
 
-  window.onload = obterDadosGrafico(idEstufa);
+  window.onload = obterDadosGrafico(idEstufa), validarSessao();
 
   function alterarTitulo() {
     let tituloEstufa = document.getElementById("titulo_estufa");

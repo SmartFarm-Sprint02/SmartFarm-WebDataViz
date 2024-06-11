@@ -12,7 +12,7 @@
     <title>Gerenciar | SmartFarm</title>
 </head>
 
-<body onload="validarSessao()">
+<body>
 
     <section class="menu-lateral">
         <div class="identificacao">
@@ -46,9 +46,6 @@
                 </select>
             </div>
         </div>
-
-
-
 
         <div class="container-metrica">
             <div class="metrica-atual">
@@ -150,7 +147,7 @@
     //     buscarMetricas()
     // }
 
-    window.onload = buscarMetricas()
+    window.onload = buscarMetricas(), validarSessao()
 
 
 
