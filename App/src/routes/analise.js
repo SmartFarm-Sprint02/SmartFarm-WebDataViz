@@ -19,4 +19,8 @@ router.get("/graficoHorarios/:idEstufa", function (req, res) {
     analiseController.graficoHorarios(req, res);                    
 })
 
+router.get("/graficoProblemasMes/:idEstufa", function (req, res) {
+    analiseController.graficoProblemasMes(req, res);                    
+})
+
 module.exports = router;

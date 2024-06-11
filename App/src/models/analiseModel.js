@@ -85,7 +85,7 @@ function graficoHorarios(idEstufa) {
 
   var instrucao = `
 SELECT
-    HOUR(lei.DataHora_medida) AS hora,
+    DATE_FORMAT(lei.DataHora_medida, '%H:00') AS hora,
     COUNT(*) AS quantidade
 FROM leitura lei
 JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
@@ -103,10 +103,34 @@ ORDER BY hora;
   return database.executar(instrucao);
 }
 
+function graficoProblemasMes(idEstufa) {
+  console.log("ACESSEI O ANALISE MODEL para montar o grafico de problemas em cada mês, function graficoHorarios()", idEstufa);
+
+  var instrucao = `
+SELECT
+    DATE_FORMAT(lei.DataHora_medida, '%m') AS mes,
+    DATE_FORMAT(lei.DataHora_medida, '%y') AS ano,
+    COUNT(*) AS quantidade
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
+    AND est.id = 501
+GROUP BY mes, ano
+ORDER BY mes;
+`;
+
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
 
 module.exports = {
   qtdAlertasMes,
   horariosMaisProblemas,
   qtdAlertasTotais,
-  graficoHorarios
+  graficoHorarios,
+  graficoProblemasMes
 }

@@ -809,8 +809,9 @@ body {
 .cardProblemasEstufa {
     background-color: var(--whiteSmart);
     padding: 10px 50px;
-    width: 60%;
-    height: 30vh;
+    width: 80%;
+    height: 35vh;
+    justify-content: center;
 }
 
 .containerGraficos {
@@ -841,21 +842,10 @@ body {
 
     background-color: var(--whiteSmart);
     padding: 20px 40px;
-    margin: 10px 10px 10px 0;
+    margin: 10px 10px 10px 0px;
     border: var(--blackSmart) 3px solid;
 }
 
-.graficoPizza {
-    width: 24%;
-    height: 70vh;
-    /* position: absolute; */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding-left: 40%;
-    padding-top: 15%; */
-}
 
 .cardProblemasEstufa {
     border: var(--blackSmart) 3px solid;

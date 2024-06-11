@@ -12,71 +12,71 @@
 
 <!-- <body onload="validarSessao()"> -->
 
-    <body>
-        <!-- Apenas para estilizar -->
-    
-        <section class="menu-lateral">
-            <div class="identificacao">
-                <h1 id="nome_empresa">Empresa</h1>
-                <h2 id="b_usuario">Usuário</h2>
-            </div>
-    
+<body>
+    <!-- Apenas para estilizar -->
+
+    <section class="menu-lateral">
+        <div class="identificacao">
+            <h1 id="nome_empresa">Empresa</h1>
+            <h2 id="b_usuario">Usuário</h2>
+        </div>
+
+        <div>
+            <a href="../Estufas/estufas.html"><button class="btn-estufa">Estufas</button></a>
+            <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
+            <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button
+                    class="btn-gerenciar">Suporte</button></a>
+        </div>
+        <div>
+            <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
+
+            <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
+        </div>
+    </section>
+
+    <section class="main-section">
+        <div class="inicio-main">
             <div>
-                <a href="../Estufas/estufas.html"><button class="btn-estufa">Estufas</button></a>
-                <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
-                <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button
-                        class="btn-gerenciar">Suporte</button></a>
+                <h1 id="titulo_estufa">Estufa</h1>
             </div>
+            <a href="historico.html"><button class="btn-navbar-dash" id="btn-ativo">Histórico</button></a>
+            <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
             <div>
-                <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
-    
-                <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
+                <h5>Leitura mais recente:</h5>
+                <p>xx/xx/xxxx - xx:xx</p>
             </div>
-        </section>
-    
-        <section class="main-section">
-            <div class="inicio-main">
-                <div>
-                    <h1 id="titulo_estufa">Estufa</h1>
-                </div>
-                <a href="historico.html"><button class="btn-navbar-dash" id="btn-ativo">Histórico</button></a>
-                <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
-                <div>
-                    <h5>Leitura mais recente:</h5>
-                    <p>xx/xx/xxxx - xx:xx</p>
-                </div>
-            </div>
-    
-            <div class="containerGraficos">
-    
-                <div class="graficos">
-                    <div class="GraficosAnalise">
-                        <div class="cardProblemasEstufa">
-                            <canvas id="problemasEstufa"></canvas>
-                        </div>
-    
-                        <div class="cardProblemasEstufa">
-                            <canvas id="horariosProblemas"></canvas>
-                        </div>
+        </div>
+
+        <div class="containerGraficos">
+
+            <div class="graficos">
+                <div class="GraficosAnalise">
+                    <div class="cardProblemasEstufa">
+                        <canvas id="problemasEstufa"></canvas>
                     </div>
-    
-                    <section class="KPIs">
-                        <div class="kpi1">
-                            <p>Alertas este mês</p>
-                            <h1 id="KPI_qtd_alertas_mes"></h1>
-                        </div>
-                        <div class="kpi1">
-                            <p>Horário com mais problemas</p>
-                            <h1 id="KPI_qtd_horario"></h1>
-                        </div>
-                        <div class="kpi1">
-                            <p>Quantidade de Alertas</p>
-                            <h1 id="KPI_qtd_alertas"></h1>
-                        </div>
-                    </section>
+
+                    <div class="cardProblemasEstufa">
+                        <canvas id="horariosProblemas"></canvas>
+                    </div>
                 </div>
+
+                <section class="KPIs">
+                    <div class="kpi1">
+                        <p>Alertas este mês</p>
+                        <h1 id="KPI_qtd_alertas_mes"></h1>
+                    </div>
+                    <div class="kpi1">
+                        <p>Horário com mais problemas</p>
+                        <h1 id="KPI_qtd_horario"></h1>
+                    </div>
+                    <div class="kpi1">
+                        <p>Quantidade de Alertas</p>
+                        <h1 id="KPI_qtd_alertas"></h1>
+                    </div>
+                </section>
             </div>
-    </body>
+        </div>
+</body>
 
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -88,7 +88,8 @@
             qtdAlertasMes(),
             horariosMaisProblemas(),
             qtdAlertasTotais(),
-            graficoHorarios()
+            graficoHorarios(),
+            graficoProblemasMes()
     }
 
     function qtdAlertasMes() {
@@ -203,44 +204,75 @@
 
     const ctx = document.getElementById('problemasEstufa');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            datasets: [{
-                label: 'Quantidade de problemas',
-                type: 'bar',
-                borderColor: ['#ffd902']
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    distribution: 'series',
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'problemasEstufa'
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-            animation: {
-                duration: 0
+    function graficoProblemasMes() {
+
+        let idEstufa = sessionStorage.ESTUFA_ATUAL;
+
+        fetch(`/analise/graficoProblemasMes/${idEstufa}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
             }
-        }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar os dados');
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                const meses = [
+                    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                ];
+
+                const labels = data.map(item => `${meses[item.mes - 1]}/${item.ano}`);
+                const dados = data.map(item => item.quantidade);
+
+                console.log(labels, dados);
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Problemas',
+                            data: dados,
+                            backgroundColor: '#038C65',
+                            skipNull: true
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Quantidade de alertas por mês',
+                                font: {
+                                    size: 15
+                                },
+                                padding: {
+                                    top: 3,
+                                    bottom: 3
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1,
+                                    precision: 0
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+
     }
-    );
 
     const ctx1 = document.getElementById('horariosProblemas');
-
-
-    /* ESSE DE BAIXO DA CERTO MAS N GARANTO NADA */
 
     function graficoHorarios() {
 
@@ -260,11 +292,8 @@
             })
             .then(data => {
 
-                const labels = Array.from({ length: 24 }, (v, k) => k.toString().padStart(2, '0') + ':00');
-                const dados = Array.from({ length: 24 }, () => null);
-                data.forEach(item => {
-                    dados[item.hora] = item.quantidade;
-                });
+                const labels = data.map(item => item.hora);
+                const dados = data.map(item => item.quantidade);
 
                 console.log(labels, dados);
 
@@ -307,15 +336,13 @@
             })
 
     }
-
-
-    // new Chart(ctx1, {
+    // new Chart(ctx, {
     //     type: 'bar',
     //     data: {
     //         datasets: [{
-    //             label: 'Horarios com problemas',
+    //             label: 'Quantidade de problemas',
     //             type: 'bar',
-    //             borderColor: ['#ff3232']
+    //             borderColor: ['#ffd902']
     //         }]
     //     },
     //     options: {
@@ -329,7 +356,7 @@
     //             yAxes: [{
     //                 scaleLabel: {
     //                     display: true,
-    //                     labelString: 'horariosProblemas'
+    //                     labelString: 'problemasEstufa'
     //                 },
     //                 ticks: {
     //                     beginAtZero: true
