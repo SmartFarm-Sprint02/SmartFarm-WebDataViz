@@ -232,6 +232,8 @@
 
     var ultimoRegistro = resposta[6];
 
+    sessionStorage.DATA_HORA_MEDIDA = ultimoRegistro.DataHoraMedida
+
     leitura_temp.innerHTML = `${ultimoRegistro.Temperatura}`;
     leitura_umid.innerHTML = `${ultimoRegistro.Umidade}%`;
     leitura_lumi.innerHTML = `${ultimoRegistro.Luminosidade}`;

@@ -43,7 +43,7 @@
             <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
             <div>
                 <h5>Leitura mais recente:</h5>
-                <p>xx/xx/xxxx - xx:xx</p>
+                <p id="ultima_leitura">xx/xx/xxxx - xx:xx</p>
             </div>
         </div>
 
@@ -89,7 +89,13 @@
             horariosMaisProblemas(),
             qtdAlertasTotais(),
             graficoHorarios(),
-            graficoProblemasMes()
+            graficoProblemasMes(),
+            mostrarHoraLeitura()
+    }
+
+    function mostrarHoraLeitura(){
+        let ultimaLeitura =  sessionStorage.DATA_HORA_MEDIDA
+        ultima_leitura.innerHTML = ultimaLeitura
     }
 
     function qtdAlertasMes() {
