@@ -231,6 +231,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     background-color: var(--whiteSmart);
     color: var(--blackSmart);
     width: 100%;
@@ -459,6 +460,15 @@ body {
 
 .titulo-gerenciar h1 {
     color: var(--blackSmart);
+}
+
+.select-estufa{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: fit-content;
+    width: 300px;   
 }
 
 .container-metrica {
