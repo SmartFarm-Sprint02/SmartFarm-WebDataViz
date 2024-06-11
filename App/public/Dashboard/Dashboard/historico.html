@@ -129,7 +129,7 @@
 
   let proximaAtualizacao;
 
-  window.onload = obterDadosGrafico(idEstufa);
+  window.onload = obterDadosGrafico(idEstufa), validarSessao();
 
   function alterarTitulo() {
     let tituloEstufa = document.getElementById("titulo_estufa");
@@ -167,7 +167,7 @@
   function plotarGrafico(resposta, idEstufa) {
     console.log("iniciando plotagem do gráfico...");
 
-    // Criando estrutura para plotar gráfico - labels
+    // Criando estrutura para plotar gráfico - labels///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let labels = [];
 
     // Criando estrutura para plotar gráfico - dados

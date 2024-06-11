@@ -12,4 +12,3 @@ router.get("/tempo-real/:idEstufa", function (req, res) {
 })
 
 module.exports = router;
- 
