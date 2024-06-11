@@ -10,84 +10,73 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<!-- <body onload="validarSessao()"> -->
 
-<!-- <body> -->
-    <!-- Apenas para estilizar -->
-
-    <section class="menu-lateral">
-        <div class="identificacao">
-            <h1 id="nome_empresa">Empresa</h1>
-            <h2 id="b_usuario">Usuário</h2>
-        </div>
-
-        <div>
-            <a href="../Estufas/estufas.html"><button class="btn-estufa">Estufas</button></a>
-            <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
-            <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button
-                    class="btn-gerenciar">Suporte</button></a>
-        </div>
-        <div>
-            <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
-
-            <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
-        </div>
-    </section>
-
-    <section class="main-section">
-        <div class="inicio-main">
-            <div>
-                <h1 id="titulo_estufa">Estufa</h1>
+    <body>
+        <!-- Apenas para estilizar -->
+    
+        <section class="menu-lateral">
+            <div class="identificacao">
+                <h1 id="nome_empresa">Empresa</h1>
+                <h2 id="b_usuario">Usuário</h2>
             </div>
-            <a href="historico.html"><button class="btn-navbar-dash" id="btn-ativo">Histórico</button></a>
-            <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
+    
             <div>
-                <h5>Leitura mais recente:</h5>
-                <p>xx/xx/xxxx - xx:xx</p>
+                <a href="../Estufas/estufas.html"><button class="btn-estufa">Estufas</button></a>
+                <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
+                <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button
+                        class="btn-gerenciar">Suporte</button></a>
             </div>
-        </div>
-
-        <div class="containerGraficos">
-
-            <div class="graficos">
-                <div class="GraficosAnalise">
-                    <div class="cardProblemasEstufa">
-                        <canvas id="problemasEstufa"></canvas>
-                    </div>
-
-                    <div class="cardProblemasEstufa">
-                        <canvas id="horariosProblemas"></canvas>
-                    </div>
+            <div>
+                <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
+    
+                <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm">
+            </div>
+        </section>
+    
+        <section class="main-section">
+            <div class="inicio-main">
+                <div>
+                    <h1 id="titulo_estufa">Estufa</h1>
                 </div>
-
-                <section class="KPIs">
-                    <!-- Tirando essas duas KPIS e o gráfico de pizza para fazer a nova atualização de layout -->
-
-                    <!-- <div class="kpi1">
-                        <p>Mês com mais alertas</p>
-                        <h1>Agosto</h1>
-                    </div> -->
-                    <!-- <div class="kpi1">
-                        <p>Aumento de alertas</p>
-                        <h1>+7% de aumento</h1>
-                    </div> -->
-                    <div class="kpi1">
-                        <p>Alertas este mês</p>
-                        <h1 id="KPI_qtd_alertas_mes"></h1>
-                    </div>
-                    <div class="kpi1">
-                        <p>Horário com mais problemas</p>
-                        <h1 id="KPI_qtd_horario"></h1>
-                    </div>
-                    <div class="kpi1">
-                        <p>Quantidade de Alertas</p>
-                        <h1 id="KPI_qtd_alertas"></h1>
-                    </div>
-                </section>
-
+                <a href="historico.html"><button class="btn-navbar-dash" id="btn-ativo">Histórico</button></a>
+                <a href="analise.html"><button class="btn-navbar-dash">Análise</button></a>
+                <div>
+                    <h5>Leitura mais recente:</h5>
+                    <p>xx/xx/xxxx - xx:xx</p>
+                </div>
             </div>
-        </div>
-</body>
+    
+            <div class="containerGraficos">
+    
+                <div class="graficos">
+                    <div class="GraficosAnalise">
+                        <div class="cardProblemasEstufa">
+                            <canvas id="problemasEstufa"></canvas>
+                        </div>
+    
+                        <div class="cardProblemasEstufa">
+                            <canvas id="horariosProblemas"></canvas>
+                        </div>
+                    </div>
+    
+                    <section class="KPIs">
+                        <div class="kpi1">
+                            <p>Alertas este mês</p>
+                            <h1 id="KPI_qtd_alertas_mes"></h1>
+                        </div>
+                        <div class="kpi1">
+                            <p>Horário com mais problemas</p>
+                            <h1 id="KPI_qtd_horario"></h1>
+                        </div>
+                        <div class="kpi1">
+                            <p>Quantidade de Alertas</p>
+                            <h1 id="KPI_qtd_alertas"></h1>
+                        </div>
+                    </section>
+                </div>
+            </div>
+    </body>
 
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -96,31 +85,83 @@
 
     window.onload = function () {
         validarSessao(),
-        // qtdAlertasMes(),
-        horarioMaisProblemas()
-        // qtdAlertasTotais()
+            qtdAlertasMes(),
+            horariosMaisProblemas(),
+            qtdAlertasTotais(),
+            graficoHorarios()
     }
 
-    // function qtdAlertasMes() {
-    //     fetch(`/analise/qtdAlertasMes/${idEstufa}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         }
-    //     })
-    //         .then(function (resposta) {
-    //             resposta.json().then((resposta) => {
-    //                 resposta.forEach((resposta) => {
-    //                     if (resposta.quantidade) {
-    //                         KPI_qtd_horario.innerHTML = "oi"
-    //                     }
-    //                 });
-    //             });
-    //         });
-    // }
+    function qtdAlertasMes() {
 
-    function horarioMaisProblemas() {
-        fetch(`/analise/horarioMaisProblemas/${estufaAtual}`, {
+        let idEstufa = sessionStorage.ESTUFA_ATUAL
+
+        fetch(`/analise/qtdAlertasMes/${idEstufa}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((resposta) => {
+                        if (resposta.mes) {
+                            if (resposta.mes == 1) {
+                                KPI_qtd_alertas_mes.innerHTML = `Janeiro (${resposta.quantidade})`;
+                            } else if (resposta.mes == 2) {
+                                KPI_qtd_alertas_mes.innerHTML = `Fevereiro (${resposta.quantidade})`;
+                            } else if (resposta.mes == 3) {
+                                KPI_qtd_alertas_mes.innerHTML = `Março (${resposta.quantidade})`;
+                            } else if (resposta.mes == 4) {
+                                KPI_qtd_alertas_mes.innerHTML = `Abril (${resposta.quantidade})`;
+                            } else if (resposta.mes == 5) {
+                                KPI_qtd_alertas_mes.innerHTML = `Maio (${resposta.quantidade})`;
+                            } else if (resposta.mes == 6) {
+                                KPI_qtd_alertas_mes.innerHTML = `Junho (${resposta.quantidade})`;
+                            } else if (resposta.mes == 7) {
+                                KPI_qtd_alertas_mes.innerHTML = `Julho (${resposta.quantidade})`;
+                            } else if (resposta.mes == 8) {
+                                KPI_qtd_alertas_mes.innerHTML = `Agosto (${resposta.quantidade})`;
+                            } else if (resposta.mes == 9) {
+                                KPI_qtd_alertas_mes.innerHTML = `Setembro (${resposta.quantidade})`;
+                            } else if (resposta.mes == 10) {
+                                KPI_qtd_alertas_mes.innerHTML = `Outubro (${resposta.quantidade})`;
+                            } else if (resposta.mes == 11) {
+                                KPI_qtd_alertas_mes.innerHTML = `Novembro (${resposta.quantidade})`;
+                            } else {
+                                KPI_qtd_alertas_mes.innerHTML = `Dezembro (${resposta.quantidade})`
+                            }
+                        }
+                    });
+                });
+            });
+    }
+
+    function horariosMaisProblemas() {
+
+        let idEstufa = sessionStorage.ESTUFA_ATUAL
+
+        fetch(`/analise/horariosMaisProblemas/${idEstufa}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((resposta) => {
+                        if (resposta.periodo) {
+                            KPI_qtd_horario.innerHTML = `${resposta.periodo}`;
+                        }
+                    });
+                });
+            });
+    }
+
+    function qtdAlertasTotais() {
+
+        let idEstufa = sessionStorage.ESTUFA_ATUAL
+
+        fetch(`/analise/qtdAlertasTotais/${idEstufa}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -130,30 +171,31 @@
                 resposta.json().then((resposta) => {
                     resposta.forEach((resposta) => {
                         if (resposta.quantidade) {
-                            KPI_qtd_horario.innerHTML = "oi"
+                            if (resposta.quantidade > 20) {
+                                KPI_qtd_alertas.innerHTML =
+                                    `${resposta.quantidade} Alertas
+                                <br>
+                                <b style="color: #ff3232;">(Crítico)</b>
+                                `;
+                            } else if (resposta.quantidade > 10) {
+                                KPI_qtd_alertas.innerHTML =
+                                    `${resposta.quantidade} Alertas
+                                <br>
+                                <b style="color: #ffd902;">(Alerta)</b>
+                                `;
+                            } else if (resposta.quantidade <= 10) {
+                                KPI_qtd_alertas.innerHTML =
+                                    `${resposta.quantidade} Alertas
+                                <br>
+                                <b style="color: #00ff32;">(Estável)</b>
+                                `;
+                            }
+
                         }
                     });
                 });
             });
     }
-
-    // function qtdAlertasTotais() {
-    //     fetch(`/analise/horarioMaisProblema/${idEstufa}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         }
-    //     })
-    //         .then(function (resposta) {
-    //             resposta.json().then((resposta) => {
-    //                 resposta.forEach((resposta) => {
-    //                     if (resposta.mes) {
-    //                         KPI_qtd_horario.innerHTML = "oi"
-    //                     }
-    //                 });
-    //             });
-    //         });
-    // }
 
     let tituloEstufa = document.getElementById('titulo_estufa')
     let estufaAtual = sessionStorage.ESTUFA_ATUAL
@@ -197,37 +239,107 @@
 
     const ctx1 = document.getElementById('horariosProblemas');
 
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            datasets: [{
-                label: 'Horarios com problemas',
-                type: 'bar',
-                borderColor: ['#ff3232']
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    distribution: 'series',
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'horariosProblemas'
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-            animation: {
-                duration: 0
+
+    /* ESSE DE BAIXO DA CERTO MAS N GARANTO NADA */
+
+    function graficoHorarios() {
+
+        let idEstufa = sessionStorage.ESTUFA_ATUAL;
+
+        fetch(`/analise/graficoHorarios/${idEstufa}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
             }
-        }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar os dados');
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                const labels = Array.from({ length: 24 }, (v, k) => k.toString().padStart(2, '0') + ':00');
+                const dados = Array.from({ length: 24 }, () => null);
+                data.forEach(item => {
+                    dados[item.hora] = item.quantidade;
+                });
+
+                console.log(labels, dados);
+
+                new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Horários',
+                            data: dados,
+                            backgroundColor: '#038C65',
+                            skipNull: true
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Horários com alertas',
+                                font: {
+                                    size: 15
+                                },
+                                padding: {
+                                    top: 3,
+                                    bottom: 3
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1,
+                                    precision: 0
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+
     }
-    );
+
+
+    // new Chart(ctx1, {
+    //     type: 'bar',
+    //     data: {
+    //         datasets: [{
+    //             label: 'Horarios com problemas',
+    //             type: 'bar',
+    //             borderColor: ['#ff3232']
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             xAxes: [{
+    //                 distribution: 'series',
+    //                 ticks: {
+    //                     beginAtZero: true
+    //                 }
+    //             }],
+    //             yAxes: [{
+    //                 scaleLabel: {
+    //                     display: true,
+    //                     labelString: 'horariosProblemas'
+    //                 },
+    //                 ticks: {
+    //                     beginAtZero: true
+    //                 }
+    //             }]
+    //         },
+    //         animation: {
+    //             duration: 0
+    //         }
+    //     }
+    // }
+    // );
 </script>
