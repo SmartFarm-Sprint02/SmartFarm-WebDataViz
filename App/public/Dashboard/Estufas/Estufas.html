@@ -41,12 +41,9 @@
                 <h5>Estufas com Problemas</h5>
                 <p>20/<span id="qtd_estufas_empresa_kpi1">qtdEstufas</span></p>
             </div>
-            <div class="IndicadorProblemas" id="qtd_semana">
-                <h5>Problemas na última Semana</h5>
-                <p>30/<span id="qtd_estufas_empresa_kpi2">qtdEstufas</span></p>
-            </div>
+            
             <div class="IndicadorProblemas" id="qtd_mes">
-                <h5>Problemas no Mês</h5>
+                <h5>Estufas com Problemas no Mês</h5>
                 <p>50/<span id="qtd_estufas_empresa_kpi3">qtdEstufas</span></p>
             </div>
         </nav>
@@ -61,9 +58,7 @@
                 <div class="gráfico-global">
                     <canvas id="grafico1"></canvas>
                 </div>
-                <div class="gráfico-global">
-                    <canvas id="grafico2"></canvas>
-                </div>
+                
                 <div class="gráfico-global">
                     <canvas id="grafico3"></canvas>
                 </div>
@@ -87,7 +82,7 @@
     const qtdEstufas = arrayEstufas.length
 
     qtd_estufas_empresa_kpi1.innerHTML = qtdEstufas
-    qtd_estufas_empresa_kpi2.innerHTML = qtdEstufas
+    
     qtd_estufas_empresa_kpi3.innerHTML = qtdEstufas
 
     function exibirEstufas() {
@@ -226,45 +221,7 @@
 
 
 
-    var ctx = document.getElementById('grafico2').getContext('2d');
-
-    var grafico2 = new Chart(ctx, {
-        type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
-        data: {
-            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'], // Quantidade de vezes que ficou "Crítico" nas últimas 4 semanas.
-            datasets: [{
-                label: 'Quantidade de Problemas Semanais', // Rótulo do conjunto de dados
-                data: [12, 19, 3, 5, 2, 3], // Dados para o gráfico
-                backgroundColor: [
-                    'rgba(15, 200, 132, 1)'
-
-                ],
-            }]
-        },
-        options: {
-            responsive: true, // Torna o gráfico responsivo
-            maintainAspectRatio: false, // Permite que o gráfico preencha o contêiner
-            scales: {
-                y: {
-                    beginAtZero: true // Iniciar o eixo y no zero
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
-                            weight: 'bolder' // Deixa a letra da legenda mais grossa
-                        },
-                        backgroundColor: 'green',
-                        boxWidth: 20, // Largura do quadrado da legenda
-                        boxHeight: 10, // Altura do quadrado da legenda (Chart.js 3.7.0+)
-                        usePointStyle: true, // Usar o estilo de ponto (círculo) ao invés do quadrado
-                        pointStyle: 'circle'
-                    }
-                }
-            }
-        }
-    });
+    
 
     var ctx = document.getElementById('grafico3').getContext('2d');
 
