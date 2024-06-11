@@ -26,7 +26,7 @@ function buscarMedidasEmTempoReal(req, res) {
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(idEstufa).then(function (resultado) {
+    leituraModel.buscarMedidasEmTempoReal(idEstufa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

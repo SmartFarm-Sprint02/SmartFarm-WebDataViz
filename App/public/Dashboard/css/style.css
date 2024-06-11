@@ -808,9 +808,9 @@ body {
 
 .cardProblemasEstufa {
     background-color: var(--whiteSmart);
-    padding: 10px 50px;
-    width: 60%;
-    height: 30vh;
+    padding: 10px ;
+    width: 80%;
+    height: 35vh;
 }
 
 .containerGraficos {
@@ -824,8 +824,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
-    
+    margin-left: 5%; 
 }
 
 .kpi1{
@@ -845,21 +844,10 @@ body {
     border: var(--blackSmart) 3px solid;
 }
 
-.graficoPizza {
-    width: 24%;
-    height: 70vh;
-    /* position: absolute; */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding-left: 40%;
-    padding-top: 15%; */
-}
-
 .cardProblemasEstufa {
     border: var(--blackSmart) 3px solid;
     border-radius: 20px;
+    justify-content: center;
 }
 
 .graficos{
@@ -867,5 +855,4 @@ body {
     flex-direction: row;
     margin-top: 5%;
     /* background-color: #ccbcbc; */
-
 }
