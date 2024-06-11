@@ -1,10 +1,10 @@
 create database if not exists smartfarm;
 
--- drop database smartfarm;
+-- -------------------------------------------------------------------------------------------------------- --
+-- -------------------------------------------- CREATES --------------------------------------------------- --
+-- -------------------------------------------------------------------------------------------------------- --
 
--- -------------------------------------------------------------------------------------------------------- --
--- ---------------------------- Criação da tabela Endereço ------------------------------------------------ --
--- -------------------------------------------------------------------------------------------------------- --
+-- TABELA DE ENDEREÇO
 
 create table smartfarm.endereco (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -17,22 +17,7 @@ cidade VARCHAR(45) NOT NULL,
 estado CHAR(2) NOT NULL
 ) auto_increment = 100;
 
--- -------------------------------------------------------------------------------------------------------- --
--- ---------------------------- Insert da tabela Endereço ------------------------------------------------- --
--- -------------------------------------------------------------------------------------------------------- --
-
-insert into smartfarm.endereco (logradouro, numero, complemento, bairro, cidade, CEP, estado)
-values ('Rua Presidente Altino', 124, NULL, 'Morumbi', 'São Paulo', '06326-290', 'SP'),
-        ('Rua Visconde do Pirajá', '3579', NULL, 'Ipanema', 'Rio de Janeiro', '06879-512', 'RJ'),
-        ('Avenida Amazonas', '154', NULL, 'Prado', 'Belo Horizonte', '04278-456', 'MG');
-        
--- Visualiza todos os endereços.
-select * from smartfarm.endereco;
-
--- -------------------------------------------------------------------------------------------------------- --
--- -------------------------------------- Create da tabela Empresa ---------------------------------------- --
--- -------------------------------------------------------------------------------------------------------- --
-
+-- TABELA DE EMPRESA
 
 create table smartfarm.empresa (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -46,35 +31,7 @@ create table smartfarm.empresa (
     constraint fk_endereco_empresa foreign key (fk_endereco) references smartfarm.endereco(id)
 ) auto_increment = 100000;
 
--- As empresas iniciam com o auto-increment no 100000 
--- para termos as empresas com 6 algarismos para utilizar no token ao cadastrar
-
-
--- -------------------------------------------------------------------------------------------------------- --
--- -------------------------------------- Insert da tabela Empresa ---------------------------------------- --
--- -------------------------------------------------------------------------------------------------------- --
-
-insert into smartfarm.empresa(id, CNPJ, razao_social, nome_fantasia, telefone, email, qtd_estufas, fk_endereco)
-values (null, 12345678000190, 'AgroTech Soluções Agricolas Plantio Ltda.', 'AgroTech', '11967314567', 'comunicacoesagrotech@gmail.com', 1, 100),
-	   (null, 98345678000140, 'Gestão Verde Agro SA', 'GV Agro', '11947310967', 'vendasgvagro@gmail.com', 1, 101),
-	   (null, 09871678000140, 'Agri Futura Planções Ltda.','Agri Futura', '11913560989', 'financeiroagriplantacoes@gmail.com', 1, 102);
-
--- Visualiza todas as empresas
-select * from smartfarm.empresa;
-
-select 
-em.nome_fantasia as nomeEm
-from smartfarm.empresa as em
-inner join smartfarm.usuario as usu ON usu.fk_empresa = em.id
-where usu.email = "gavassa@gmail.com" and usu.nome = "gavassa";
-
-select *
-from smartfarm.empresa as em
-inner join smartfarm.endereco as en on em.fk_endereco = en.id;
-
--- -------------------------------------------------------------------------------------------------------- --
--- ------------------------------------ Create da tabela Usuario ------------------------------------------ --
--- -------------------------------------------------------------------------------------------------------- --
+-- TABELA DE USUARIO
 
 create table smartfarm.usuario (
 id int primary key auto_increment,
@@ -88,32 +45,7 @@ constraint uk_email unique key email(email)
 
 alter table smartfarm.usuario add mensagem varchar(200);
 
--- -------------------------------------------------------------------------------------------------------- --
--- ------------------------------------ Insert da tabela Usuario ------------------------------------------ --
--- -------------------------------------------------------------------------------------------------------- --
-
-insert into smartfarm.usuario(id, nome, email, senha, mensagem, fk_empresa)
-values 
-(null, "Guilherme","guilherme@gmail.com","gavassa123", "Meu nome 123" ,100000);
-
-
--- Visualiza todos os usuarios.
-select * from smartfarm.usuario;
-
--- Visualiza os usuários e suas empresas.
-select 
-us.id idUsuario,
-us.nome nomeUsuario,
-us.email emailUsuario,
-us.senha senhaUsuario,
-emp.nome_fantasia nome_fantasia,
-us.fk_empresa fk_empresa
-from smartfarm.empresa as emp
-inner join smartfarm.usuario as us on us.fk_empresa = emp.id;
-
--- -------------------------------------------------------------------------------------------------------- --
--- ----------------------------------- Create da tabela Metricas ------------------------------------------ --
--- -------------------------------------------------------------------------------------------------------- --
+-- TABELA DE MÉTRICAS
 
 create table smartfarm.metricas (
 id INT NOT NULL AUTO_INCREMENT,
@@ -130,29 +62,7 @@ CONSTRAINT fk_metricas_estufa1 FOREIGN KEY (fk_estufa) REFERENCES smartfarm.estu
 
 alter table smartfarm.metricas add constraint unique key (fk_estufa);
 
--- -------------------------------------------------------------------------------------------------------- --
--- ----------------------------------- Insert da tabela Metricas ------------------------------------------ --
--- -------------------------------------------------------------------------------------------------------- --
-
-insert into smartfarm.metricas (id, fk_estufa,TempMinima, TempMaxima, UmidMinima, UmidMaxima, LuminMinima, LuminMaxima)
-values
-(null, 501,'20.0', '30.0', '60.0', '80.0', '600', '800'),
-(null, 502, '25.0', '33.0', '65.0', '85.0', '700', '900');
-
-update smartfarm.metricas set TempMinima = '10', TempMaxima = '20' where fk_estufa = 500;
-update smartfarm.metricas set UmidMinima = '10', UmidMaxima = '20' where fk_estufa = 500;
-update smartfarm.metricas set LuminMinima = '10', LuminMaxima = '20' where fk_estufa = 500;
-
-
-SELECT 
-    *
-FROM 
-    smartfarm.metricas
-WHERE 
-    fk_estufa = 500;
--- -------------------------------------------------------------------------------------------------------- --
--- ----------------------------------- Create da tabela Estufa -------------------------------------------- --
--- -------------------------------------------------------------------------------------------------------- --
+-- TABELA DE ESTUFAS
 
 create table smartfarm.estufa (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -162,40 +72,8 @@ CONSTRAINT ck_tipo_pimentao check (tipoPimentao in('verde', 'amarelo', 'vermelho
 CONSTRAINT fk_empresa_estufa FOREIGN KEY (fk_empresa) REFERENCES empresa (id)
 )AUTO_INCREMENT = 500;
 
--- -------------------------------------------------------------------------------------------------------- --
--- ----------------------------------- Insert da tabela Estufa -------------------------------------------- --
--- -------------------------------------------------------------------------------------------------------- --
+-- TABELA DE CONJUNTO DE SENSORES
 
-insert into smartfarm.estufa(id, tipoPimentao, fk_empresa)
-values (null, 'verde', 100000),
-	   (null, 'amarelo', 100000),
-       (null, 'vermelho', 100001);
-       
-insert into smartfarm.estufa(id, tipoPimentao, fk_empresa)
-values (null, 'verde', 100001),
-	   (null, 'amarelo', 100001);
-       
--- Visualizando todas as estufas.
-select * from smartfarm.estufa
-order by fk_empresa;
-
-
-select
-count(es.id)
-from smartfarm.estufa es
-join smartfarm.empresa em on es.fk_empresa = em.id;
-
--- Visualizando todas as empresas, e suas determinadas estufas
-select * 
-from smartfarm.estufa as est
-inner join smartfarm.empresa as emp on est.fk_empresa = emp.id;
-
-SELECT * FROM smartfarm.estufa WHERE fk_empresa = 100000;
-
--- -------------------------------------------------------------------------------------------------------- --
--- -------------------------------- Create da tabela ConjuntoSensores ------------------------------------- --
--- -------------------------------------------------------------------------------------------------------- --
- 
 create table smartfarm.conjuntoSensores(
 id int primary key auto_increment,
 fk_estufa int not null,
@@ -203,28 +81,8 @@ codigo varchar (20),
 constraint fk_sensor_estufa foreign key (fk_estufa) references estufa (id)
 )auto_increment = 1000;
 
--- -------------------------------------------------------------------------------------------------------- --
--- --------------------------------- Insert da tabela ConjuntoSensores ------------------------------------ --
--- -------------------------------------------------------------------------------------------------------- --
+-- TABELA DE LEITURAS
 
-insert into smartfarm.conjuntoSensores (id, codigo, fk_estufa)
-values (null, 'SE123', 500),
-		(null, 'SE763', 501),
-        (null, 'SE980', 502);
-        
--- Visualizando todos os conjuntos de sensores.
- select * from smartfarm.conjuntoSensores;
- 
--- Visualizando todas as estufas e os seus conjuntos de sensores
- select * 
- from smartfarm.conjuntoSensores as con
- inner join smartfarm.estufa as es
- on con.fk_estufa = es.id;
- 
--- -------------------------------------------------------------------------------------------------------- --
--- ----------------------------------- Create da tabela Leitura ------------------------------------------- --
--- -------------------------------------------------------------------------------------------------------- --
- 
 create table smartfarm.leitura (
 id INT PRIMARY KEY AUTO_INCREMENT,
 temperatura DECIMAL(4, 2 ) NOT NULL,
@@ -236,16 +94,69 @@ CONSTRAINT fk_leitura_sensor FOREIGN KEY (fk_sensores) REFERENCES smartfarm.conj
 )AUTO_INCREMENT = 2000;
 
 -- -------------------------------------------------------------------------------------------------------- --
--- ----------------------------------- Insert da tabela Leitura ------------------------------------------- --
+-- --------------------------------------------- INSERTS -------------------------------------------------- --
 -- -------------------------------------------------------------------------------------------------------- --
 
--- Adicionando uma leitura para cada Conjunto de Sensores.
+-- INSERT TABELA DE ENDEREÇO
+
+insert into smartfarm.endereco (logradouro, numero, complemento, bairro, cidade, CEP, estado)
+values ('Rua Presidente Altino', 124, NULL, 'Morumbi', 'São Paulo', '06326-290', 'SP'),
+        ('Rua Visconde do Pirajá', '3579', NULL, 'Ipanema', 'Rio de Janeiro', '06879-512', 'RJ'),
+        ('Avenida Amazonas', '154', NULL, 'Prado', 'Belo Horizonte', '04278-456', 'MG');
+select *  from smartfarm.endereco;
+
+-- INSERT TABELA DE EMPRESA
+
+insert into smartfarm.empresa(id, CNPJ, razao_social, nome_fantasia, telefone, email, qtd_estufas, fk_endereco)
+values (null, 12345678000190, 'AgroTech Soluções Agricolas Plantio Ltda.', 'AgroTech', '11967314567', 'comunicacoesagrotech@gmail.com', 1, 100),
+	   (null, 98345678000140, 'Gestão Verde Agro SA', 'GV Agro', '11947310967', 'vendasgvagro@gmail.com', 1, 101),
+	   (null, 09871678000140, 'Agri Futura Planções Ltda.','Agri Futura', '11913560989', 'financeiroagriplantacoes@gmail.com', 1, 102);
+select * from smartfarm.empresa;
+
+-- INSERT TABELA DE USUÁRIO
+
+insert into smartfarm.usuario(id, nome, email, senha, mensagem, fk_empresa)
+values (null, "Guilherme","guilherme@gmail.com","gavassa123", "Meu nome 123" ,100000);
+select * from smartfarm.usuario;
+
+-- INSERT (E UPDATE) TABELA DE MÉTRICAS
+
+insert into smartfarm.metricas (id, fk_estufa,TempMinima, TempMaxima, UmidMinima, UmidMaxima, LuminMinima, LuminMaxima)
+values
+(null, 501,'20.0', '30.0', '60.0', '80.0', '600', '800'),
+(null, 502, '25.0', '33.0', '65.0', '85.0', '700', '900');
+
+update smartfarm.metricas set TempMinima = '10', TempMaxima = '20' where fk_estufa = 500;
+update smartfarm.metricas set UmidMinima = '10', UmidMaxima = '20' where fk_estufa = 500;
+update smartfarm.metricas set LuminMinima = '10', LuminMaxima = '20' where fk_estufa = 500;
+
+-- INSERT TABELA DE ESTUFAS
+
+insert into smartfarm.estufa(id, tipoPimentao, fk_empresa)
+values (null, 'verde', 100000),
+	   (null, 'amarelo', 100000),
+       (null, 'vermelho', 100001);
+       
+insert into smartfarm.estufa(id, tipoPimentao, fk_empresa)
+values (null, 'verde', 100001),
+	   (null, 'amarelo', 100001);
+select * from smartfarm.estufa;
+
+-- INSERT TABELA DE CONJUNTO DE SENSORES
+
+insert into smartfarm.conjuntoSensores (id, codigo, fk_estufa)
+values (null, 'SE123', 500),
+		(null, 'SE763', 501),
+        (null, 'SE980', 502);
+ select * from smartfarm.conjuntoSensores;
+ 
+-- INSERT TABELA DE LEITURAS
+
 insert into smartfarm.leitura(id, temperatura, umidade, luminosidade, fk_sensores)
 values (null, 22.2, 75, 870.00, 1000),
 		(null, 23.2, 75, 880.00, 1001),
         (null, 21.2, 75, 868.00, 1002);
-        
--- Adicionando varias leituras para apenas um conjunto de sensores.
+
 INSERT INTO smartfarm.leitura(id, temperatura, umidade, luminosidade, fk_sensores)
 VALUES 
 (null, 22.5, 72, 850.00, 1000),
@@ -271,6 +182,41 @@ VALUES
 (32.10, 54.30, 1255.50, '2024-06-08 15:00:00', 1001),
 (33.00, 53.20, 1260.75, '2024-06-08 16:00:00', 1001),
 (34.50, 52.10, 1275.00, '2024-06-08 17:00:00', 1001);
+
+-- -------------------------------------------------------------------------------------------------------- --
+-- --------------------------------------------- SELECTS -------------------------------------------------- --
+-- -------------------------------------------------------------------------------------------------------- --
+ 
+select 
+em.nome_fantasia as 'Empresa',
+usu.nome as 'Usuário'
+from smartfarm.empresa as em
+inner join smartfarm.usuario as usu ON usu.fk_empresa = em.id;
+
+select em.nome_fantasia 'Empresa',
+       en.logradouro,
+       en.estado,
+       en.bairro,
+       en.cidade
+from smartfarm.empresa as em
+inner join smartfarm.endereco as en on em.fk_endereco = en.id;
+
+
+select
+count(es.id)
+from smartfarm.estufa es
+join smartfarm.empresa em on es.fk_empresa = em.id;
+
+-- Visualizando todas as empresas, e suas determinadas estufas
+select * 
+from smartfarm.estufa as est
+inner join smartfarm.empresa as emp on est.fk_empresa = emp.id;
+
+ select * 
+ from smartfarm.conjuntoSensores as con
+ inner join smartfarm.estufa as es
+ on con.fk_estufa = es.id;
+
 
     
 select 
@@ -392,6 +338,23 @@ WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
     OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
     OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
     AND est.id = 501
+GROUP BY hora
+ORDER BY hora;
+
+-- -------------------------------------------------------------------------------------------------------- --
+-- ---------------------- Select para puxar todos os alertas da estufa (home/grafico) --------------------- --
+-- -------------------------------------------------------------------------------------------------------- --
+
+SELECT
+    MONTH(lei.DataHora_medida) AS hora,
+    COUNT(*) AS quantidade
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
 GROUP BY hora
 ORDER BY hora;
 
