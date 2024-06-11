@@ -118,7 +118,7 @@ JOIN metricas met ON est.id = met.fk_estufa
 WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
     OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
     OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
-    AND est.id = 501
+    AND est.id = ${idEstufa}
 GROUP BY mes, ano
 ORDER BY mes;
 `;
