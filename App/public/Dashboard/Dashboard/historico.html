@@ -26,7 +26,7 @@
       </div>
 
       <div>
-        <a href="../Estufas/estufas.html"
+        <a href="../Estufas/Estufas.html"
           ><button class="btn-estufa">Estufas</button></a
         >
         <a href="../Gerenciar/Gerenciar.html"
@@ -231,6 +231,8 @@
     // Inserindos Valores recebidos em KPIS
 
     var ultimoRegistro = resposta[6];
+
+    sessionStorage.DATA_HORA_MEDIDA = ultimoRegistro.DataHoraMedida
 
     leitura_temp.innerHTML = `${ultimoRegistro.Temperatura}`;
     leitura_umid.innerHTML = `${ultimoRegistro.Umidade}%`;

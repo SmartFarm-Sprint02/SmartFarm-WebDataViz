@@ -39,10 +39,10 @@
             <div class="titulo-gerenciar">
                 <h1>Gerenciamento de Métricas</h1>
             </div>
-            <div>
-                <label for="select_estufa">Estufas</label>
+            <div class="select-estufa">
+                <label for="select_estufa">Estufa Atual</label>
                 <select id="select_estufa" onchange="alterarEstufa()">
-
+                    <option value="">Selecione sua estufa</option>
                 </select>
             </div>
         </div>
@@ -52,11 +52,11 @@
                 <p class="titulo-metrica">Temperatura Atual</p>
                 <div class="cards-parametros">
                     <span>Mínima</span>
-                    <b id="b_temperatura_minima">15°C</b>
+                    <b id="b_temperatura_minima">--°C</b>
                 </div>
                 <div class="cards-parametros">
                     <span>Máxima</span>
-                    <b id="b_temperatura_maxima">25°C</b>
+                    <b id="b_temperatura_maxima">--°C</b>
                 </div>
 
                 <div class="card-gerenciamento">
@@ -78,12 +78,12 @@
                 <p class="titulo-metrica">Umidade Atual</p>
                 <div class="cards-parametros">
                     <span>Mínima</span>
-                    <b id="b_umidade_minima">70%</b>
+                    <b id="b_umidade_minima">--%</b>
                 </div>
 
                 <div class="cards-parametros">
                     <span>Máxima</span>
-                    <b id="b_umidade_maxima">85%</b>
+                    <b id="b_umidade_maxima">--%</b>
                 </div>
 
                 <div class="card-gerenciamento">
@@ -109,11 +109,11 @@
                 <p class="titulo-metrica">Luminosidade Atual</p>
                 <div class="cards-parametros">
                     <span>Mínima</span>
-                    <b id="b_luminosidade_minima">800lux</b>
+                    <b id="b_luminosidade_minima">--lux</b>
                 </div>
                 <div class="cards-parametros">
                     <span>Máxima</span>
-                    <b id="b_luminosidade_maxima">1000lux</b>
+                    <b id="b_luminosidade_maxima">--lux</b>
                 </div>
 
                 <div class="card-gerenciamento">

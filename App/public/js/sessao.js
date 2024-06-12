@@ -45,7 +45,7 @@ function validarSessao() {
         // });
 
     } else {
-        window.location = "../../Login/login.html";
+        window.location = "../../Login/Login.html";
     }
 }
 
