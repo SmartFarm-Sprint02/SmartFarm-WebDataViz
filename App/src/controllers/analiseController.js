@@ -56,6 +56,7 @@ function graficoProblemasMes(req, res) {
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
+                    resultado.reverse();
                     res.status(200).json(resultado);
                 } else {
                     res.status(204).send("Nenhum resultado encontrado!");

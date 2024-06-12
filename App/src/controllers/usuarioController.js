@@ -30,6 +30,7 @@ function autenticar(req, res) {
                                         nomeUsuario: resultadoAutenticar[0].nomeUsuario,
                                         senhaUsuario: resultadoAutenticar[0].senhaUsuario,
                                         nome_fantasia: resultadoAutenticar[0].nome_fantasia,
+                                        token: resultadoAutenticar[0].token,
                                         estufas: resultadoEstufas,
                                     });
                                 } else {

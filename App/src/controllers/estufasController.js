@@ -40,8 +40,81 @@ function cadastrar(req, res) {
   })
 }
 
+function graficoProblemasTotaisMes(req, res) {
+  var token = req.params.token;
+
+  estufasModel.graficoProblemasTotaisMes(token)
+    .then(
+      function (resultado) {
+        if (resultado.length > 0) {
+          resultado.reverse();
+          res.status(200).json(resultado);
+        } else {
+          res.status(204).send("Nenhum resultado encontrado!");
+        }
+      }
+    )
+    .catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "Houve um erro",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
+
+function KPIProblemasMes(req, res) {
+  var token = req.params.token;
+
+  estufasModel.KPIProblemasMes(token).then((resposta) => {
+      res.status(200).json(resposta);
+  });
+}
+
+function KPIProblemasTotais(req, res) {
+  var token = req.params.token;
+
+  estufasModel.KPIProblemasTotais(token).then((resposta) => {
+      res.status(200).json(resposta);
+  });
+}
+
+function graficoProblemasDiarios(req, res) {
+  var token = req.params.token;
+
+  estufasModel.graficoProblemasDiarios(token)
+    .then(
+      function (resultado) {
+        if (resultado.length > 0) {
+          resultado.reverse();
+          res.status(200).json(resultado);
+        } else {
+          res.status(204).send("Nenhum resultado encontrado!");
+        }
+      }
+    )
+    .catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "Houve um erro",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
+
+
 module.exports = {
   listar,
   cadastrar,
-  buscarEstufasPorEmpresa
+  buscarEstufasPorEmpresa,
+  graficoProblemasTotaisMes,
+  graficoProblemasDiarios,
+  KPIProblemasMes,
+  KPIProblemasTotais
 }

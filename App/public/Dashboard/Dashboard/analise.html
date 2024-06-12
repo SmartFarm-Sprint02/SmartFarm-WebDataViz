@@ -63,7 +63,7 @@
                 <section class="KPIs">
                     <div class="kpi1">
                         <p>Alertas este mês</p>
-                        <h1 id="KPI_qtd_alertas_mes"></h1>
+                        <h1 id="KPI_qtd_alertas_mes">Não houve problemas </h1>
                     </div>
                     <div class="kpi1">
                         <p>Horário com mais problemas</p>
@@ -135,9 +135,9 @@
                             } else if (resposta.mes == 11) {
                                 KPI_qtd_alertas_mes.innerHTML = `Novembro (${resposta.quantidade})`;
                             } else {
-                                KPI_qtd_alertas_mes.innerHTML = `Dezembro (${resposta.quantidade})`
+                                KPI_qtd_alertas_mes.innerHTML = `Dezembro (${resposta.quantidade})`;
                             }
-                        }
+                        } 
                     });
                 });
             });
@@ -298,7 +298,7 @@
             })
             .then(data => {
 
-                const labels = data.map(item => item.hora);
+                const labels = data.map(item => item.periodo);
                 const dados = data.map(item => item.quantidade);
 
                 console.log(labels, dados);

@@ -15,7 +15,12 @@
     <title>Estufas</title>
 </head>
 
-<body onload="validarSessao(), exibirEstufas()">
+<body onload="validarSessao(), 
+exibirEstufas(), 
+graficoProblemasTotaisMes(),
+graficoProblemasDiarios(), 
+KPIProblemasMes(), 
+KPIProblemasTotais()">
 
     <section class="menu-lateral">
         <div class="identificacao">
@@ -26,7 +31,8 @@
         <div>
             <a href="../Estufas/Estufas.html"><button class="btn-estufa" id="btn-ativo-menu">Estufas</button></a>
             <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar">Gerenciamento</button></a>
-            <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button class="btn-gerenciar">Suporte</button></a>
+            <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button
+                    class="btn-gerenciar">Suporte</button></a>
         </div>
         <div>
             <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
@@ -39,12 +45,12 @@
         <nav>
             <div class="IndicadorProblemas" id="qtd_problemas_atual">
                 <h5>Estufas com Problemas</h5>
-                <p>20/<span id="qtd_estufas_empresa_kpi1">qtdEstufas</span></p>
+                <p><span id="qtd_estufas_problema">--</span>/<span id="qtd_estufas_empresa_kpi1">--</span></p>
             </div>
-            
+
             <div class="IndicadorProblemas" id="qtd_mes">
                 <h5>Estufas com Problemas no Mês</h5>
-                <p>50/<span id="qtd_estufas_empresa_kpi3">qtdEstufas</span></p>
+                <p><span id="qtd_estufas_problema_mes">--</span>/<span id="qtd_estufas_empresa_kpi3">--</span></p>
             </div>
         </nav>
 
@@ -58,9 +64,9 @@
                 <div class="gráfico-global">
                     <canvas id="grafico1"></canvas>
                 </div>
-                
+
                 <div class="gráfico-global">
-                    <canvas id="grafico3"></canvas>
+                    <canvas id="grafico2"></canvas>
                 </div>
             </div>
         </div>
@@ -75,6 +81,8 @@
 </html>
 
 <script>
+
+
     const stringEstufas = (sessionStorage.getItem('ESTUFAS'));
 
     const arrayEstufas = JSON.parse(stringEstufas);
@@ -82,7 +90,7 @@
     const qtdEstufas = arrayEstufas.length
 
     qtd_estufas_empresa_kpi1.innerHTML = qtdEstufas
-    
+
     qtd_estufas_empresa_kpi3.innerHTML = qtdEstufas
 
     function exibirEstufas() {
@@ -106,23 +114,45 @@
         sessionStorage.setItem('ESTUFA_ATUAL', id);
     }
 
+    function KPIProblemasMes() {
+        let token = sessionStorage.EMPRESA_TOKEN
 
+        fetch(`/estufas//KPIProblemasMes/${token}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((resposta) => {
+                        if (resposta.quantidade) {
+                            qtd_estufas_problema_mes.innerHTML = `${resposta.quantidade}`;
+                        }
+                    });
+                });
+            });
+    }
 
-    // <div class="card-aquario">
-    //     <div class="title-aquario">
-    //         <h1>Estufa ${item.id}</h1>
-    //     </div>
-    //     <div class="desc-aquario">
-    //     <div class="temperatura">
-    //         <p id="temp_aquario_${item.id}">-°C</p>
-    //     </div>
-    //         <div class="cor-alerta" id="card_${item.id}"></div>
-    //     </div>
-    // </div>
+    function KPIProblemasTotais() {
+        let token = sessionStorage.EMPRESA_TOKEN
 
-
-
-
+        fetch(`/estufas//KPIProblemasTotais/${token}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((resposta) => {
+                        if (resposta.quantidade) {
+                            qtd_estufas_problema.innerHTML = `${resposta.quantidade}`;
+                        }
+                    });
+                });
+            });
+    }
 
     const estufas = document.getElementById('estufas');
 
@@ -179,53 +209,87 @@
 <script>
     var ctx = document.getElementById('grafico1').getContext('2d');
 
-    var grafico1 = new Chart(ctx, {
-        type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
-        data: {
-            labels: ['Fevereiro', 'Março', 'Abril', 'Maio'], // Quantidade de vezes que ficou "Crítico" nos últimos quatro meses
-            datasets: [{
-                label: 'Quantidade de Problemas Mensais', // Rótulo do conjunto de dados
-                data: [12, 19, 3, 5, 2, 3], // Dados para o gráfico
-                backgroundColor: [
-                    'rgba(15, 200, 132, 1)'
+    function graficoProblemasTotaisMes() {
 
-                ],
-            }]
-        },
-        options: {
-            responsive: true, // Torna o gráfico responsivo
-            maintainAspectRatio: false, // Permite que o gráfico preencha o contêiner
-            scales: {
-                y: {
-                    beginAtZero: true // Iniciar o eixo y no zero
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
-                            weight: 'bolder' // Deixa a letra da legenda mais grossa
-                        },
-                        backgroundColor: 'green',
-                        boxWidth: 20, // Largura do quadrado da legenda
-                        boxHeight: 10, // Altura do quadrado da legenda (Chart.js 3.7.0+)
-                        usePointStyle: true, // Usar o estilo de ponto (círculo) ao invés do quadrado
-                        pointStyle: 'circle'
-                    }
-                }
+        var token = sessionStorage.EMPRESA_TOKEN;
+
+        fetch(`/estufas/graficoProblemasTotaisMes/${token}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
             }
-        }
-    });
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar os dados');
+                }
+                return response.json();
+            })
+            .then(data => {
 
+                const meses = [
+                    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+                ];
 
+                const labels = data.map(item => `${meses[item.mes - 1]}/${item.ano}`);
+                const dados = data.map(item => item.quantidade);
 
+                console.log(labels, dados);
 
+                var grafico1 = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Quantidade',
+                            data: dados,
+                            backgroundColor: 'rgba(15, 200, 132, 1)',
+                            skipNull: true
+                        }]
+                    },
+                    options: {
+                        responsive: true, // Torna o gráfico responsivo
+                        maintainAspectRatio: false, // Permite que o gráfico preencha o contêiner
+                        scales: {
+                            y: {
+                                beginAtZero: true // Iniciar o eixo y no zero
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Quantidade de alertas por mês',
+                                font: {
+                                    size: 15
+                                },
+                                padding: {
+                                    top: 15,
+                                    bottom: 3
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    font: {
+                                        weight: 'bolder' // Deixa a letra da legenda mais grossa
+                                    },
+                                    backgroundColor: 'green',
+                                    boxWidth: 20, // Largura do quadrado da legenda
+                                    boxHeight: 10, // Altura do quadrado da legenda (Chart.js 3.7.0+)
+                                    usePointStyle: true, // Usar o estilo de ponto (círculo) ao invés do quadrado
+                                    pointStyle: 'circle'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
 
-    
+    }
 
-    var ctx = document.getElementById('grafico3').getContext('2d');
+    var ctx2 = document.getElementById('grafico2').getContext('2d');
 
-    var grafico3 = new Chart(ctx, {
+    var grafico2 = new Chart(ctx2, {
         type: 'bar', // Tipo do gráfico: bar, line, pie, etc.
         data: {
             labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'], // Rótulos do eixo x
