@@ -97,21 +97,25 @@ function graficoProblemasDiarios(token) {
     console.log("ACESSEI O ANALISE MODEL para montar o grafico de problemas em cada dia, function graficoProblemasDiarios()", token);
 
     var instrucao = `
-  SELECT
-      DATE_FORMAT(lei.DataHora_medida, '%m') AS mes,
-      DATE_FORMAT(lei.DataHora_medida, '%y') AS ano,
-      COUNT(*) AS quantidade
-  FROM leitura lei
-  JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
-  JOIN estufa est ON cs.fk_estufa = est.id
-  JOIN metricas met ON est.id = met.fk_estufa
-  WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
-      OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
-      OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
-      AND est.fk_empresa = ${token}
-  GROUP BY mes, ano
-  ORDER BY mes DESC LIMIT 4;
-  `;
+SELECT
+	dia,
+    mes,
+    COUNT(*) AS quantidade
+FROM (
+    SELECT
+		DATE_FORMAT(lei.DataHora_medida, '%d') AS dia,
+		DATE_FORMAT(lei.DataHora_medida, '%m') AS mes        
+    FROM leitura lei
+    JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+    JOIN estufa est ON cs.fk_estufa = est.id
+    JOIN metricas met ON est.id = met.fk_estufa
+    WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+        OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+        OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
+        AND est.id = 501
+) AS subquery
+GROUP BY dia, mes
+ORDER BY mes DESC, dia DESC LIMIT 7;`;
 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
