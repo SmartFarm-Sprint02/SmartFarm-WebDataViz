@@ -158,42 +158,90 @@ KPIProblemasTotais()">
 
     // Função para ordenar por cor de fundo
 
-    function mostrarEstufasAntigo() {
-        for (let i = 0; i < 100; i++) {
+    // function mostrarEstufasAntigo() {
+    //     for (let i = 0; i < 100; i++) {
+    //         const div = document.createElement('div');
+    //         div.className = 'estufa';
+
+    //         // div.style.backgroundColor = colors[i % colors.length];
+
+    //         const titulo = document.createElement('h1');
+    //         titulo.textContent = 'Estufa ' + (i + 1);
+
+    //         const img = document.createElement('img');
+
+
+    //         const a = document.createElement('a');
+    //         a.textContent = 'Visualizar ';
+    //         a.href = '../Dashboard/historico.html'
+
+    //         div.appendChild(titulo);
+    //         div.appendChild(img);
+    //         div.appendChild(a);
+
+    //         if (i < 20) {
+    //             div.style.backgroundColor = '#CE0606';
+    //             img.src = '../img/critico.png'
+    //         } else if (i < 50) {
+    //             div.style.backgroundColor = '#E7D31B';
+    //             img.src = '../img/alerta.png'
+    //         } else {
+    //             div.style.backgroundColor = '#2A9C0D';
+    //             img.src = '../img/ok.png'
+    //         }
+
+    //         estufas.appendChild(div);
+    //     }
+
+    // }
+
+    async function mostrarEstufas(token) {
+    try {
+        const estufas = await buscarEstufasPorEmpresa(token); // Supondo que retorna uma promessa com os dados
+        const estufasContainer = document.getElementById('estufas'); // Certifique-se de ter um contêiner com esse ID
+
+        estufasContainer.innerHTML = ''; // Limpa o contêiner antes de adicionar novos elementos
+
+        const colors = {
+            critico: '#CE0606',
+            alerta: '#E7D31B',
+            ok: '#2A9C0D'
+        };
+
+        estufas.forEach((estufa, i) => {
             const div = document.createElement('div');
             div.className = 'estufa';
-
-            // div.style.backgroundColor = colors[i % colors.length];
 
             const titulo = document.createElement('h1');
             titulo.textContent = 'Estufa ' + (i + 1);
 
             const img = document.createElement('img');
-
-
             const a = document.createElement('a');
-            a.textContent = 'Visualizar ';
-            a.href = '../Dashboard/historico.html'
+            a.textContent = 'Visualizar';
+            a.href = '../Dashboard/historico.html';
 
             div.appendChild(titulo);
             div.appendChild(img);
             div.appendChild(a);
 
-            if (i < 20) {
-                div.style.backgroundColor = '#CE0606';
-                img.src = '../img/critico.png'
-            } else if (i < 50) {
-                div.style.backgroundColor = '#E7D31B';
-                img.src = '../img/alerta.png'
+            // Lógica de cores com base em temperatura, umidade e luminosidade
+            if (estufa.temperatura > VALOR_LIMITE_TEMPERATURA || estufa.umidade > VALOR_LIMITE_UMIDADE || estufa.luminosidade > VALOR_LIMITE_LUMINOSIDADE) {
+                div.style.backgroundColor = colors.critico;
+                img.src = '../img/critico.png';
+            } else if (estufa.temperatura > OUTRO_VALOR_LIMITE_TEMPERATURA || estufa.umidade > OUTRO_VALOR_LIMITE_UMIDADE || estufa.luminosidade > OUTRO_VALOR_LIMITE_LUMINOSIDADE) {
+                div.style.backgroundColor = colors.alerta;
+                img.src = '../img/alerta.png';
             } else {
-                div.style.backgroundColor = '#2A9C0D';
-                img.src = '../img/ok.png'
+                div.style.backgroundColor = colors.ok;
+                img.src = '../img/ok.png';
             }
 
-            estufas.appendChild(div);
-        }
-
+            estufasContainer.appendChild(div);
+        });
+    } catch (error) {
+        console.error('Erro ao buscar as estufas:', error);
     }
+}
 
 
 

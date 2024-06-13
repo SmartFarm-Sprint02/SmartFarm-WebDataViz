@@ -1,128 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="../../js/sessao.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="shortcut icon"
-      href="../../imgs/favicon.ico"
-      type="image/x-icon"
-    />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+  <script src="../../js/sessao.js"></script>
 
-    <link rel="stylesheet" href="../css/style.css" />
-    <title>Histórico | SmartFarm</title>
-  </head>
+  <link rel="shortcut icon" href="../../imgs/favicon.ico" type="image/x-icon" />
 
-  <body onload="obterDadosGrafico()">
-    <section class="menu-lateral">
-      <div class="identificacao">
-        <h1 id="nome_empresa">Empresa</h1>
-        <h2 id="b_usuario">Usuário</h2>
+  <link rel="stylesheet" href="../css/style.css" />
+  <title>Histórico | SmartFarm</title>
+</head>
+
+<body onload="obterDadosGrafico(), buscarMetricas()">
+  <section class="menu-lateral">
+    <div class="identificacao">
+      <h1 id="nome_empresa">Empresa</h1>
+      <h2 id="b_usuario">Usuário</h2>
+    </div>
+
+    <div>
+      <a href="../Estufas/Estufas.html"><button class="btn-estufa">Estufas</button></a>
+      <a href="../Gerenciar/Gerenciar.html"><button class="btn-gerenciar" id="btn-ativo">
+          Gerenciamento
+        </button></a>
+      <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"><button
+          class="btn-gerenciar">Suporte</button></a>
+    </div>
+    <div>
+      <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
+
+      <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm" />
+    </div>
+  </section>
+
+  <section class="main-section">
+    <div class="inicio-main">
+      <div>
+        <h1 id="titulo_estufa">Estufa</h1>
       </div>
+      <a href="historico.html"><button class="btn-navbar-dash">Histórico</button></a>
+      <a href="analise.html"><button class="btn-navbar-dash" id="btn-ativo">Análise</button></a>
 
       <div>
-        <a href="../Estufas/Estufas.html"
-          ><button class="btn-estufa">Estufas</button></a
-        >
-        <a href="../Gerenciar/Gerenciar.html"
-          ><button class="btn-gerenciar" id="btn-ativo">
-            Gerenciamento
-          </button></a
-        >
-        <a href="https://suportesmartfarm.hipporello.net/desk" target="_blank"
-          ><button class="btn-gerenciar">Suporte</button></a
-        >
+        <h5>Leitura mais recente:</h5>
+        <p id="ultima_leitura">xx/xx/xxxx - xx:xx</p>
       </div>
-      <div>
-        <a><button onclick="limparSessao()" class="btn-sair">Sair</button></a>
+    </div>
+    <div id="graficos"></div>
 
-        <img src="../img/Logo SmartFarm Branco.png" alt="Logo da SmartFarm" />
-      </div>
-    </section>
-
-    <section class="main-section">
-      <div class="inicio-main">
-        <div>
-          <h1 id="titulo_estufa">Estufa</h1>
+    <div class="graficos_temp">
+      <div class="infos-grafico">
+        <div id="alerta_temp" class="alerta">
+          <p id="mensagem_alerta_temp">Em Alerta</p>
         </div>
-        <a href="historico.html"
-          ><button class="btn-navbar-dash">Histórico</button></a
-        >
-        <a href="analise.html"
-          ><button class="btn-navbar-dash" id="btn-ativo">Análise</button></a
-        >
-
-        <div>
-          <h5>Leitura mais recente:</h5>
-          <p id="ultima_leitura">xx/xx/xxxx - xx:xx</p>
-        </div>
-      </div>
-      <div id="graficos"></div>
-
-      <div class="graficos_temp">
-        <div class="infos-grafico">
-          <div id="alerta_temp" class="alerta">
-            <p>Em Alerta</p>
-          </div>
-          <div class="valores">
-            <p>Temperatura</p>
-            <h1 id="leitura_temp">20°C</h1>
-          </div>
-        </div>
-
-        <div class="grafico-div">
-          <section id="grafico_temp" class="grafico">
-            <canvas id="dht11Temperatura" width="30px" height="10px"></canvas>
-          </section>
+        <div class="valores" id="valores_temp">
+          <p>Temperatura</p>
+          <h1 id="leitura_temp">20°C</h1>
         </div>
       </div>
 
+      <div class="grafico-div">
+        <section id="grafico_temp" class="grafico">
+          <canvas id="dht11Temperatura" width="30px" height="10px"></canvas>
+        </section>
+      </div>
+    </div>
 
-      <div class="graficos_umid">
-        <div class="infos-grafico">
-          <div id="alerta_umid" class="alerta">
-            <p>Crítico</p>
-          </div>
-          <div class="valores">
-            <p>Umidade</p>
-            <h1 id="leitura_umid">80%</h1>
-          </div>
+
+    <div class="graficos_umid">
+      <div class="infos-grafico">
+        <div id="alerta_umid" class="alerta">
+          <p id="mensagem_alerta_umid">Crítico</p>
         </div>
-
-        <div class="grafico-div">
-          <section id="grafico_umid" class="grafico">
-            <canvas id="dht11Umidade" width="30px" height="10px"></canvas>
-          </section>
+        <div class="valores" id="valores_umid">
+          <p>Umidade</p>
+          <h1 id="leitura_umid">80%</h1>
         </div>
       </div>
 
+      <div class="grafico-div">
+        <section id="grafico_umid" class="grafico">
+          <canvas id="dht11Umidade" width="30px" height="10px"></canvas>
+        </section>
+      </div>
+    </div>
 
-      <div class="graficos_lumi">
-        <div class="infos-grafico">
-          <div id="alerta_lumi" class="alerta">
-            <p>Estável</p>
-          </div>
-          <div class="valores">
-            <p>Luminosidade</p>
-            <h1 id="leitura_lumi">600lux</h1>
-          </div>
+
+    <div class="graficos_lumi">
+      <div class="infos-grafico">
+        <div id="alerta_lumi" class="alerta">
+          <p id="mensagem_alerta_lumi">Estável</p>
         </div>
-
-        <div class="grafico-div">
-          <section class="grafico" id>
-            <canvas id="luminosidade" width="30px" height="10px"></canvas>
-          </section>
+        <div class="valores" id="valores_lumi">
+          <p>Luminosidade</p>
+          <h1 id="leitura_lumi">600lux</h1>
         </div>
       </div>
 
+      <div class="grafico-div">
+        <section class="grafico">
+          <canvas id="luminosidade" width="30px" height="10px"></canvas>
+        </section>
+      </div>
+    </div>
 
-    </section>
-  </body>
+
+  </section>
+</body>
+
 </html>
 <script>
   let idEstufa = sessionStorage.ESTUFA_ATUAL;
@@ -207,7 +196,7 @@
           data: [],
           fill: false,
           backgroundColor: 'rgb(178, 117, 4)',
-          borderColor:'rgb(178, 117, 4)',
+          borderColor: 'rgb(178, 117, 4)',
           tension: 0.1,
         },
       ],
@@ -233,10 +222,61 @@
     var ultimoRegistro = resposta[6];
 
     sessionStorage.DATA_HORA_MEDIDA = ultimoRegistro.DataHoraMedida
+    var maxTemp = sessionStorage.TEMP_MAXIMA;
+    var minTemp = sessionStorage.TEMP_MINIMA;
+    var maxUmid = sessionStorage.UMID_MAXIMA;
+    var minUmid = sessionStorage.UMID_MINIMA;
+    var maxLumi = sessionStorage.LUMI_MAXIMA;
+    var minLumi = sessionStorage.LUMI_MINIMA;
 
-    leitura_temp.innerHTML = `${ultimoRegistro.Temperatura}`;
+    leitura_temp.innerHTML = `${ultimoRegistro.Temperatura}ºC`;
+
+    if (ultimoRegistro.Temperatura > maxTemp || ultimoRegistro.Temperatura < minTemp) {
+      alerta_temp.style.backgroundColor = "red";
+      valores_temp.style.borderColor = "red";
+      mensagem_alerta_temp.innerHTML = "Crítico";
+    } else if (ultimoRegistro.Temperatura >= maxTemp * 0.9) {
+      alerta_temp.style.backgroundColor = "yellow";
+      valores_temp.style.borderColor = "yellow";
+      mensagem_alerta_temp.innerHTML = "Em alerta";
+    } else {
+      alerta_temp.style.backgroundColor = "green";
+      valores_temp.style.borderColor = "green";
+      mensagem_alerta_temp.innerHTML = "Estável";
+    }
+
     leitura_umid.innerHTML = `${ultimoRegistro.Umidade}%`;
+
+    if (ultimoRegistro.Umidade > maxUmid || ultimoRegistro.Umidade < minUmid) {
+      alerta_umid.style.backgroundColor = "red";
+      valores_umid.style.borderColor = "red";
+      mensagem_alerta_umid.innerHTML = "Crítico";
+    } else if (ultimoRegistro.Umidade >= maxUmid * 0.9) {
+      alerta_umid.style.backgroundColor = "yellow";
+      valores_umid.style.borderColor = "yellow";
+      mensagem_alerta_umid.innerHTML = "Em alerta";
+    } else {
+      alerta_umid.style.backgroundColor = "green";
+      valores_umid.style.borderColor = "green";
+      mensagem_alerta_umid.innerHTML = "Estável";
+    }
+
     leitura_lumi.innerHTML = `${ultimoRegistro.Luminosidade}`;
+
+    if (ultimoRegistro.Luminosidade > maxLumi || ultimoRegistro.Luminosidade < minLumi) {
+      alerta_lumi.style.backgroundColor = "red";
+      valores_lumi.style.borderColor = "red";
+      mensagem_alerta_lumi.innerHTML = "Crítico";
+    } else if (ultimoRegistro.Luminosidade >= maxLumi * 0.9) {
+      alerta_lumi.style.backgroundColor = "yellow";
+      valores_lumi.style.borderColor = "yellow";
+      mensagem_alerta_lumi.innerHTML = "Em alerta";
+    } else {
+      alerta_lumi.style.backgroundColor = "green";
+      valores_lumi.style.borderColor = "green";
+      mensagem_alerta_lumi.innerHTML = "Estável";
+    }
+
     ultima_leitura.innerHTML = `${ultimoRegistro.DataHoraMedida}`;
 
     console.log("----------------------------------------------");
@@ -315,7 +355,7 @@
             console.log(`Dados atuais do gráfico:`);
             console.log(novoRegistro);
 
-           
+
             if (novoRegistro[0].id == dadosTemperatura.labels[dadosTemperatura.labels.length - 1]) {
               console.log(
                 "---------------------------------------------------------------"
@@ -323,7 +363,7 @@
               console.log(
                 "Como não há dados novos para captura, o gráfico não atualizará."
               );
-              
+
               console.log("Horário do novo dado capturado:");
               console.log(novoRegistro[0].id);
               console.log("Horário do último dado capturado:");
@@ -375,7 +415,7 @@
                   myChartUmidade,
                   myChartLuminosidade
                 ),
-                10000
+              10000
             );
           });
         } else {
@@ -392,7 +432,7 @@
                 myChartUmidade,
                 myChartLuminosidade
               ),
-              10000
+            10000
           );
         }
       })
@@ -403,5 +443,52 @@
       });
   }
 
- 
+  function buscarMetricas() {
+
+    estufaID = sessionStorage.ESTUFA_SELECT
+
+    fetch(`/metricas/buscarMetricas/${estufaID}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO buscarMetricas()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+
+          sessionStorage.TEMP_MINIMA = json[0].TempMinima;
+          sessionStorage.TEMP_MAXIMA = json[0].TempMaxima;
+          sessionStorage.UMID_MINIMA = json[0].UmidMinima;
+          sessionStorage.UMID_MAXIMA = json[0].UmidMaxima;
+          sessionStorage.LUMI_MINIMA = json[0].LuminMinima;
+          sessionStorage.LUMI_MAXIMA = json[0].LuminMaxima;
+
+          carregarMetricas()
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar buscar os Carros!");
+        resposta.text().then(texto => {
+          console.error(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+
+
+
+  }
+
 </script>
