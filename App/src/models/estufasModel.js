@@ -2,7 +2,43 @@ var database = require("../database/config");
 
 function buscarEstufasPorEmpresa(token) {
 
-    var instrucaoSql = `select * from smartfarm.estufa WHERE fk_empresa = ${token}`;
+    var instrucaoSql = `    
+    SELECT 
+    est.id,
+    CASE 
+        WHEN SUM(CASE WHEN (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+                      OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+                      OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima) 
+                      THEN 1 ELSE 0 END) > 0 THEN 'Crítico'
+        WHEN SUM(CASE WHEN (lei.temperatura = met.TempMinima OR lei.temperatura = met.TempMaxima
+                      OR lei.umidade = met.UmidMinima OR lei.umidade = met.UmidMaxima
+                      OR lei.luminosidade = met.LuminMinima OR lei.luminosidade = met.LuminMaxima) 
+                      THEN 1 ELSE 0 END) > 0 THEN 'Alerta'
+        ELSE 'Estável'
+    END AS status
+FROM 
+    leitura lei
+JOIN 
+    conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN 
+    estufa est ON cs.fk_estufa = est.id
+JOIN 
+    metricas met ON est.id = met.fk_estufa
+WHERE 
+    est.fk_empresa = ${token}
+    AND lei.id IN (
+        SELECT sub.id
+        FROM (
+            SELECT lei.id
+            FROM leitura lei
+            WHERE lei.fk_sensores = cs.id
+            ORDER BY lei.DataHora_medida DESC
+            LIMIT 7
+        ) AS sub
+    )
+GROUP BY 
+    est.id;
+    `;
 
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

@@ -94,18 +94,33 @@ KPIProblemasTotais()">
     qtd_estufas_empresa_kpi3.innerHTML = qtdEstufas
 
     function exibirEstufas() {
-        JSON.parse(sessionStorage.ESTUFAS).forEach(item => {
-            document.getElementById("estufas").innerHTML += `
-                    <div class="estufa" style="background-color: rgb(206, 6, 6);">
-                        <h1>Estufa ${item.id}</h1>
-                        <img src="../img/Critico.png">
-                        <a href="../Dashboard/historico.html" id="estufa_${item.id}" onclick="obterDadosEstufa(${item.id})">
-                                Visualizar
-                        </a>
-                    </div>
-                    `
-        });
-    }
+    JSON.parse(sessionStorage.ESTUFAS).forEach(item => {
+        let situacao = "";
+        let cor = "";
+
+        if (item.status == "Crítico") {
+            situacao = "Critico"; // Corrigido para "Crítico"
+            cor = "#CE0606";
+        } else if (item.status == "Em Alerta") {
+            situacao = "Alerta"; // Corrigido para "Alerta"
+            cor = "#E7D31B";
+        } else {
+            situacao = "OK"; // Corrigido para "OK"
+            cor = "#2A9C0D";
+        }
+
+        document.getElementById("estufas").innerHTML += `
+            <div class="estufa" style="background-color: ${cor};">
+                <h1>Estufa ${item.id}</h1>
+                <img src="../img/${situacao}.png">  
+                <a href="../Dashboard/historico.html" id="estufa_${item.id}" onclick="obterDadosEstufa(${item.id})">
+                    Visualizar
+                </a>
+            </div>
+        `;
+    });
+}
+
 
     function obterDadosEstufa(id) {
         console.log("Estufa " + id + " selecionada");

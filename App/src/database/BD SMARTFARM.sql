@@ -397,7 +397,7 @@ values
 
 INSERT INTO smartfarm.leitura(id, temperatura, umidade, luminosidade, DataHora_medida,fk_sensores)
 VALUES (NULL, '26.13', '85.14', '865.04', '2024-05-17 04:05:37', 1000),
-(NULL, '20.59', '85.64', '816.65', '2024-04-21 04:01:47', 1000),
+(NULL, '26.59', '81.64', '816.65', '2024-04-21 04:01:47', 1002),
 (NULL, '22.48', '76.98', '922.72', '2024-01-30 17:36:49', 1000),
 (NULL, '23.19', '70.28', '772.78', '2024-04-28 13:31:10', 1000),
 (NULL, '34.21', '72.74', '886.79', '2024-02-13 23:01:50', 1000),
@@ -1147,6 +1147,8 @@ VALUES (NULL, '26.13', '85.14', '865.04', '2024-05-17 04:05:37', 1000),
 (NULL, '22.44', '84.33', '925.65', '2024-06-02 12:17:19', 1074),
 (NULL, '21.75', '77.65', '921.32', '2024-04-05 19:17:13', 1074);
 
+
+select * from smartfarm.usuario;
 -- -------------------------------------------------------------------------------------------------------- --
 -- --------------------------------------------- SELECTS -------------------------------------------------- --
 -- -------------------------------------------------------------------------------------------------------- --
@@ -1345,9 +1347,84 @@ WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
     OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
     OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
     AND est.fk_empresa = 100000;
-
-
-
-
-
+    
 use smartfarm;
+
+SELECT est.id
+FROM leitura lei
+JOIN conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN estufa est ON cs.fk_estufa = est.id
+JOIN metricas met ON est.id = met.fk_estufa
+WHERE (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+    OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+    OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
+    AND est.fk_empresa = 100000;
+
+
+SELECT 
+    est.id,
+    CASE
+        WHEN lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+            OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+            OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima
+            THEN 'Crítico'
+        WHEN (lei.temperatura >= met.TempMinima AND lei.temperatura <= met.TempMaxima)
+            AND (lei.umidade >= met.UmidMinima AND lei.umidade <= met.UmidMaxima)
+            AND (lei.luminosidade >= met.LuminMinima AND lei.luminosidade <= met.LuminMaxima)
+            THEN 'Estável'
+        ELSE 'Em Alerta'
+    END AS situacao
+FROM 
+    leitura lei
+JOIN 
+    conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN 
+    estufa est ON cs.fk_estufa = est.id
+JOIN 
+    metricas met ON est.id = met.fk_estufa
+WHERE 
+    est.fk_empresa = 100000;
+    
+    
+    
+SELECT 
+    est.id,
+    CASE 
+        WHEN SUM(CASE WHEN (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
+                      OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
+                      OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima) 
+                      THEN 1 ELSE 0 END) > 0 THEN 'Crítico'
+        WHEN SUM(CASE WHEN (lei.temperatura = met.TempMinima OR lei.temperatura = met.TempMaxima
+                      OR lei.umidade = met.UmidMinima OR lei.umidade = met.UmidMaxima
+                      OR lei.luminosidade = met.LuminMinima OR lei.luminosidade = met.LuminMaxima) 
+                      THEN 1 ELSE 0 END) > 0 THEN 'Alerta'
+        ELSE 'Estável'
+    END AS status
+FROM 
+    leitura lei
+JOIN 
+    conjuntoSensores cs ON lei.fk_sensores = cs.id
+JOIN 
+    estufa est ON cs.fk_estufa = est.id
+JOIN 
+    metricas met ON est.id = met.fk_estufa
+WHERE 
+    est.fk_empresa = 100000
+    AND lei.id IN (
+        SELECT sub.id
+        FROM (
+            SELECT lei.id
+            FROM leitura lei
+            WHERE lei.fk_sensores = cs.id
+            ORDER BY lei.DataHora_medida DESC
+            LIMIT 7
+        ) AS sub
+    )
+GROUP BY 
+    est.id;
+
+select * from smartfarm.estufa WHERE fk_empresa = 100000;
+
+
+
+

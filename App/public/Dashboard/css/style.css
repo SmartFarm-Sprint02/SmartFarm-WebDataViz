@@ -730,7 +730,7 @@ body {
 
     width: 100px;
     height: 100px;
-    background-color: var(--greenOK);
+    
 
     border: var(--blackSmart) 3px solid;
     border-radius: 10px;
