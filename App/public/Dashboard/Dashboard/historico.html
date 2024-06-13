@@ -114,11 +114,13 @@
 
 </html>
 <script>
+
+
   let idEstufa = sessionStorage.ESTUFA_ATUAL;
 
   let proximaAtualizacao;
 
-  window.onload = obterDadosGrafico(idEstufa), validarSessao();
+  window.onload = obterDadosGrafico(idEstufa), validarSessao(), buscarMetricas();
 
   function alterarTitulo() {
     let tituloEstufa = document.getElementById("titulo_estufa");
@@ -232,49 +234,62 @@
     leitura_temp.innerHTML = `${ultimoRegistro.Temperatura}ºC`;
 
     if (ultimoRegistro.Temperatura > maxTemp || ultimoRegistro.Temperatura < minTemp) {
-      alerta_temp.style.backgroundColor = "red";
-      valores_temp.style.borderColor = "red";
+      alerta_temp.style.backgroundColor = "#CE0606";
+      valores_temp.style.borderColor = "#CE0606";
       mensagem_alerta_temp.innerHTML = "Crítico";
-    } else if (ultimoRegistro.Temperatura >= maxTemp * 0.9) {
-      alerta_temp.style.backgroundColor = "yellow";
-      valores_temp.style.borderColor = "yellow";
+      alerta_temp.style.color = "#F5FAFF"
+    } else if (ultimoRegistro.Temperatura >= maxTemp * 0.9
+      || ultimoRegistro.Temperatura <= minTemp * 1.1
+    ) {
+      alerta_temp.style.backgroundColor = "#E7D31B";
+      valores_temp.style.borderColor = "#E7D31B";
       mensagem_alerta_temp.innerHTML = "Em alerta";
+      alerta_temp.style.color = "#001220"
     } else {
-      alerta_temp.style.backgroundColor = "green";
-      valores_temp.style.borderColor = "green";
+      alerta_temp.style.backgroundColor = "#2A9C0D";
+      valores_temp.style.borderColor = "#2A9C0D";
       mensagem_alerta_temp.innerHTML = "Estável";
+      alerta_temp.style.color = "#F5FAFF"
     }
 
     leitura_umid.innerHTML = `${ultimoRegistro.Umidade}%`;
 
     if (ultimoRegistro.Umidade > maxUmid || ultimoRegistro.Umidade < minUmid) {
-      alerta_umid.style.backgroundColor = "red";
-      valores_umid.style.borderColor = "red";
+      alerta_umid.style.backgroundColor = "#CE0606";
+      valores_umid.style.borderColor = "#CE0606";
       mensagem_alerta_umid.innerHTML = "Crítico";
-    } else if (ultimoRegistro.Umidade >= maxUmid * 0.9) {
-      alerta_umid.style.backgroundColor = "yellow";
-      valores_umid.style.borderColor = "yellow";
+      mensagem_alerta_umid.style.color = "#F5FAFF"
+    } else if (ultimoRegistro.Umidade >= maxUmid * 0.9
+    || ultimoRegistro.Umidade <= minTemp * 1.1) {
+      alerta_umid.style.backgroundColor = "#E7D31B";
+      valores_umid.style.borderColor = "#E7D31B";
       mensagem_alerta_umid.innerHTML = "Em alerta";
+      mensagem_alerta_umid.style.color = "#001220"
     } else {
-      alerta_umid.style.backgroundColor = "green";
-      valores_umid.style.borderColor = "green";
+      alerta_umid.style.backgroundColor = "#2A9C0D";
+      valores_umid.style.borderColor = "#2A9C0D";
       mensagem_alerta_umid.innerHTML = "Estável";
+      mensagem_alerta_umid.style.color = "#F5FAFF"
     }
 
     leitura_lumi.innerHTML = `${ultimoRegistro.Luminosidade}`;
 
     if (ultimoRegistro.Luminosidade > maxLumi || ultimoRegistro.Luminosidade < minLumi) {
-      alerta_lumi.style.backgroundColor = "red";
-      valores_lumi.style.borderColor = "red";
+      alerta_lumi.style.backgroundColor = "#CE0606";
+      valores_lumi.style.borderColor = "#CE0606";
       mensagem_alerta_lumi.innerHTML = "Crítico";
-    } else if (ultimoRegistro.Luminosidade >= maxLumi * 0.9) {
-      alerta_lumi.style.backgroundColor = "yellow";
-      valores_lumi.style.borderColor = "yellow";
+      mensagem_alerta_lumi.style.color = "#F5FAFF"
+    } else if (ultimoRegistro.Luminosidade >= maxLumi * 0.9
+      || ultimoRegistro.Luminosidade <= minLumi * 1.1) {
+      alerta_lumi.style.backgroundColor = "#E7D31B";
+      valores_lumi.style.borderColor = "#E7D31B";
       mensagem_alerta_lumi.innerHTML = "Em alerta";
+      mensagem_alerta_lumi.style.color = "#001220"
     } else {
-      alerta_lumi.style.backgroundColor = "green";
-      valores_lumi.style.borderColor = "green";
+      alerta_lumi.style.backgroundColor = "#2A9C0D";
+      valores_lumi.style.borderColor = "#2A9C0D";
       mensagem_alerta_lumi.innerHTML = "Estável";
+      mensagem_alerta_lumi.style.color = "#F5FAFF"
     }
 
     ultima_leitura.innerHTML = `${ultimoRegistro.DataHoraMedida}`;
@@ -445,7 +460,7 @@
 
   function buscarMetricas() {
 
-    estufaID = sessionStorage.ESTUFA_SELECT
+    estufaID = sessionStorage.ESTUFA_ATUAL
 
     fetch(`/metricas/buscarMetricas/${estufaID}`, {
       method: "GET",
@@ -469,7 +484,7 @@
           sessionStorage.LUMI_MINIMA = json[0].LuminMinima;
           sessionStorage.LUMI_MAXIMA = json[0].LuminMaxima;
 
-          carregarMetricas()
+
 
         });
 

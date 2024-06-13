@@ -359,7 +359,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    color: var(--blackSmart);
+    
     font-weight: 700;
     width: 100%;
     padding: 10% 50%;
@@ -390,7 +390,7 @@ body {
 
     
 
-    color: var(--whiteSmart);
+    
     font-weight: 700;
 
     width: 100%;
@@ -423,7 +423,7 @@ body {
     padding: 12% 40%;
     margin: 5% 0%;
 
-    color: var(--whiteSmart);
+    
     font-weight: 700;
     width: 100%;
     padding: 10% 50%;
