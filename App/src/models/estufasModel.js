@@ -38,6 +38,7 @@ WHERE
     )
 GROUP BY 
     est.id;
+
     `;
 
 
