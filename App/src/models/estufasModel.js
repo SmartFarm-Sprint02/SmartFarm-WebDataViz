@@ -9,11 +9,14 @@ function buscarEstufasPorEmpresa(token) {
         WHEN SUM(CASE WHEN (lei.temperatura < met.TempMinima OR lei.temperatura > met.TempMaxima
                       OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
                       OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima) 
-                      THEN 1 ELSE 0 END) > 0 THEN 'Crítico'
-        WHEN SUM(CASE WHEN (lei.temperatura = met.TempMinima OR lei.temperatura = met.TempMaxima
-                      OR lei.umidade = met.UmidMinima OR lei.umidade = met.UmidMaxima
-                      OR lei.luminosidade = met.LuminMinima OR lei.luminosidade = met.LuminMaxima) 
-                      THEN 1 ELSE 0 END) > 0 THEN 'Alerta'
+                      THEN 1 ELSE 0 END) > 1 THEN 'Crítico'
+        WHEN SUM(CASE WHEN ((lei.temperatura BETWEEN met.TempMinima * 0.9 AND met.TempMinima
+                          OR lei.temperatura BETWEEN met.TempMaxima AND met.TempMaxima * 1.1)
+                          OR (lei.umidade BETWEEN met.UmidMinima * 0.9 AND met.UmidMinima
+                          OR lei.umidade BETWEEN met.UmidMaxima AND met.UmidMaxima * 1.1)
+                          OR (lei.luminosidade BETWEEN met.LuminMinima * 0.9 AND met.LuminMinima
+                          OR lei.luminosidade BETWEEN met.LuminMaxima AND met.LuminMaxima * 1.1))
+                      THEN 1 ELSE 0 END) > 0 THEN 'Em Alerta'
         ELSE 'Estável'
     END AS status
 FROM 
@@ -38,6 +41,7 @@ WHERE
     )
 GROUP BY 
     est.id;
+
 
     `;
 
