@@ -94,22 +94,22 @@ KPIProblemasTotais()">
     qtd_estufas_empresa_kpi3.innerHTML = qtdEstufas
 
     function exibirEstufas() {
-        JSON.parse(sessionStorage.ESTUFAS).forEach(item => {
-            let situacao = "";
-            let cor = "";
+    JSON.parse(sessionStorage.ESTUFAS).forEach(item => {
+        let situacao = "";
+        let cor = "";
 
-            if (item.status == "Crítico") {
-                situacao = "Critico"; // Corrigido para "Crítico"
-                cor = "#CE0606";
-            } else if (item.status == "Em Alerta") {
-                situacao = "Alerta"; // Corrigido para "Alerta"
-                cor = "#E7D31B";
-            } else {
-                situacao = "OK"; // Corrigido para "OK"
-                cor = "#2A9C0D";
-            }
+        if (item.status == "Crítico") {
+            situacao = "Critico"; // Corrigido para "Crítico"
+            cor = "#CE0606";
+        } else if (item.status == "Em Alerta") {
+            situacao = "Alerta"; // Corrigido para "Alerta"
+            cor = "#E7D31B";
+        } else {
+            situacao = "OK"; // Corrigido para "OK"
+            cor = "#2A9C0D";
+        }
 
-            document.getElementById("estufas").innerHTML += `
+        document.getElementById("estufas").innerHTML += `
             <div class="estufa" style="background-color: ${cor};">
                 <h1>Estufa ${item.id}</h1>
                 <img src="../img/${situacao}.png">  
@@ -118,8 +118,8 @@ KPIProblemasTotais()">
                 </a>
             </div>
         `;
-        });
-    }
+    });
+}
 
 
     function obterDadosEstufa(id) {
@@ -129,13 +129,22 @@ KPIProblemasTotais()">
 
     function KPIProblemasMes() {
         let token = sessionStorage.EMPRESA_TOKEN
-        let estufas = sessionStorage.ESTUFAS
 
-        estufas.forEach((estufas) => {
-            if (estufas.status == "Crítico") {
-                qtd_estufas_problema.innerHTML += `${estufas.quantidade}`;
+        fetch(`/estufas//KPIProblemasMes/${token}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
             }
-        });
+        })
+            .then(function (resposta) {
+                resposta.json().then((resposta) => {
+                    resposta.forEach((resposta) => {
+                        if (resposta.quantidade) {
+                            qtd_estufas_problema_mes.innerHTML = `${resposta.quantidade}`;
+                        }
+                    });
+                });
+            });
     }
 
     function KPIProblemasTotais() {
@@ -200,52 +209,52 @@ KPIProblemasTotais()">
     // }
 
     async function mostrarEstufas(token) {
-        try {
-            const estufas = await buscarEstufasPorEmpresa(token); // Supondo que retorna uma promessa com os dados
-            const estufasContainer = document.getElementById('estufas'); // Certifique-se de ter um contêiner com esse ID
+    try {
+        const estufas = await buscarEstufasPorEmpresa(token); // Supondo que retorna uma promessa com os dados
+        const estufasContainer = document.getElementById('estufas'); // Certifique-se de ter um contêiner com esse ID
 
-            estufasContainer.innerHTML = ''; // Limpa o contêiner antes de adicionar novos elementos
+        estufasContainer.innerHTML = ''; // Limpa o contêiner antes de adicionar novos elementos
 
-            const colors = {
-                critico: '#CE0606',
-                alerta: '#E7D31B',
-                ok: '#2A9C0D'
-            };
+        const colors = {
+            critico: '#CE0606',
+            alerta: '#E7D31B',
+            ok: '#2A9C0D'
+        };
 
-            estufas.forEach((estufa, i) => {
-                const div = document.createElement('div');
-                div.className = 'estufa';
+        estufas.forEach((estufa, i) => {
+            const div = document.createElement('div');
+            div.className = 'estufa';
 
-                const titulo = document.createElement('h1');
-                titulo.textContent = 'Estufa ' + (i + 1);
+            const titulo = document.createElement('h1');
+            titulo.textContent = 'Estufa ' + (i + 1);
 
-                const img = document.createElement('img');
-                const a = document.createElement('a');
-                a.textContent = 'Visualizar';
-                a.href = '../Dashboard/historico.html';
+            const img = document.createElement('img');
+            const a = document.createElement('a');
+            a.textContent = 'Visualizar';
+            a.href = '../Dashboard/historico.html';
 
-                div.appendChild(titulo);
-                div.appendChild(img);
-                div.appendChild(a);
+            div.appendChild(titulo);
+            div.appendChild(img);
+            div.appendChild(a);
 
-                // Lógica de cores com base em temperatura, umidade e luminosidade
-                if (estufa.temperatura > VALOR_LIMITE_TEMPERATURA || estufa.umidade > VALOR_LIMITE_UMIDADE || estufa.luminosidade > VALOR_LIMITE_LUMINOSIDADE) {
-                    div.style.backgroundColor = colors.critico;
-                    img.src = '../img/critico.png';
-                } else if (estufa.temperatura > OUTRO_VALOR_LIMITE_TEMPERATURA || estufa.umidade > OUTRO_VALOR_LIMITE_UMIDADE || estufa.luminosidade > OUTRO_VALOR_LIMITE_LUMINOSIDADE) {
-                    div.style.backgroundColor = colors.alerta;
-                    img.src = '../img/alerta.png';
-                } else {
-                    div.style.backgroundColor = colors.ok;
-                    img.src = '../img/ok.png';
-                }
+            // Lógica de cores com base em temperatura, umidade e luminosidade
+            if (estufa.temperatura > VALOR_LIMITE_TEMPERATURA || estufa.umidade > VALOR_LIMITE_UMIDADE || estufa.luminosidade > VALOR_LIMITE_LUMINOSIDADE) {
+                div.style.backgroundColor = colors.critico;
+                img.src = '../img/critico.png';
+            } else if (estufa.temperatura > OUTRO_VALOR_LIMITE_TEMPERATURA || estufa.umidade > OUTRO_VALOR_LIMITE_UMIDADE || estufa.luminosidade > OUTRO_VALOR_LIMITE_LUMINOSIDADE) {
+                div.style.backgroundColor = colors.alerta;
+                img.src = '../img/alerta.png';
+            } else {
+                div.style.backgroundColor = colors.ok;
+                img.src = '../img/ok.png';
+            }
 
-                estufasContainer.appendChild(div);
-            });
-        } catch (error) {
-            console.error('Erro ao buscar as estufas:', error);
-        }
+            estufasContainer.appendChild(div);
+        });
+    } catch (error) {
+        console.error('Erro ao buscar as estufas:', error);
     }
+}
 
 
 
@@ -405,7 +414,7 @@ KPIProblemasTotais()">
                                     },
                                     backgroundColor: 'green',
                                     boxWidth: 20,
-                                    boxHeight: 10,
+                                    boxHeight: 10, 
                                     usePointStyle: true,
                                     pointStyle: 'circle'
                                 }
