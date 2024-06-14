@@ -50,7 +50,7 @@ function horariosMaisProblemas(idEstufa) {
         AND est.id = ${idEstufa}
         ) AS subquery
 GROUP BY periodo
-ORDER BY periodo ASC LIMIT 1;   
+ORDER BY quantidade DESC LIMIT 1;   
 `;
 
   console.log("Executando a instrução SQL: \n" + instrucao);
