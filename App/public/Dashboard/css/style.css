@@ -669,20 +669,16 @@ body {
 }
 
 #qtd_problemas_atual {
-    background-color: #f8a9a9;
-    border: var(--redCritico) 2px solid;
+    background-color: #d0d0d0;
+    border: var(--blackSmart) 2px solid;
     color: var(--blackSmart);
 }
 
-#qtd_semana {
-    background-color: #f8f4a9;
-    border: var(--yellowAlerta) 2px solid;
-    color: var(--blackSmart);
-}
+
 
 #qtd_mes {
-    background-color: #a9f8b5;
-    border: var(--greenOK) 2px solid;
+    background-color: #d0d0d0;
+    border: var(--blackSmart) 2px solid;
     color: var(--blackSmart);
 }
 
