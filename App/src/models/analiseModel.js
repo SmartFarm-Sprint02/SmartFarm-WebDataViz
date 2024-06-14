@@ -48,9 +48,9 @@ function horariosMaisProblemas(idEstufa) {
         OR lei.umidade < met.UmidMinima OR lei.umidade > met.UmidMaxima
         OR lei.luminosidade < met.LuminMinima OR lei.luminosidade > met.LuminMaxima)
         AND est.id = ${idEstufa}
-) AS subquery
+        ) AS subquery
 GROUP BY periodo
-ORDER BY periodo DESC LIMIT 1;   
+ORDER BY periodo ASC LIMIT 1;   
 `;
 
   console.log("Executando a instrução SQL: \n" + instrucao);
