@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="App/public/Img"/>
+  <img src="App/public/Img/Banner SmartFarm.png"/>
 </p>
 
 # SmartFarm-WebDataViz
